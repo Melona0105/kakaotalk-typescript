@@ -1,4 +1,5 @@
 import { ThemeType } from "./theme.interface";
+import { getMediaQueryStrings } from "../../common/utils/mediaQueries";
 
 export const THEME: ThemeType = {
   colors: {
@@ -17,4 +18,8 @@ export const THEME: ThemeType = {
     xLarge: 20,
     xxLarge: 40,
   },
+  fontSize: {
+    default: 12,
+  },
+  ...getMediaQueryStrings(),
 };
