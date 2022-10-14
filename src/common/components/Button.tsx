@@ -1,16 +1,14 @@
-import { CSSProperties } from "react";
+import { ButtonHTMLAttributes, CSSProperties } from "react";
 import { ButtonWrapper } from "./Button.style";
 
-interface ButtonProps {
-  buttonTitle: string;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   marginTop?: CSSProperties["marginTop"];
-  disabled?: boolean;
 }
 
-function Button({ buttonTitle, disabled, marginTop }: ButtonProps) {
+function Button({ title, marginTop, ...rest }: ButtonProps) {
   return (
-    <ButtonWrapper disabled={disabled} marginTop={marginTop}>
-      {buttonTitle}
+    <ButtonWrapper marginTop={marginTop} {...rest}>
+      {title}
     </ButtonWrapper>
   );
 }
