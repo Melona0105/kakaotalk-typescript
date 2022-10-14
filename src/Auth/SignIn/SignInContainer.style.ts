@@ -1,5 +1,6 @@
 import styeld from "styled-components";
 import kakaoLogo from "../../assets/kakao_logo.png";
+import { ThemeProps } from "../../utils/theme/theme.interface";
 
 export const SignInContainerWrapper = styeld.div<any>(() => ({
   position: "absolute",
@@ -13,12 +14,12 @@ export const SignInContainerWrapper = styeld.div<any>(() => ({
   backgroundColor: "black",
 }));
 
-export const SignInContainerView = styeld.div<any>(() => ({
+export const SignInContainerView = styeld.div<any>(({ theme }: ThemeProps) => ({
   display: "flex",
   maxWidth: 390,
   maxHeight: 640,
   borderRadius: 10,
-  backgroundColor: "#ffe603",
+  backgroundColor: theme.colors.kakaoYellow,
   flexDirection: "column",
   alignItems: "center",
   padding: 70,
