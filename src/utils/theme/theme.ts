@@ -8,6 +8,7 @@ export const THEME: ThemeType = {
     inActive: "#E7E7E7",
     black: "#000000",
     white: "#FFFFFF",
+    gray: "#b7b7b7",
   },
   spacing: {
     xxSmall: 2,
@@ -19,7 +20,11 @@ export const THEME: ThemeType = {
     xxLarge: 40,
   },
   fontSize: {
-    default: 12,
+    small: "0.8rem",
+    default: "1.0rem",
+    large: "1.2rem",
+    xLarge: "1.4rem",
+    xxLarge: "2.0rem",
   },
   ...getMediaQueryStrings(),
 };

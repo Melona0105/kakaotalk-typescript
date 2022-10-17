@@ -17,6 +17,7 @@ interface ColorType {
   inActive: string;
   black: string;
   white: string;
+  gray: string;
 }
 
 interface SpacingType {
@@ -30,5 +31,9 @@ interface SpacingType {
 }
 
 interface FontSizeType {
-  default: number;
+  small: string;
+  default: string;
+  large: string;
+  xLarge: string;
+  xxLarge: string;
 }
