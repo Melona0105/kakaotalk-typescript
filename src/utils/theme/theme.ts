@@ -1,5 +1,5 @@
+import { getMediaQueryStrings } from "./mediaQueries";
 import { ThemeType } from "./theme.interface";
-import { getMediaQueryStrings } from "../../common/utils/mediaQueries";
 
 export const THEME: ThemeType = {
   colors: {
@@ -9,6 +9,7 @@ export const THEME: ThemeType = {
     black: "#000000",
     white: "#FFFFFF",
     gray: "#b7b7b7",
+    red: "#e65e3d",
   },
   spacing: {
     xxSmall: 2,
@@ -20,6 +21,7 @@ export const THEME: ThemeType = {
     xxLarge: 40,
   },
   fontSize: {
+    xSmall: "0.7rem",
     small: "0.8rem",
     default: "1.0rem",
     large: "1.2rem",

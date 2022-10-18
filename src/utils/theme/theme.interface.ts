@@ -1,4 +1,4 @@
-import { MediaQueryType } from "../../common/utils/mediaQueries.interface";
+import { MediaQueryType } from "./mediaQueries.interface";
 
 export interface ThemeProps {
   theme: ThemeType;
@@ -18,6 +18,7 @@ interface ColorType {
   black: string;
   white: string;
   gray: string;
+  red: string;
 }
 
 interface SpacingType {
@@ -31,6 +32,7 @@ interface SpacingType {
 }
 
 interface FontSizeType {
+  xSmall: string;
   small: string;
   default: string;
   large: string;
