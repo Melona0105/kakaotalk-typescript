@@ -1,5 +1,5 @@
 import { UserType } from "../modules/common/providers/AuthProvider";
-import { UserApi } from "../utils/interfaces/apiInterface";
+import { UserApiInput } from "../utils/interfaces/apiInterface";
 import axiosInstance from "./axios";
 
 /**
@@ -11,7 +11,7 @@ const userApis = {
     email,
     username,
     termsIndexes,
-  }: Omit<UserApi, "password">) => {
+  }: Omit<UserApiInput, "password">) => {
     const result = await axiosInstance({
       method: "POST",
       url: "/user",

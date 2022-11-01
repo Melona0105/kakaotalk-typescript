@@ -4,6 +4,9 @@ import {
   SIGN_IN_INPUT_ACTION_TYPE,
 } from "./SignInInputBoxes.interface";
 
+/**
+ * 로그인 상태를 변화시키는 리듀서입니다.
+ */
 function signInInputReducer(
   state: SignInInputStateType,
   action: SignInInputValue

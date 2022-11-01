@@ -5,6 +5,9 @@ interface ProgressBarProps {
   width: CSSProperties["width"];
 }
 
+/**
+ * 회원가입 상단의 프로그레스바 컴포넌트입니다.
+ */
 function ProgressBar({ width }: ProgressBarProps) {
   return (
     <ProgressBarWrapper>

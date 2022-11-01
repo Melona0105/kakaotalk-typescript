@@ -11,6 +11,7 @@ import etcActive from "assets/icons/etc_active.png";
 import etcInactive from "assets/icons/etc_inactive.png";
 import noti from "assets/icons/noti.png";
 import setting from "assets/icons/setting.png";
+import { firebaseSignOut } from "libs/firebase/firebaseAuth";
 
 interface NavigationMenu {
   id: number;
@@ -24,7 +25,8 @@ const NAVIGATION_MENUS: NavigationMenu[] = [
   { id: 1, src: chatActive, inactiveSrc: chatInactive },
   { id: 2, src: etcActive, inactiveSrc: etcInactive },
   { id: 3, src: noti, onClick: () => console.log(1) },
-  { id: 4, src: setting, onClick: () => console.log(2) },
+  // TODO: 임시 버튼입니다. 이후 제거해야합니다.
+  { id: 4, src: setting, onClick: firebaseSignOut },
 ];
 interface NavigationBarProps {
   tabIndex: number;

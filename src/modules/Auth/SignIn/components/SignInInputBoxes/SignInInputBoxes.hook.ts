@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
 import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
+import userService from "services/userService";
 
 const INITIAL_STATE: SignInInputStateType = {
   email: "",
@@ -16,6 +17,9 @@ const INITIAL_STATE: SignInInputStateType = {
   errorMessage: "",
 };
 
+/**
+ * 로그인 인풋의 상태와 함수를 관리하는 훅입니다.
+ */
 function useSignInInputBoxes() {
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(signInInputReducer, INITIAL_STATE);
@@ -27,10 +31,16 @@ function useSignInInputBoxes() {
     dispatch({ type, payload: e.target.value });
   }
 
+  /**
+   * 인풋창에 진입시, 기존 에러를 초기화하는 함수입니다.
+   */
   function onFocus() {
     dispatch({ type: SIGN_IN_INPUT_ACTION_TYPE.HANDLE_ERROR_MESSAGE });
   }
 
+  /**
+   * 인풋의 밸류와 에러상태를 체크하여 버튼의 활성/비활성을 체크하는 함수입니다.
+   */
   function getButtonDisabled() {
     const emailDisabled = !state.email;
     const passwordDisabled = !state.password;
@@ -38,10 +48,17 @@ function useSignInInputBoxes() {
     return emailDisabled || passwordDisabled;
   }
 
+  /**
+   * 로그인 버튼을 누를경우 작동하는 함수입니다.
+   * 1. 버튼이 활성일 경우에만 작동합니다.
+   * 2. firebase 로그인을 시도한뒤, 성공할경우 홈화면으로 이동합니다.
+   * 3. 실패할경우, firebase error code에 따라 에러메세지를 활성화합니다.
+   */
   async function onSignInButtonPress() {
     if (!getButtonDisabled()) {
+      const { email, password } = state;
       try {
-        await firebaseSignIn(state.email, state.password);
+        await userService.signIn({ email, password });
         navigate(PRIVATE_ROUTES.HOME.path, { replace: true });
       } catch (err: unknown) {
         if (err instanceof FirebaseError) {

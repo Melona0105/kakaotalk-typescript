@@ -43,6 +43,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
         setUserProfile(userData[0]);
       } else {
         setFirebaseProfile(null);
+        setUserProfile(null);
       }
     });
   }, []);

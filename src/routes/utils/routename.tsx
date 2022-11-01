@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import FindPasswordContainer from "../../modules/Auth/FindPassword/FindPasswordContainer";
-import SignInContainer from "../../modules/Auth/SignIn/SignInContainer";
-import SignUpInputContainer from "../../modules/Auth/SignUp/signUp/SignUpInputContainer";
-import SignUpTermsContainer from "../../modules/Auth/SignUp/terms/SignUpTermsContainer";
+import FindPasswordContainer from "../../modules/auth/FindPassword/FindPasswordContainer";
+import SignInContainer from "../../modules/auth/SignIn/SignInContainer";
+import SignUpInputContainer from "../../modules/auth/SignUp/signUp/SignUpInputContainer";
+import SignUpTermsContainer from "../../modules/auth/SignUp/terms/SignUpTermsContainer";
 import HomeContainer from "../../modules/home/HomeContainer";
 
 interface RoutesType {

@@ -5,6 +5,9 @@ import {
   SignInVerticalSeparate,
 } from "./SignInFooter.style";
 
+/**
+ * 로그인 하단의 버튼들입니다.
+ */
 function SignInFooter() {
   return (
     <SignInFooterWrapper>

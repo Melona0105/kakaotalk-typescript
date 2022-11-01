@@ -9,6 +9,9 @@ import {
 import Button from "../../../../common/components/Button";
 import InputBox from "../../../../common/components/InputBox";
 
+/**
+ * 로그인 인풋들을 렌더링하는 컴포넌트입니다.
+ */
 function SignInInputBoxes() {
   const { models, operations } = useSignInInputBoxes();
   const { state, buttonDisabled } = models;

@@ -8,6 +8,9 @@ import {
 
 const INCONSISTENCY_ERROR_MESSAGE = "비밀번호가 일치하지 않습니다.";
 
+/**
+ * signup의 상태를 변화시키는 리듀서입니다.
+ */
 function signUpInputReducer(
   state: SignUpInputStateType,
   action: SignUpInputActionValue

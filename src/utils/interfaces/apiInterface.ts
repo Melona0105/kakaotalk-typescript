@@ -1,6 +1,6 @@
-export interface UserApi {
+export interface UserApiInput {
   email: string;
   password: string;
-  username: string;
-  termsIndexes: JSON;
+  username?: string;
+  termsIndexes?: JSON;
 }

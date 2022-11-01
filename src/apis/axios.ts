@@ -3,7 +3,7 @@ import { getFirebaseToken } from "../libs/firebase/firebaseAuth";
 import { SERVER_URL } from "../utils/config";
 
 /**
- * api 콜 전에, firebase token을 헤더에 담아서 전송합니다.
+ * 모든 api 콜의 헤더에 firebase token을 담아주는 interceptor입니다.
  */
 const axiosInstance = axios.create({ baseURL: SERVER_URL });
 

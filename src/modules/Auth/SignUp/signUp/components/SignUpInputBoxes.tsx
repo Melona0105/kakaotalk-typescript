@@ -6,6 +6,9 @@ import Button from "../../../../common/components/Button";
 import InputBox from "../../../../common/components/InputBox";
 import { SignUpInputBoxesWrapper } from "./SignUpInputBoxes.style";
 
+/**
+ * 회원가입 인풋들을 렌더링하는 컴포넌트입니다.
+ */
 function SignUpInputBoxes() {
   const theme = useTheme();
   const { models, operations } = useSignUpInputBoxes();
@@ -150,6 +153,18 @@ function SignUpInputBoxes() {
     [username, usernameErrorMessgae]
   );
 
+  const MemorizedButton = useMemo(
+    () => (
+      <Button
+        title="회원가입"
+        disabled={buttonDisabled}
+        marginTop={theme.spacing.xxLarge}
+        onClick={onSignUpButtonPress}
+      />
+    ),
+    [buttonDisabled]
+  );
+
   return (
     <SignUpInputBoxesWrapper>
       <div>
@@ -158,12 +173,7 @@ function SignUpInputBoxes() {
         {MemorizedPaswordInput}
         {MemorizedPasswordConfirmationInput}
       </div>
-      <Button
-        title="회원가입"
-        disabled={buttonDisabled}
-        marginTop={theme.spacing.xxLarge}
-        onClick={onSignUpButtonPress}
-      />
+      {MemorizedButton}
     </SignUpInputBoxesWrapper>
   );
 }
