@@ -5,9 +5,16 @@ export interface SignUpInputStateType {
   emailErrorMessage: string;
   passwordErrorMessage: string;
   passwordConfirmationErrorMessage: string;
+  username: string;
+  usernameErrorMessgae: string;
 }
 
 export enum SIGN_UP_INPUT_ACTION_TYPE {
+  // username
+  ON_USERNAME_FOCUS,
+  ON_USERNAME_CHANGE,
+  ON_USERNAME_BLUR,
+
   // email
   ON_EMAIL_FOCUS,
   ON_EMAIL_CHANGE,

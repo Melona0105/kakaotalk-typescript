@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  getIdToken,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -31,4 +32,8 @@ export async function firebaseSignIn(email: string, password: string) {
 // 로그아웃
 export async function firebaseSignOut() {
   await signOut(auth);
+}
+
+export async function getFirebaseToken() {
+  return auth.currentUser?.getIdToken();
 }

@@ -17,6 +17,8 @@ function SignUpInputBoxes() {
     passwordErrorMessage,
     passwordConfirmation,
     passwordConfirmationErrorMessage,
+    username,
+    usernameErrorMessgae,
   } = state;
 
   const MemorizedEmailInput = useMemo(
@@ -116,8 +118,40 @@ function SignUpInputBoxes() {
     ]
   );
 
+  const MemorizedUsername = useMemo(
+    () => (
+      <InputBox
+        placeholder="이름을 입력해주세요."
+        borderBottom={`1px solid ${theme.colors.inActive}`}
+        disableBorderRadius
+        showPadding={false}
+        paddingTop={theme.spacing.xxLarge}
+        value={username}
+        onChange={({ target }) =>
+          dispatch({
+            type: SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_CHANGE,
+            payload: target.value,
+          })
+        }
+        onFocus={() =>
+          dispatch({
+            type: SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_FOCUS,
+          })
+        }
+        onBlur={() =>
+          dispatch({
+            type: SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_BLUR,
+          })
+        }
+        errorMessage={usernameErrorMessgae}
+      />
+    ),
+    [username, usernameErrorMessgae]
+  );
+
   return (
     <>
+      {MemorizedUsername}
       {MemorizedEmailInput}
       {MemorizedPaswordInput}
       {MemorizedPasswordConfirmationInput}

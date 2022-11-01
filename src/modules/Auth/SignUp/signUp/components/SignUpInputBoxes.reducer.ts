@@ -13,6 +13,19 @@ function SignUpInputReducer(
   { payload, type }: SignUpInputActionValue
 ) {
   switch (type) {
+    // username
+    case SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_FOCUS: {
+      return { ...state, usernameErrorMessgae: "" };
+    }
+    case SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_CHANGE: {
+      return { ...state, username: payload };
+    }
+    case SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_BLUR: {
+      if (!state.username) {
+        return { ...state, usernameErrorMessgae: "이름을 입력해주세요." };
+      } else return state;
+    }
+
     // email
     case SIGN_UP_INPUT_ACTION_TYPE.ON_EMAIL_FOCUS: {
       return { ...state, emailErrorMessage: "" };
