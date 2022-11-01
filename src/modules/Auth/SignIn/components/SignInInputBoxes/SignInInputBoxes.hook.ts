@@ -6,6 +6,8 @@ import {
   SignInInputStateTypes,
   SIGN_IN_INPUT_ACTION_TYPE,
 } from "./SignInInputBoxes.interface";
+import { useNavigate } from "react-router-dom";
+import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
 
 const INITIAL_STATE: SignInInputStateTypes = {
   email: "",
@@ -13,6 +15,7 @@ const INITIAL_STATE: SignInInputStateTypes = {
 };
 
 function useSignInInputBoxes() {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(signInInputReducer, INITIAL_STATE);
 
   function onTextChange(
@@ -34,6 +37,7 @@ function useSignInInputBoxes() {
     if (!getButtonDisabled()) {
       try {
         await firebaseSignIn(state.email, state.password);
+        navigate(PRIVATE_ROUTES.HOME.path, { replace: true });
       } catch (err: unknown) {
         if (err instanceof FirebaseError) {
           console.log(err.code);

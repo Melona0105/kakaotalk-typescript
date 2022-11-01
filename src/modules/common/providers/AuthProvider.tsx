@@ -7,10 +7,17 @@ import {
   useEffect,
   useState,
 } from "react";
+import userService from "../../../services/userService";
+
+export interface UserType {
+  id: string;
+  email: string;
+  agree_terms: JSON;
+}
 
 interface AuthContextType {
   firebaseProfile: User | null;
-  userProfile: any;
+  userProfile: UserType | null;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -23,15 +30,17 @@ const AuthContext = createContext<AuthContextType>({
  */
 function AuthProvider({ children }: { children: ReactNode }) {
   const [firebaseProfile, setFirebaseProfile] = useState<User | null>(null);
-  const [userProfile, setUserProfile] = useState(null);
+  const [userProfile, setUserProfile] = useState<UserType | null>(null);
 
   /**
    * firebase 로그인을 감지하여 유저 프로필을 state에 할당합니다.
    */
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         setFirebaseProfile(user);
+        const userData = await userService.getMyUserProfile();
+        setUserProfile(userData[0]);
       } else {
         setFirebaseProfile(null);
       }
