@@ -1,18 +1,22 @@
 import { useMemo } from "react";
 import useSignInInputBoxes from "./SignInInputBoxes.hook";
 import { SIGN_IN_INPUT_ACTION_TYPE } from "./SignInInputBoxes.interface";
-import { SignInDiv, SignInInputBoxesWrapper } from "./SignInInputBoxes.style";
+import {
+  SignInDiv,
+  SignInErrorMessage,
+  SignInInputBoxesWrapper,
+} from "./SignInInputBoxes.style";
 import Button from "../../../../common/components/Button";
 import InputBox from "../../../../common/components/InputBox";
 
 function SignInInputBoxes() {
   const { models, operations } = useSignInInputBoxes();
   const { state, buttonDisabled } = models;
-  const { onTextChange, onSignInButtonPress } = operations;
+  const { onTextChange, onFocus, onSignInButtonPress } = operations;
 
-  const { email, password } = state;
+  const { email, password, errorMessage } = state;
 
-  const MemoriezedEmailInput = useMemo(
+  const MemorizedEmailInput = useMemo(
     () => (
       <InputBox
         width={230}
@@ -23,12 +27,13 @@ function SignInInputBoxes() {
           onTextChange(e, SIGN_IN_INPUT_ACTION_TYPE.ON_EMAIL_CHANGE)
         }
         type="email"
+        onFocus={onFocus}
       />
     ),
-    [email]
+    [email, errorMessage]
   );
 
-  const MemoriezedPasswordInput = useMemo(
+  const MemorizedPasswordInput = useMemo(
     () => (
       <InputBox
         width={230}
@@ -39,18 +44,20 @@ function SignInInputBoxes() {
           onTextChange(e, SIGN_IN_INPUT_ACTION_TYPE.ON_PASSWORD_CHANGE)
         }
         type="password"
+        onFocus={onFocus}
       />
     ),
-    [password]
+    [password, errorMessage]
   );
 
-  return (
-    <SignInInputBoxesWrapper>
-      <SignInDiv>
-        {MemoriezedEmailInput}
-        {MemoriezedPasswordInput}
-      </SignInDiv>
+  const MemorizedErrorMessage = useMemo(
+    () =>
+      errorMessage && <SignInErrorMessage>{errorMessage}</SignInErrorMessage>,
+    [errorMessage]
+  );
 
+  const MemorizedButton = useMemo(
+    () => (
       <Button
         title="로그인"
         width={230}
@@ -58,6 +65,19 @@ function SignInInputBoxes() {
         marginTop={10}
         onClick={onSignInButtonPress}
       />
+    ),
+    [email, password, errorMessage]
+  );
+
+  return (
+    <SignInInputBoxesWrapper>
+      <SignInDiv>
+        {MemorizedEmailInput}
+        {MemorizedPasswordInput}
+      </SignInDiv>
+
+      {MemorizedErrorMessage}
+      {MemorizedButton}
     </SignInInputBoxesWrapper>
   );
 }

@@ -1,13 +1,13 @@
 import {
   SignInInputValue,
-  SignInInputStateTypes,
+  SignInInputStateType,
   SIGN_IN_INPUT_ACTION_TYPE,
 } from "./SignInInputBoxes.interface";
 
 function signInInputReducer(
-  state: SignInInputStateTypes,
+  state: SignInInputStateType,
   action: SignInInputValue
-): SignInInputStateTypes {
+): SignInInputStateType {
   const { type, payload } = action;
   switch (type) {
     case SIGN_IN_INPUT_ACTION_TYPE.ON_EMAIL_CHANGE: {
@@ -16,6 +16,11 @@ function signInInputReducer(
 
     case SIGN_IN_INPUT_ACTION_TYPE.ON_PASSWORD_CHANGE: {
       return { ...state, password: payload };
+    }
+    case SIGN_IN_INPUT_ACTION_TYPE.HANDLE_ERROR_MESSAGE: {
+      if (payload) {
+        return { ...state, errorMessage: payload };
+      } else return { ...state, errorMessage: "" };
     }
 
     default:

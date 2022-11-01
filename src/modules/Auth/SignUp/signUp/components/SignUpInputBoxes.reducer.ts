@@ -8,21 +8,22 @@ import {
 
 const INCONSISTENCY_ERROR_MESSAGE = "비밀번호가 일치하지 않습니다.";
 
-function SignUpInputReducer(
+function signUpInputReducer(
   state: SignUpInputStateType,
-  { payload, type }: SignUpInputActionValue
-) {
+  action: SignUpInputActionValue
+): SignUpInputStateType {
+  const { type, payload } = action;
   switch (type) {
     // username
     case SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_FOCUS: {
-      return { ...state, usernameErrorMessgae: "" };
+      return { ...state, usernameErrorMessage: "" };
     }
     case SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_CHANGE: {
       return { ...state, username: payload };
     }
     case SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_BLUR: {
       if (!state.username) {
-        return { ...state, usernameErrorMessgae: "이름을 입력해주세요." };
+        return { ...state, usernameErrorMessage: "이름을 입력해주세요." };
       } else return state;
     }
 
@@ -108,8 +109,13 @@ function SignUpInputReducer(
       } else return state;
     }
 
+    // firebase
+    case SIGN_UP_INPUT_ACTION_TYPE.HANDLE_FIREBASE_ERROR_MESSAGE: {
+      return { ...state, emailErrorMessage: payload };
+    }
+
     default:
       throw new Error();
   }
 }
-export default SignUpInputReducer;
+export default signUpInputReducer;

@@ -1,9 +1,14 @@
 import { useReducer } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SignUpInputStateType } from "./SignUpInputBoxes.interface";
-import SignUpInputReducer from "./SignUpInputBoxes.reducer";
+import {
+  SignUpInputStateType,
+  SIGN_UP_INPUT_ACTION_TYPE,
+} from "./SignUpInputBoxes.interface";
+import signUpInputReducer from "./SignUpInputBoxes.reducer";
 import userService from "../../../../../services/userService";
 import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
+import { FirebaseError } from "firebase/app";
+import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
 
 const INITIAL_STATE: SignUpInputStateType = {
   email: "",
@@ -13,12 +18,12 @@ const INITIAL_STATE: SignUpInputStateType = {
   passwordErrorMessage: "",
   passwordConfirmationErrorMessage: "",
   username: "",
-  usernameErrorMessgae: "",
+  usernameErrorMessage: "",
 };
 
 function useSignUpInputBoxes() {
   const navigate = useNavigate();
-  const [state, dispatch] = useReducer(SignUpInputReducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(signUpInputReducer, INITIAL_STATE);
 
   const {
     state: { termsIndexes },
@@ -29,7 +34,7 @@ function useSignUpInputBoxes() {
    */
   function getButtonDisabled() {
     // 이름 체크
-    const usernameDisabled = !state.username || !!state.usernameErrorMessgae;
+    const usernameDisabled = !state.username || !!state.usernameErrorMessage;
     // 이메일 체크
     const emailDisabled = !state.email || !!state.emailErrorMessage;
     // 비밀번호 체크
@@ -53,9 +58,21 @@ function useSignUpInputBoxes() {
   async function onSignUpButtonPress() {
     if (!getButtonDisabled()) {
       const { email, password, username } = state;
-
-      await userService.signUp({ email, password, username, termsIndexes });
-      navigate(PRIVATE_ROUTES.HOME.path, { replace: true });
+      try {
+        await userService.signUp({ email, password, username, termsIndexes });
+        navigate(PRIVATE_ROUTES.HOME.path, { replace: true });
+      } catch (err: unknown) {
+        if (err instanceof FirebaseError) {
+          if (err.code === FIREBASE_ERROR_CODE.EMAIL_USED) {
+            dispatch({
+              type: SIGN_UP_INPUT_ACTION_TYPE.HANDLE_FIREBASE_ERROR_MESSAGE,
+              payload: "이미 사용중인 이메일입니다.",
+            });
+          }
+        } else {
+          console.log(err);
+        }
+      }
     }
   }
 

@@ -19,7 +19,7 @@ function SignUpInputBoxes() {
     passwordConfirmation,
     passwordConfirmationErrorMessage,
     username,
-    usernameErrorMessgae,
+    usernameErrorMessage: usernameErrorMessgae,
   } = state;
 
   const MemorizedEmailInput = useMemo(

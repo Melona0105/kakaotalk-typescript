@@ -8,14 +8,9 @@ import { UserApi } from "../utils/interfaces/apiInterface";
 const userService = {
   // 회원가입
   signUp: async ({ email, password, username, termsIndexes }: UserApi) => {
-    try {
-      // firebase 회원가입 진행 후, 서버에 쿼리를 합니다.
-      await firebaseSignUp(email, password);
-      await userApis.signUp({ email, username, termsIndexes });
-      console.log("성공적으로 가입되었습니다.");
-    } catch (err) {
-      console.log(err);
-    }
+    // firebase 회원가입 진행 후, 서버에 쿼리를 합니다.
+    await firebaseSignUp(email, password);
+    await userApis.signUp({ email, username, termsIndexes });
   },
 
   getMyUserProfile: async () => {

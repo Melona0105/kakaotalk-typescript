@@ -6,7 +6,7 @@ export interface SignUpInputStateType {
   passwordErrorMessage: string;
   passwordConfirmationErrorMessage: string;
   username: string;
-  usernameErrorMessgae: string;
+  usernameErrorMessage: string;
 }
 
 export enum SIGN_UP_INPUT_ACTION_TYPE {
@@ -29,6 +29,8 @@ export enum SIGN_UP_INPUT_ACTION_TYPE {
   ON_PASSWORD_CONFIRMATION_FOCUS,
   ON_PASSWORD_CONFIRMATION_CHANGE,
   ON_PASSWORD_CONFIRMATION_BLUR,
+
+  HANDLE_FIREBASE_ERROR_MESSAGE,
 }
 
 export interface SignUpInputActionValue {

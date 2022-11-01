@@ -3,15 +3,17 @@ import { ChangeEvent, useReducer } from "react";
 import signInInputReducer from "./SignInInputBoxes.reducer";
 import { firebaseSignIn } from "../../../../../libs/firebase/firebaseAuth";
 import {
-  SignInInputStateTypes,
+  SignInInputStateType,
   SIGN_IN_INPUT_ACTION_TYPE,
 } from "./SignInInputBoxes.interface";
 import { useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
+import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
 
-const INITIAL_STATE: SignInInputStateTypes = {
+const INITIAL_STATE: SignInInputStateType = {
   email: "",
   password: "",
+  errorMessage: "",
 };
 
 function useSignInInputBoxes() {
@@ -25,6 +27,10 @@ function useSignInInputBoxes() {
     dispatch({ type, payload: e.target.value });
   }
 
+  function onFocus() {
+    dispatch({ type: SIGN_IN_INPUT_ACTION_TYPE.HANDLE_ERROR_MESSAGE });
+  }
+
   function getButtonDisabled() {
     const emailDisabled = !state.email;
     const passwordDisabled = !state.password;
@@ -32,7 +38,6 @@ function useSignInInputBoxes() {
     return emailDisabled || passwordDisabled;
   }
 
-  // TODO: firebase 에러코드 정리 / signup 포함
   async function onSignInButtonPress() {
     if (!getButtonDisabled()) {
       try {
@@ -40,7 +45,22 @@ function useSignInInputBoxes() {
         navigate(PRIVATE_ROUTES.HOME.path, { replace: true });
       } catch (err: unknown) {
         if (err instanceof FirebaseError) {
-          console.log(err.code);
+          if (err.code === FIREBASE_ERROR_CODE.USER_NOT_FOUND) {
+            dispatch({
+              type: SIGN_IN_INPUT_ACTION_TYPE.HANDLE_ERROR_MESSAGE,
+              payload: "가입되지 않은 이메일 입니다.",
+            });
+          } else if (err.code === FIREBASE_ERROR_CODE.WRONG_PASSWORD) {
+            dispatch({
+              type: SIGN_IN_INPUT_ACTION_TYPE.HANDLE_ERROR_MESSAGE,
+              payload: "비밀번호를 확인해주세요.",
+            });
+          } else if (err.code === FIREBASE_ERROR_CODE.INVALID_EMAIL) {
+            dispatch({
+              type: SIGN_IN_INPUT_ACTION_TYPE.HANDLE_ERROR_MESSAGE,
+              payload: "올바른 이메일을 입력해 주세요.",
+            });
+          }
         } else {
           console.log(err);
         }
@@ -55,6 +75,7 @@ function useSignInInputBoxes() {
     },
     operations: {
       onTextChange,
+      onFocus,
       onSignInButtonPress,
     },
   };
