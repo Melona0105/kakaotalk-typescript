@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../../../utils/theme/theme.interface";
 
-export const SignInFooterWrapper = styled.div<any>(({ theme }: ThemeProps) => ({
+export const SignInFooterWrapper = styled.div<ThemeProps>(({ theme }) => ({
   display: "flex",
   gap: theme.spacing.middle,
   justifyContent: "center",
@@ -10,8 +10,6 @@ export const SignInFooterWrapper = styled.div<any>(({ theme }: ThemeProps) => ({
   paddingBottom: theme.spacing.xxLarge,
 }));
 
-export const SignInVerticalSeparate = styled.div<any>(
-  ({ theme }: ThemeProps) => ({
-    borderRight: `1px solid ${theme.colors.black}`,
-  })
-);
+export const SignInVerticalSeparate = styled.div<ThemeProps>(({ theme }) => ({
+  borderRight: `1px solid ${theme.colors.black}`,
+}));

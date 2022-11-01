@@ -3,16 +3,16 @@ import styled from "styled-components";
 import { ThemeProps } from "../../../utils/theme/theme.interface";
 
 interface InputBoxWrapperStyleProps extends ThemeProps {
-  showBorderBottom: boolean;
-  width: CSSProperties["width"];
-  borderBottom: CSSProperties["borderBottom"];
-  paddingTop: CSSProperties["paddingTop"];
-  disableBorderRadius: boolean;
-  showPadding: boolean;
-  errorActivated: boolean;
+  showBorderBottom?: boolean;
+  width?: CSSProperties["width"];
+  borderBottom?: CSSProperties["borderBottom"];
+  paddingTop?: CSSProperties["paddingTop"];
+  disableBorderRadius?: boolean;
+  showPadding?: boolean;
+  errorActivated?: boolean;
 }
 
-export const InputBoxWrapper = styled.div<any>(
+export const InputBoxWrapper = styled.div<InputBoxWrapperStyleProps>(
   ({
     theme,
     width,
@@ -22,7 +22,7 @@ export const InputBoxWrapper = styled.div<any>(
     borderBottom,
     disableBorderRadius,
     errorActivated,
-  }: InputBoxWrapperStyleProps) => ({
+  }) => ({
     width,
     margin: 0,
     padding: theme.spacing.xxSmall * 5,
@@ -41,7 +41,7 @@ export const InputBoxWrapper = styled.div<any>(
   })
 );
 
-export const InputBoxInput = styled.input<any>(() => ({
+export const InputBoxInput = styled.input<ThemeProps>(() => ({
   width: "100%",
   outline: "none",
   border: "none",
@@ -49,10 +49,8 @@ export const InputBoxInput = styled.input<any>(() => ({
   margin: 0,
 }));
 
-export const InputBoxErrorMessage = styled.div<any>(
-  ({ theme }: ThemeProps) => ({
-    fontSize: theme.fontSize.xSmall,
-    color: theme.colors.red,
-    paddingTop: theme.spacing.small,
-  })
-);
+export const InputBoxErrorMessage = styled.div<ThemeProps>(({ theme }) => ({
+  fontSize: theme.fontSize.xSmall,
+  color: theme.colors.red,
+  paddingTop: theme.spacing.small,
+}));

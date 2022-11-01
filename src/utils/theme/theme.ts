@@ -14,6 +14,7 @@ export const THEME: ThemeType = {
     black: "#000000",
     white: "#FFFFFF",
     gray: "#b7b7b7",
+    gray2: "#e6e6e6",
     red: "#e65e3d",
   },
   spacing: {

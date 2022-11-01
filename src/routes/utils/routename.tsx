@@ -24,7 +24,7 @@ export const PUBLIC_ROUTES: RoutesType = {
     element: <Outlet />,
     children: [
       { path: "", element: <SignUpTermsContainer /> },
-      { path: "agreement", element: <SignUpInputContainer /> },
+      { path: "input", element: <SignUpInputContainer /> },
     ],
   },
   FIND_PASSWORD: {

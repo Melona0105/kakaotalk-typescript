@@ -26,6 +26,7 @@ interface ColorType {
   black: string;
   white: string;
   gray: string;
+  gray2: string;
   red: string;
 }
 

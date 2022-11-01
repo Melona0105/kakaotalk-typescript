@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../utils/theme/theme.interface";
 
-export const LayoutWrapper = styled.div<any>(({ theme }: ThemeProps) => ({
+export const LayoutWrapper = styled.div<ThemeProps>(({ theme }) => ({
   position: "absolute",
   top: 0,
   left: 0,
@@ -13,7 +13,7 @@ export const LayoutWrapper = styled.div<any>(({ theme }: ThemeProps) => ({
   backgroundColor: theme.colors.black,
 }));
 
-export const LayoutDiv = styled.div<any>(({ theme }: ThemeProps) => ({
+export const LayoutDiv = styled.div<ThemeProps>(({ theme }) => ({
   display: "flex",
   width: theme.config.width,
   height: theme.config.height,
