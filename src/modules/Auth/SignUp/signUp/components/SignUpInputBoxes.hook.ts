@@ -3,9 +3,7 @@ import { useLocation } from "react-router-dom";
 import { SignUpInputStateType } from "./SignUpInputBoxes.interface";
 import SignUpInputReducer from "./SignUpInputBoxes.reducer";
 import { firebaseSignUp } from "../../../../../libs/firebase/firebaseAuth";
-import axios from "axios";
 import axiosInstance from "../../../../../apis/axios";
-import { useAuthContext } from "../../../../common/providers/AuthProvider";
 
 const INITIAL_STATE: SignUpInputStateType = {
   email: "",
@@ -19,7 +17,6 @@ const INITIAL_STATE: SignUpInputStateType = {
 };
 
 function useSignUpInputBoxes() {
-  const { userProfile, firebaseProfile } = useAuthContext();
   const [state, dispatch] = useReducer(SignUpInputReducer, INITIAL_STATE);
 
   // TODO: 서버에 저장할 동의값 데이터
@@ -59,7 +56,6 @@ function useSignUpInputBoxes() {
         // firebase 회원가입이 성공하고 나면, 서버에 유저이름과 동의정보를 저장합니다.
         await firebaseSignUp(state.email, state.password);
         await axiosInstance.post(`/user`, {
-          uid: firebaseProfile?.uid,
           email: state.email,
           username: state.username,
           termsIndexes,

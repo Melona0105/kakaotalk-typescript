@@ -38,8 +38,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  console.log({ firebaseProfile });
-
   return (
     <AuthContext.Provider value={{ firebaseProfile, userProfile }}>
       {children}

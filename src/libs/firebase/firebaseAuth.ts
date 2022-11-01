@@ -35,5 +35,5 @@ export async function firebaseSignOut() {
 }
 
 export async function getFirebaseToken() {
-  return auth.currentUser?.getIdToken();
+  return await auth.currentUser?.getIdToken();
 }
