@@ -4,7 +4,7 @@ import { ThemeType } from "./theme.interface";
 export const THEME: ThemeType = {
   config: {
     width: 390,
-    height: 530,
+    height: 640,
     borderRadius: 10,
   },
   colors: {

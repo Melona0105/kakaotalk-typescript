@@ -3,8 +3,7 @@ import useSignUpTermsContainer from "./SignUpTermsContainer.hook";
 import Button from "../../../common/components/Button";
 import ProgressBar from "../components/ProgressBar";
 import SignUpTerms from "../components/SignUpTerms";
-import { SignUpContainerView } from "../common/styles/signUpStyles";
-import { AppContainerWrapper } from "../../../common/styles/commonStyles";
+import { SignUpTermsContainerWrapper } from "./SignUpTermsContainer.style";
 
 /**
  * 회원가입 약관 컨테이너입니다.
@@ -16,20 +15,18 @@ function SignUpTermsContainer() {
   const { onTermClick, onAgreeButtonPress } = operations;
 
   return (
-    <AppContainerWrapper>
-      <SignUpContainerView>
-        <ProgressBar width="50%" />
-        <SignUpTerms termsIndexes={termsIndexes} onTermClick={onTermClick} />
-        <Button
-          title="동의"
-          backgroundColor={theme.colors.kakaoYellow}
-          color={theme.colors.black}
-          fontSize={theme.fontSize.default}
-          disabled={buttonDisabled}
-          onClick={onAgreeButtonPress}
-        />
-      </SignUpContainerView>
-    </AppContainerWrapper>
+    <SignUpTermsContainerWrapper>
+      <ProgressBar width="50%" />
+      <SignUpTerms termsIndexes={termsIndexes} onTermClick={onTermClick} />
+      <Button
+        title="동의"
+        backgroundColor={theme.colors.kakaoYellow}
+        color={theme.colors.black}
+        fontSize={theme.fontSize.default}
+        disabled={buttonDisabled}
+        onClick={onAgreeButtonPress}
+      />
+    </SignUpTermsContainerWrapper>
   );
 }
 
