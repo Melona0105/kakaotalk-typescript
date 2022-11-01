@@ -1,20 +1,16 @@
+import { AppContainerWrapper } from "../../common/styles/commonStyles";
 import SignInFooter from "./components/SignInFooter";
-import SignInInputBoxes from "./components/SignInInputBoxes/SignInInputBoxes";
-import {
-  SignInContainerImage,
-  SignInContainerView,
-  SignInContainerWrapper,
-} from "./SignInContainer.style";
+import SignInHeader from "./components/SignInHeader";
+import { SignInContainerView } from "./SignInContainer.style";
 
 function SignInContainer() {
   return (
-    <SignInContainerWrapper>
+    <AppContainerWrapper>
       <SignInContainerView>
-        <SignInContainerImage />
-        <SignInInputBoxes />
+        <SignInHeader />
         <SignInFooter />
       </SignInContainerView>
-    </SignInContainerWrapper>
+    </AppContainerWrapper>
   );
 }
 

@@ -2,6 +2,11 @@ import { getMediaQueryStrings } from "./mediaQueries";
 import { ThemeType } from "./theme.interface";
 
 export const THEME: ThemeType = {
+  config: {
+    width: 390,
+    height: 530,
+    borderRadius: 10,
+  },
   colors: {
     kakaoDarkGray: "#423630",
     kakaoYellow: "#FFE603",

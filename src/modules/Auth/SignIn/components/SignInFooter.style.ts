@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { ThemeProps } from "../../../../utils/theme/theme.interface";
 
 export const SignInFooterWrapper = styled.div<any>(({ theme }: ThemeProps) => ({
-  width: "100%",
-  paddingTop: theme.spacing.xxLarge * 3,
   display: "flex",
-  justifyContent: "center",
   gap: theme.spacing.middle,
+  justifyContent: "center",
+  paddingRight: theme.spacing.xxLarge * 2.5,
+  paddingLeft: theme.spacing.xxLarge * 2.5,
 }));
 
 export const SignInVerticalSeparate = styled.div<any>(

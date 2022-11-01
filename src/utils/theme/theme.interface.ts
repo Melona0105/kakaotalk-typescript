@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { MediaQueryType } from "./mediaQueries.interface";
 
 export interface ThemeProps {
@@ -5,10 +6,17 @@ export interface ThemeProps {
 }
 
 export interface ThemeType {
+  config: AppConfigType;
   colors: ColorType;
   spacing: SpacingType;
   fontSize: FontSizeType;
   media: MediaQueryType;
+}
+
+interface AppConfigType {
+  width: CSSProperties["width"];
+  height: CSSProperties["height"];
+  borderRadius: CSSProperties["borderRadius"];
 }
 
 interface ColorType {

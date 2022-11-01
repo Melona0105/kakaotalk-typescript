@@ -3,14 +3,11 @@ import useSignUpTermsContainer from "./SignUpTermsContainer.hook";
 import Button from "../../../common/components/Button";
 import ProgressBar from "../components/ProgressBar";
 import SignUpTerms from "../components/SignUpTerms";
-import {
-  SignUpContainerView,
-  SignUpContainerWrapper,
-} from "../common/styles/signUpStyles";
+import { SignUpContainerView } from "../common/styles/signUpStyles";
+import { AppContainerWrapper } from "../../../common/styles/commonStyles";
 
 /**
  * 회원가입 약관 컨테이너입니다.
-// https://accounts.kakao.com/weblogin/create_account/?continue=https://accounts.kakao.com/weblogin/account/info#confirmTerm
  */
 function SignUpTermsContainer() {
   const theme = useTheme();
@@ -19,7 +16,7 @@ function SignUpTermsContainer() {
   const { onTermClick, onAgreeButtonPress } = operations;
 
   return (
-    <SignUpContainerWrapper>
+    <AppContainerWrapper>
       <SignUpContainerView>
         <ProgressBar width="50%" />
         <SignUpTerms termsIndexes={termsIndexes} onTermClick={onTermClick} />
@@ -32,7 +29,7 @@ function SignUpTermsContainer() {
           onClick={onAgreeButtonPress}
         />
       </SignUpContainerView>
-    </SignUpContainerWrapper>
+    </AppContainerWrapper>
   );
 }
 

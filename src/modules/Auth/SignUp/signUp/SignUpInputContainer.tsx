@@ -1,18 +1,16 @@
 import SignUpInputBoxes from "./components/SignUpInputBoxes";
 import SignUpInputHeader from "./components/SignUpInputHeader";
-import {
-  SignUpContainerView,
-  SignUpContainerWrapper,
-} from "../common/styles/signUpStyles";
+import { SignUpContainerView } from "../common/styles/signUpStyles";
+import { AppContainerWrapper } from "../../../common/styles/commonStyles";
 
 function SignUpInputContainer() {
   return (
-    <SignUpContainerWrapper>
+    <AppContainerWrapper>
       <SignUpContainerView>
         <SignUpInputHeader />
         <SignUpInputBoxes />
       </SignUpContainerView>
-    </SignUpContainerWrapper>
+    </AppContainerWrapper>
   );
 }
 

@@ -22,7 +22,7 @@ export const ButtonWrapper = styled.div<any>(
   }: ButtonWrapperStyleProps) => ({
     width,
     textAlign: "center",
-    padding: 10,
+    padding: theme.spacing.xLarge / 2,
     backgroundColor: disabled
       ? theme.colors.inActive
       : backgroundColor || theme.colors.kakaoDarkGray,
