@@ -11,10 +11,12 @@ function HomeContainer() {
   const { tabIndex } = models;
   const { onTabPress } = operations;
 
+  const HomeInnterContainer = HOME_INNER_CONTAINER[tabIndex];
+
   return (
     <HomeContainerWrapper>
       <NavigationBar tabIndex={tabIndex} onTabPress={onTabPress} />
-      {HOME_INNER_CONTAINER[tabIndex]}
+      <HomeInnterContainer tabIndex={tabIndex} />
     </HomeContainerWrapper>
   );
 }
