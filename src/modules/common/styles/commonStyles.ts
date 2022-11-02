@@ -9,3 +9,8 @@ export const ButtonStyleLink = styled(Link)<any>(({ theme }: ThemeProps) => ({
   flex: 1,
   textDecoration: "none",
 }));
+
+export const FlexDiv = styled.div<ThemeProps>(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+}));

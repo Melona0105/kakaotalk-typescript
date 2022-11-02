@@ -12,6 +12,7 @@ export const MelonWrapper = styled.div<ThemeProps>(({ theme }) => ({
   paddingRight: theme.spacing.small,
   maxWidth: 120,
   display: "flex",
+  cursor: "pointer",
 }));
 
 export const MelonText = styled.div<ThemeProps>(({ theme }) => ({

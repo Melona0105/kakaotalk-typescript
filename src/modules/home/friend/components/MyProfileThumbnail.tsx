@@ -18,7 +18,10 @@ function MyProfileThumbnail() {
       <MyProfileThumbnailImage src={sampleImage} />
       <MyProfileThumbnailDiv>
         <MyProfileThumbnailName>{userProfile?.username}</MyProfileThumbnailName>
-        <Melon />
+        <Melon
+          title="엄마의 프로필 사진은 왜 꽃밭일까 - 김진호"
+          onClick={() => console.log(1)}
+        />
       </MyProfileThumbnailDiv>
     </MyProfileThumbnailWrapper>
   );
