@@ -4,8 +4,8 @@ import Layout from "./components/Layout";
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "./utils/routename";
 
 function RouteContainer() {
-  const { userProfile } = useAuthContext();
-  const ROUTES = userProfile ? PRIVATE_ROUTES : PUBLIC_ROUTES;
+  const { firebaseProfile } = useAuthContext();
+  const ROUTES = firebaseProfile ? PRIVATE_ROUTES : PUBLIC_ROUTES;
 
   return (
     <Routes>

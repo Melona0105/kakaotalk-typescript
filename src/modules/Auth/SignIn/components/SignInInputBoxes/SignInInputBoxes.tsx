@@ -15,7 +15,8 @@ import InputBox from "../../../../common/components/InputBox";
 function SignInInputBoxes() {
   const { models, operations } = useSignInInputBoxes();
   const { state, buttonDisabled } = models;
-  const { onTextChange, onFocus, onSignInButtonPress } = operations;
+  const { onTextChange, onFocus, onEnterKeyPress, onSignInButtonPress } =
+    operations;
 
   const { email, password, errorMessage } = state;
 
@@ -26,6 +27,7 @@ function SignInInputBoxes() {
         value={email}
         placeholder="카카오계정 (이메일 또는 전화번호)"
         showBorderBottom
+        onKeyDown={onEnterKeyPress}
         onChange={(e) =>
           onTextChange(e, SIGN_IN_INPUT_ACTION_TYPE.ON_EMAIL_CHANGE)
         }
@@ -43,6 +45,7 @@ function SignInInputBoxes() {
         value={password}
         placeholder="비밀번호"
         showBorderBottom
+        onKeyDown={onEnterKeyPress}
         onChange={(e) =>
           onTextChange(e, SIGN_IN_INPUT_ACTION_TYPE.ON_PASSWORD_CHANGE)
         }

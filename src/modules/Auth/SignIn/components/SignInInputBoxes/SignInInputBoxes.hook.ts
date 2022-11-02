@@ -1,7 +1,11 @@
 import { FirebaseError } from "firebase/app";
-import { ChangeEvent, useReducer } from "react";
+import {
+  ChangeEvent,
+  HtmlHTMLAttributes,
+  KeyboardEvent,
+  useReducer,
+} from "react";
 import signInInputReducer from "./SignInInputBoxes.reducer";
-import { firebaseSignIn } from "../../../../../libs/firebase/firebaseAuth";
 import {
   SignInInputStateType,
   SIGN_IN_INPUT_ACTION_TYPE,
@@ -49,6 +53,14 @@ function useSignInInputBoxes() {
   }
 
   /**
+   * input에서 엔터를 누를경우 로그인을 시도하는 함수입니다.
+   */
+  function onEnterKeyPress(e: KeyboardEvent<HTMLInputElement>) {
+    const { key } = e;
+    key === "Enter" && onSignInButtonPress();
+  }
+
+  /**
    * 로그인 버튼을 누를경우 작동하는 함수입니다.
    * 1. 버튼이 활성일 경우에만 작동합니다.
    * 2. firebase 로그인을 시도한뒤, 성공할경우 홈화면으로 이동합니다.
@@ -93,6 +105,7 @@ function useSignInInputBoxes() {
     operations: {
       onTextChange,
       onFocus,
+      onEnterKeyPress,
       onSignInButtonPress,
     },
   };
