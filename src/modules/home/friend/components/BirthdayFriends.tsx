@@ -1,8 +1,6 @@
-import {
-  BirthdayFriendsText,
-  BirthdayFriendsWrapper,
-} from "./BirthdayFriends.style";
-import FriendProfileThumbnail from "./FriendProfileThumbnail";
+import { BirthdayFriendsWrapper } from "./BirthdayFriends.style";
+import FriendProfileThumbnail from "./thumbnail/FriendProfileThumbnail";
+import ToggleBox from "./ToggleBox/ToggleBox";
 
 interface BirthdayFriendsProps {
   // TODO: 이후 유저 데이터 타입 정의해야합니다.
@@ -17,8 +15,9 @@ function BirthdayFriends({ birthdayFirends }: BirthdayFriendsProps) {
 
   return (
     <BirthdayFriendsWrapper>
-      <BirthdayFriendsText>생일인 친구</BirthdayFriendsText>
-      <FriendProfileThumbnail birthdayFirends={birthdayFirends} />
+      <ToggleBox title="생일인친구">
+        <FriendProfileThumbnail birthdayFirends={birthdayFirends} />
+      </ToggleBox>
     </BirthdayFriendsWrapper>
   );
 }

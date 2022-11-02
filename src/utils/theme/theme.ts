@@ -5,6 +5,7 @@ export const THEME: ThemeType = {
   config: {
     width: 390,
     height: 640,
+    innerContentHeight: 570,
     borderRadius: 10,
   },
   colors: {
