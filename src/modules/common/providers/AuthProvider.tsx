@@ -12,6 +12,7 @@ import userService from "../../../services/userService";
 export interface UserType {
   id: string;
   email: string;
+  username: string;
   agree_terms: JSON;
 }
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ThemeProps } from "utils/theme/theme.interface";
 
-const IMAGE_SIZE = 40;
+const IMAGE_SIZE = 35;
 
 export const InnerContainerHeaderWrapper = styled.div<ThemeProps>(() => ({
   display: "flex",
