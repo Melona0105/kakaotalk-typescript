@@ -10,7 +10,7 @@ export enum SIGN_IN_INPUT_ACTION_TYPE {
   HANDLE_ERROR_MESSAGE,
 }
 
-export interface SignInInputValue {
+export interface SignInInputActionValue {
   type: SIGN_IN_INPUT_ACTION_TYPE;
   payload?: any;
 }

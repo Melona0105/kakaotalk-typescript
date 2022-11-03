@@ -1,5 +1,5 @@
 import {
-  SignInInputValue,
+  SignInInputActionValue,
   SignInInputStateType,
   SIGN_IN_INPUT_ACTION_TYPE,
 } from "./SignInInputBoxes.interface";
@@ -9,7 +9,7 @@ import {
  */
 function signInInputReducer(
   state: SignInInputStateType,
-  action: SignInInputValue
+  action: SignInInputActionValue
 ): SignInInputStateType {
   const { type, payload } = action;
   switch (type) {

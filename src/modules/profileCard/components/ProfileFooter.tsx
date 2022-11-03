@@ -7,11 +7,11 @@ import {
 
 interface ProfileFooterProps {
   isEditMode: boolean;
-  onEditProfilePress: () => void;
+  activateEditMode: () => void;
 }
 
-function ProfileFooter({ isEditMode, onEditProfilePress }: ProfileFooterProps) {
-  const { models } = useProfileFooter(onEditProfilePress);
+function ProfileFooter({ isEditMode, activateEditMode }: ProfileFooterProps) {
+  const { models } = useProfileFooter(activateEditMode);
   const { FOOTER_ITEMS } = models;
 
   return (

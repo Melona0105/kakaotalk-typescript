@@ -1,19 +1,14 @@
 import { FirebaseError } from "firebase/app";
-import {
-  ChangeEvent,
-  HtmlHTMLAttributes,
-  KeyboardEvent,
-  useReducer,
-} from "react";
+import { ChangeEvent, KeyboardEvent, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
+import userService from "services/userService";
 import signInInputReducer from "./SignInInputBoxes.reducer";
+import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
+import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
 import {
   SignInInputStateType,
   SIGN_IN_INPUT_ACTION_TYPE,
 } from "./SignInInputBoxes.interface";
-import { useNavigate } from "react-router-dom";
-import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
-import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
-import userService from "services/userService";
 
 const INITIAL_STATE: SignInInputStateType = {
   email: "",

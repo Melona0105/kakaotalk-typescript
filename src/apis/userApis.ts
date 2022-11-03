@@ -1,6 +1,9 @@
-import { UserType } from "../modules/common/providers/AuthProvider";
-import { UserApiInput } from "../utils/interfaces/apiInterface";
 import axiosInstance from "./axios";
+import { UserType } from "../modules/common/providers/AuthProvider";
+import {
+  CreateUserProfileApiInput,
+  UpdateUserProfileApiInput,
+} from "../utils/interfaces/apiInterface";
 
 /**
  * user와 관련된 api 콜을 진행하는 부분입니다.
@@ -11,7 +14,7 @@ const userApis = {
     email,
     username,
     termsIndexes,
-  }: Omit<UserApiInput, "password">) => {
+  }: Omit<CreateUserProfileApiInput, "password">) => {
     const result = await axiosInstance({
       method: "POST",
       url: "/user",
@@ -26,6 +29,19 @@ const userApis = {
       method: "GET",
       url: "/user",
     });
+    return result;
+  },
+
+  updateMyUserProfile: async ({
+    username,
+    summary,
+  }: UpdateUserProfileApiInput) => {
+    const result = await axiosInstance<UserType[]>({
+      method: "POST",
+      url: "/user/update",
+      data: { username, summary },
+    });
+
     return result;
   },
 };

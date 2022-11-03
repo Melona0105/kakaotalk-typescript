@@ -1,18 +1,33 @@
 import profileDefault from "assets/images/profile_default.png";
-import { FlexDiv } from "modules/common/styles/commonStyles";
+import useProfileBody from "./ProfileBody.hook";
+import { ProfileCardStateType } from "../ProfileCardContainer.interface";
 import {
   ProfileBodyEditDiv,
   ProfileBodyEditIcon,
   ProfileBodyImage,
+  ProfileBodySummary,
+  ProfileBodyTextInput,
+  ProfileBodyUsername,
   ProfileBodyWrapper,
 } from "./ProfileBody.style";
 
 interface ProfileBodyProps {
   isEditMode: boolean;
+  username?: string;
+  summary?: string;
+  onTextCange: (
+    payload: Pick<ProfileCardStateType, "username" | "summary">
+  ) => void;
 }
 
-function ProfileBody({ isEditMode }: ProfileBodyProps) {
-  const SAMPLE_ITEMS = ["박덕원", "상태메시지를 입력해 주세요."];
+function ProfileBody({
+  isEditMode,
+  username,
+  summary,
+  onTextCange,
+}: ProfileBodyProps) {
+  const { models } = useProfileBody(onTextCange, username, summary);
+  const { PROFILE_ITEMS } = models;
 
   return (
     <ProfileBodyWrapper>
@@ -24,14 +39,23 @@ function ProfileBody({ isEditMode }: ProfileBodyProps) {
         {isEditMode && <div>편집</div>}
       </ProfileBodyImage>
       {isEditMode ? (
-        SAMPLE_ITEMS.map((item) => (
-          <ProfileBodyEditDiv key={item}>
-            <div>{item}</div>
+        PROFILE_ITEMS.map(({ id, value, placeholder, onChange }) => (
+          <ProfileBodyEditDiv key={id}>
+            <ProfileBodyTextInput
+              value={value}
+              placeholder={placeholder}
+              onChange={({ target }) => onChange(target.value)}
+            />
             <ProfileBodyEditIcon />
           </ProfileBodyEditDiv>
         ))
       ) : (
-        <div>박덕원</div>
+        <div>
+          <ProfileBodyUsername showPaddingBottom={!!summary}>
+            {username}
+          </ProfileBodyUsername>
+          {summary && <ProfileBodySummary>{summary}</ProfileBodySummary>}
+        </div>
       )}
     </ProfileBodyWrapper>
   );

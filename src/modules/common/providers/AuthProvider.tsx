@@ -1,19 +1,21 @@
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../../../libs/firebase/firebaseAuth";
+import userService from "../../../services/userService";
 import {
   createContext,
   ReactNode,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
-import userService from "../../../services/userService";
 
 export interface UserType {
   id: string;
   email: string;
   username: string;
   agree_terms: JSON;
+  summary?: string;
 }
 
 interface AuthContextType {
@@ -49,11 +51,16 @@ function AuthProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ firebaseProfile, userProfile }}>
-      {children}
-    </AuthContext.Provider>
+  const MemorizedProvider = useMemo(
+    () => (
+      <AuthContext.Provider value={{ firebaseProfile, userProfile }}>
+        {children}
+      </AuthContext.Provider>
+    ),
+    [firebaseProfile, userProfile]
   );
+
+  return MemorizedProvider;
 }
 
 export default AuthProvider;

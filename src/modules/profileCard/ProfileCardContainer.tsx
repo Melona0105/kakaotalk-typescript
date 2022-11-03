@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import ProfileBody from "./components/ProfileBody";
 import ProfileFooter from "./components/ProfileFooter";
 import ProfileHeader from "./components/ProfileHeader";
@@ -9,23 +10,35 @@ import { ProfileCardContainerWrapper } from "./ProfileCardContainer.style";
  */
 function ProfileCardContainer() {
   const { models, operations } = useProfileCardContainer();
-  const { isEditMode } = models;
-  const { handleIsEditMode, saveEditMode } = operations;
+  const { state, isEditMode } = models;
+  const { activateEditMode, inActivateEditMode, saveEditMode, onTextCange } =
+    operations;
 
-  return (
-    <ProfileCardContainerWrapper>
-      <ProfileHeader
-        isEditMode={isEditMode}
-        cancleEditMode={handleIsEditMode}
-        saveEditMode={saveEditMode}
-      />
-      <ProfileBody isEditMode={isEditMode} />
-      <ProfileFooter
-        isEditMode={isEditMode}
-        onEditProfilePress={handleIsEditMode}
-      />
-    </ProfileCardContainerWrapper>
+  const { username, summary } = state;
+
+  const MemorizedProfileCardContainer = useMemo(
+    () => (
+      <ProfileCardContainerWrapper>
+        <ProfileHeader
+          isEditMode={isEditMode}
+          inActivateEditMode={inActivateEditMode}
+          saveEditMode={saveEditMode}
+        />
+        <ProfileBody
+          username={username}
+          summary={summary}
+          isEditMode={isEditMode}
+          onTextCange={onTextCange}
+        />
+        <ProfileFooter
+          isEditMode={isEditMode}
+          activateEditMode={activateEditMode}
+        />
+      </ProfileCardContainerWrapper>
+    ),
+    [state, isEditMode]
   );
+  return MemorizedProfileCardContainer;
 }
 
 export default ProfileCardContainer;

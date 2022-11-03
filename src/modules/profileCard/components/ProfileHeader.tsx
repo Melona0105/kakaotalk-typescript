@@ -1,5 +1,6 @@
 import closeIcon from "assets/icons/button_close.png";
 import settingIcon from "assets/icons/button_setting.png";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ProfileHeaderImage,
@@ -10,13 +11,13 @@ import {
 
 interface ProfileHeaderProps {
   isEditMode: boolean;
-  cancleEditMode: () => void;
+  inActivateEditMode: () => void;
   saveEditMode: () => void;
 }
 
 function ProfileHeader({
   isEditMode,
-  cancleEditMode,
+  inActivateEditMode,
   saveEditMode,
 }: ProfileHeaderProps) {
   const natigate = useNavigate();
@@ -24,7 +25,7 @@ function ProfileHeader({
   return (
     <ProfileHeaderWrapper>
       {isEditMode ? (
-        <ProfileHeaderTextButton onClick={cancleEditMode}>
+        <ProfileHeaderTextButton onClick={inActivateEditMode}>
           취소
         </ProfileHeaderTextButton>
       ) : (

@@ -54,3 +54,31 @@ export const ProfileBodyEditIcon = styled.img.attrs(() => ({
   position: "absolute",
   right: 0,
 }));
+
+export const ProfileBodyTextInput = styled.input<ThemeProps>(({ theme }) => ({
+  backgroundColor: "transparent",
+  outline: "none",
+  border: "none",
+  textAlign: "center",
+  color: theme.colors.white,
+  width: "100%",
+  "::placeholder": {
+    color: theme.colors.white,
+  },
+}));
+
+interface ProfileBodyUsernameStyleProps extends ThemeProps {
+  showPaddingBottom?: boolean;
+}
+
+export const ProfileBodyUsername = styled.div<ProfileBodyUsernameStyleProps>(
+  ({ theme, showPaddingBottom }) => ({
+    textAlign: "center",
+    paddingBottom: showPaddingBottom ? theme.spacing.xSmall : 0,
+  })
+);
+
+export const ProfileBodySummary = styled.div<ThemeProps>(({ theme }) => ({
+  textAlign: "center",
+  fontSize: theme.fontSize.small,
+}));
