@@ -17,6 +17,7 @@ export const THEME: ThemeType = {
     gray: "#b7b7b7",
     gray2: "#e6e6e6",
     red: "#e65e3d",
+    profileDefault: "#859199",
   },
   spacing: {
     xxSmall: 2,

@@ -7,6 +7,7 @@ export const ProfileHeaderWrapper = styled.div<ThemeProps>(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  padding: theme.spacing.middle,
 }));
 
 export const ProfileHedaerImageDiv = styled.div<ThemeProps>(({ theme }) => ({

@@ -29,6 +29,7 @@ interface ColorType {
   gray: string;
   gray2: string;
   red: string;
+  profileDefault: string;
 }
 
 interface SpacingType {

@@ -1,3 +1,5 @@
+import ProfileBody from "./components/ProfileBody";
+import ProfileFooter from "./components/ProfileFooter";
 import ProfileHeader from "./components/ProfileHeader";
 import { ProfileCardContainerWrapper } from "./ProfileCardContainer.style";
 
@@ -8,6 +10,8 @@ function ProfileCardContainer() {
   return (
     <ProfileCardContainerWrapper>
       <ProfileHeader />
+      <ProfileBody />
+      <ProfileFooter />
     </ProfileCardContainerWrapper>
   );
 }

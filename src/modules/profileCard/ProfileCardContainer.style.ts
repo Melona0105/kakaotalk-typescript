@@ -3,6 +3,10 @@ import { ThemeProps } from "utils/theme/theme.interface";
 
 export const ProfileCardContainerWrapper = styled.div<ThemeProps>(
   ({ theme }) => ({
-    padding: theme.spacing.middle,
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    backgroundColor: theme.colors.profileDefault,
+    borderRadius: theme.config.borderRadius,
   })
 );
