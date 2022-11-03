@@ -11,10 +11,15 @@ import { ProfileCardContainerWrapper } from "./ProfileCardContainer.style";
 function ProfileCardContainer() {
   const { models, operations } = useProfileCardContainer();
   const { state, isEditMode } = models;
-  const { activateEditMode, inActivateEditMode, saveEditMode, onTextCange } =
-    operations;
+  const {
+    activateEditMode,
+    inActivateEditMode,
+    updateMyUserProfile,
+    onTextCange,
+    onAvatarChange,
+  } = operations;
 
-  const { username, summary } = state;
+  const { username, summary, avatarURL, avatarState } = state;
 
   const MemorizedProfileCardContainer = useMemo(
     () => (
@@ -22,13 +27,16 @@ function ProfileCardContainer() {
         <ProfileHeader
           isEditMode={isEditMode}
           inActivateEditMode={inActivateEditMode}
-          saveEditMode={saveEditMode}
+          updateMyUserProfile={updateMyUserProfile}
         />
         <ProfileBody
           username={username}
           summary={summary}
+          avatarURL={avatarURL}
+          avatarState={avatarState}
           isEditMode={isEditMode}
           onTextCange={onTextCange}
+          onAvatarChange={onAvatarChange}
         />
         <ProfileFooter
           isEditMode={isEditMode}

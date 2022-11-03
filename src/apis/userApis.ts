@@ -1,11 +1,18 @@
-import { firebaseSignIn, firebaseSignUp } from "libs/firebase/firebaseAuth";
 import axiosInstance from "./axios";
 import { UserType } from "../modules/common/providers/AuthProvider";
+import {
+  firebaseSignIn,
+  firebaseSignUp,
+  uploadMyUserAvatar,
+} from "libs/firebase/firebaseAuth";
 import {
   CreateUserProfileApiInput,
   UpdateUserProfileApiInput,
 } from "../utils/interfaces/apiInterface";
 
+/**
+ * 유저에 관련된 API를 관리합니다.
+ */
 const userApis = {
   signIn: async ({ email, password }: CreateUserProfileApiInput) => {
     await firebaseSignIn(email, password);
@@ -39,12 +46,15 @@ const userApis = {
   updateMyUserProfile: async ({
     username,
     summary,
+    compressedFile,
   }: UpdateUserProfileApiInput) => {
-    return await axiosInstance<UserType[]>({
+    await axiosInstance<UserType[]>({
       method: "POST",
       url: "/user/update",
       data: { username, summary },
     });
+
+    compressedFile && (await uploadMyUserAvatar(compressedFile));
   },
 };
 

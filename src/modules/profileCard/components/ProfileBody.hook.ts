@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { ProfileCardStateType } from "../ProfileCardContainer.interface";
 
 function useProfileBody(
@@ -7,6 +8,8 @@ function useProfileBody(
   username?: string,
   summary?: string
 ) {
+  const imageInputRef = useRef<HTMLInputElement>(null);
+
   const PROFILE_ITEMS = [
     {
       id: 0,
@@ -22,9 +25,24 @@ function useProfileBody(
     },
   ];
 
+  /**
+   * 이미지를 클릭하면 input창을 활성화하는 함수입니다.
+   */
+  function onImageInputClick() {
+    if (imageInputRef.current) {
+      imageInputRef.current?.click();
+    }
+  }
+
   return {
+    refs: {
+      imageInputRef,
+    },
     models: {
       PROFILE_ITEMS,
+    },
+    operations: {
+      onImageInputClick,
     },
   };
 }

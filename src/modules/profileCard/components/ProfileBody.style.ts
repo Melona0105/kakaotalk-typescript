@@ -33,6 +33,7 @@ export const ProfileBodyImage = styled.div<ProfileBodyImageStyleProps>(
     justifyContent: "center",
     alignItems: "center",
     fontSize: theme.fontSize.small,
+    borderRadius: 35,
     cursor: isEditMode ? "pointer" : "auto",
   })
 );

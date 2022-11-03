@@ -5,5 +5,9 @@ export const FriendContainerBodyWrapper = styled.div<ThemeProps>(
   ({ theme }) => ({
     maxHeight: theme.config.innerContentHeight,
     overflowY: "scroll",
+    scrollbarWidth: "none",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
   })
 );

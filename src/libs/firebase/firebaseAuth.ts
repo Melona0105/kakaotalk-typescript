@@ -1,8 +1,14 @@
 import { initializeApp } from "firebase/app";
 import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
+import {
   createUserWithEmailAndPassword,
   getAuth,
-  getIdToken,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -17,6 +23,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 export const auth = getAuth(app);
 
 // 회원가입
@@ -36,4 +43,13 @@ export async function firebaseSignOut() {
 
 export async function getFirebaseToken() {
   return await auth.currentUser?.getIdToken();
+}
+
+export async function uploadMyUserAvatar(file: File) {
+  const storageRef = ref(storage, auth.currentUser?.uid);
+  await uploadBytes(storageRef, file);
+}
+
+export async function getUserAvatar(uid: string) {
+  return await getDownloadURL(ref(storage, uid));
 }

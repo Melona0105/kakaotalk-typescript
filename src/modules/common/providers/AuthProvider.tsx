@@ -2,7 +2,7 @@ import userApis from "apis/userApis";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { useQuery } from "react-query";
-import { auth } from "../../../libs/firebase/firebaseAuth";
+import { auth, getUserAvatar } from "../../../libs/firebase/firebaseAuth";
 import {
   createContext,
   ReactNode,
@@ -18,6 +18,7 @@ export interface UserType {
   username: string;
   agree_terms: JSON;
   summary?: string;
+  avatarURL?: string;
 }
 
 interface AuthContextType {
@@ -43,7 +44,13 @@ function AuthProvider({ children }: { children: ReactNode }) {
   useQuery(
     [QUERY_KEYS.GET_MY_USER_PROFILE],
     async () => await userApis.getMyUserProfile(),
-    { enabled: !!firebaseProfile, onSuccess: (data) => setUserProfile(data[0]) }
+    {
+      enabled: !!firebaseProfile,
+      onSuccess: async (data) => {
+        const avatar = await getUserAvatar(data[0].id);
+        setUserProfile({ ...data[0], avatarURL: avatar });
+      },
+    }
   );
   /**
    * firebase 로그인을 감지하여 유저 프로필을 state에 할당합니다.

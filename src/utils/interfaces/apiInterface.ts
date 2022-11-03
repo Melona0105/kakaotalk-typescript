@@ -8,4 +8,5 @@ export interface CreateUserProfileApiInput {
 export interface UpdateUserProfileApiInput {
   username?: string;
   summary?: string;
+  compressedFile?: File;
 }

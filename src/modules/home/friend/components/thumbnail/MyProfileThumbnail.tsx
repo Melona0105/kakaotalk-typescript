@@ -1,13 +1,13 @@
+import defaultImage from "assets/images/friend_default_image.png";
+import { useAuthContext } from "modules/common/providers/AuthProvider";
+import Melon from "modules/home/common/components/Melon";
+import useMyProfileThumbnail from "./MyProfileThumbnail.hook";
 import {
   MyProfileThumbnailDiv,
   MyProfileThumbnailImage,
   MyProfileThumbnailName,
   MyProfileThumbnailWrapper,
 } from "./MyProfileThumbnail.style";
-import sampleImage from "assets/images/profile_sample_image.jpeg";
-import { useAuthContext } from "modules/common/providers/AuthProvider";
-import Melon from "modules/home/common/components/Melon";
-import useMyProfileThumbnail from "./MyProfileThumbnail.hook";
 
 /**
  * 친구목록중, 내 프로필 컴포넌트입니다.
@@ -19,7 +19,7 @@ function MyProfileThumbnail() {
 
   return (
     <MyProfileThumbnailWrapper onClick={onProfileCardPress}>
-      <MyProfileThumbnailImage src={sampleImage} />
+      <MyProfileThumbnailImage src={userProfile?.avatarURL || defaultImage} />
       <MyProfileThumbnailDiv>
         <MyProfileThumbnailName>{userProfile?.username}</MyProfileThumbnailName>
         <Melon

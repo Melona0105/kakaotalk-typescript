@@ -12,13 +12,13 @@ import {
 interface ProfileHeaderProps {
   isEditMode: boolean;
   inActivateEditMode: () => void;
-  saveEditMode: () => void;
+  updateMyUserProfile: () => void;
 }
 
 function ProfileHeader({
   isEditMode,
   inActivateEditMode,
-  saveEditMode,
+  updateMyUserProfile,
 }: ProfileHeaderProps) {
   const natigate = useNavigate();
 
@@ -32,7 +32,7 @@ function ProfileHeader({
         <ProfileHeaderImage src={closeIcon} onClick={() => natigate(-1)} />
       )}
       {isEditMode ? (
-        <ProfileHeaderTextButton onClick={saveEditMode}>
+        <ProfileHeaderTextButton onClick={updateMyUserProfile}>
           완료
         </ProfileHeaderTextButton>
       ) : (
