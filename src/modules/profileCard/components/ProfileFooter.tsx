@@ -5,12 +5,17 @@ import {
   ProfileFooterWrapper,
 } from "./ProfileFooter.style";
 
-function ProfileFooter() {
-  const { models } = useProfileFooter();
+interface ProfileFooterProps {
+  isEditMode: boolean;
+  onEditProfilePress: () => void;
+}
+
+function ProfileFooter({ isEditMode, onEditProfilePress }: ProfileFooterProps) {
+  const { models } = useProfileFooter(onEditProfilePress);
   const { FOOTER_ITEMS } = models;
 
   return (
-    <ProfileFooterWrapper>
+    <ProfileFooterWrapper showBorderTop={!isEditMode}>
       {FOOTER_ITEMS.map((item) => (
         <ProfileFooterDiv key={item.id} onClick={item.onClick}>
           <ProfileFooterImage src={item.src} />

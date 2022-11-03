@@ -8,7 +8,7 @@ interface FooterItemType {
   onClick: () => void;
 }
 
-function useProfileFooter() {
+function useProfileFooter(onEditProfilePress: () => void) {
   const FOOTER_ITEMS: FooterItemType[] = [
     {
       id: 0,
@@ -20,7 +20,7 @@ function useProfileFooter() {
       id: 1,
       src: editIcon,
       title: "프로필 편집",
-      onClick: () => console.log("프로필 편집"),
+      onClick: onEditProfilePress,
     },
   ];
 

@@ -11,7 +11,7 @@ export const ProfileHeaderWrapper = styled.div<ThemeProps>(({ theme }) => ({
 }));
 
 export const ProfileHedaerImageDiv = styled.div<ThemeProps>(({ theme }) => ({
-  border: `1px solid ${theme.colors.black}`,
+  border: `1px solid ${theme.colors.white}`,
   borderRadius: 100,
   display: "flex",
   justifyContent: "center",
@@ -22,5 +22,13 @@ export const ProfileHedaerImageDiv = styled.div<ThemeProps>(({ theme }) => ({
 export const ProfileHeaderImage = styled.img<ThemeProps>(({ theme }) => ({
   width: IMAGE_SIZE,
   height: IMAGE_SIZE,
+  cursor: "pointer",
+  filter: "invert(100%)",
+}));
+
+export const ProfileHeaderTextButton = styled.div<ThemeProps>(({ theme }) => ({
+  color: theme.colors.white,
+  fontSize: theme.fontSize.small,
+  padding: theme.spacing.small,
   cursor: "pointer",
 }));

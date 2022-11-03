@@ -3,13 +3,20 @@ import { ThemeProps } from "utils/theme/theme.interface";
 
 const FOOTER_IMAGE_SIZE = 45;
 
-export const ProfileFooterWrapper = styled.div<ThemeProps>(({ theme }) => ({
-  borderTop: `1px solid ${theme.colors.gray}`,
-  display: "flex",
-  paddingTop: theme.spacing.xLarge,
-  paddingBottom: theme.spacing.xxLarge,
-  justifyContent: "space-around",
-}));
+interface ProfileFooterWrapperStyleProps extends ThemeProps {
+  showBorderTop: boolean;
+}
+
+export const ProfileFooterWrapper = styled.div<ProfileFooterWrapperStyleProps>(
+  ({ theme, showBorderTop }) => ({
+    borderTop: `1px solid ${theme.colors.gray}`,
+    borderTopWidth: showBorderTop ? 1 : 0,
+    display: "flex",
+    paddingTop: theme.spacing.xLarge,
+    paddingBottom: theme.spacing.xxLarge,
+    justifyContent: "space-around",
+  })
+);
 
 export const ProfileFooterDiv = styled.div<ThemeProps>(({ theme }) => ({
   textAlign: "center",
