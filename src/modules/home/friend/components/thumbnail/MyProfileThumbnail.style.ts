@@ -8,6 +8,7 @@ export const MyProfileThumbnailWrapper = styled.div<ThemeProps>(
     paddingTop: theme.spacing.middle,
     paddingBottom: theme.spacing.middle,
     display: "flex",
+    cursor: "pointer",
   })
 );
 

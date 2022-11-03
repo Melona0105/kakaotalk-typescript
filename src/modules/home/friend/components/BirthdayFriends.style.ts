@@ -4,6 +4,6 @@ import { ThemeProps } from "utils/theme/theme.interface";
 export const BirthdayFriendsWrapper = styled.div<ThemeProps>(({ theme }) => ({
   borderTop: `1px solid ${theme.colors.gray2}`,
   padding: theme.spacing.small,
-  paddingLeft: theme.spacing.xSmall,
+  paddingLeft: 0,
   paddingRight: 0,
 }));

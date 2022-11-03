@@ -7,14 +7,18 @@ import {
 import sampleImage from "assets/images/profile_sample_image.jpeg";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import Melon from "modules/home/common/components/Melon";
+import useMyProfileThumbnail from "./MyProfileThumbnail.hook";
+
 /**
  * 친구목록중, 내 프로필 컴포넌트입니다.
  */
 function MyProfileThumbnail() {
   const { userProfile } = useAuthContext();
+  const { operations } = useMyProfileThumbnail();
+  const { onProfileCardPress } = operations;
 
   return (
-    <MyProfileThumbnailWrapper>
+    <MyProfileThumbnailWrapper onClick={onProfileCardPress}>
       <MyProfileThumbnailImage src={sampleImage} />
       <MyProfileThumbnailDiv>
         <MyProfileThumbnailName>{userProfile?.username}</MyProfileThumbnailName>

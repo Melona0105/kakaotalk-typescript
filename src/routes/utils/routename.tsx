@@ -1,10 +1,11 @@
+import FindPasswordContainer from "modules/auth/FindPassword/FindPasswordContainer";
+import SignInContainer from "modules/auth/SignIn/SignInContainer";
+import SignUpInputContainer from "modules/auth/SignUp/signUp/SignUpInputContainer";
+import SignUpTermsContainer from "modules/auth/SignUp/terms/SignUpTermsContainer";
+import HomeContainer from "modules/home/HomeContainer";
+import ProfileCardContainer from "modules/profileCard/ProfileCardContainer";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import FindPasswordContainer from "../../modules/auth/FindPassword/FindPasswordContainer";
-import SignInContainer from "../../modules/auth/SignIn/SignInContainer";
-import SignUpInputContainer from "../../modules/auth/SignUp/signUp/SignUpInputContainer";
-import SignUpTermsContainer from "../../modules/auth/SignUp/terms/SignUpTermsContainer";
-import HomeContainer from "../../modules/home/HomeContainer";
 
 interface RoutesType {
   [key: string]: {
@@ -37,5 +38,9 @@ export const PRIVATE_ROUTES: RoutesType = {
   HOME: {
     path: "/",
     element: <HomeContainer />,
+  },
+  PROFILE_CARD: {
+    path: "/profile",
+    element: <ProfileCardContainer />,
   },
 };
