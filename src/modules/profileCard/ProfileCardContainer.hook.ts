@@ -1,9 +1,12 @@
+import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import userService from "services/userService";
 import { ProfileCardStateType } from "./ProfileCardContainer.interface";
 
 function useProfileCardContainer() {
+  const client = useQueryClient();
   const { userProfile } = useAuthContext();
   const [state, setState] = useState<ProfileCardStateType>({
     username: userProfile?.username,
@@ -11,6 +14,15 @@ function useProfileCardContainer() {
   });
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [prevState, setPrevState] = useState<ProfileCardStateType>(state);
+
+  const { mutate } = useMutation({
+    mutationFn: async () => {
+      const { username, summary } = state;
+      userService.updateMyUserProfile({ username, summary });
+    },
+    onSuccess: () =>
+      client.refetchQueries({ queryKey: [QUERY_KEYS.GET_MY_USER_PROFILE] }),
+  });
 
   /**
    * 현재 로그인한 유저의 정보로 현재 상태를 바꿔줍니다.
@@ -46,8 +58,7 @@ function useProfileCardContainer() {
    * 저장
    */
   async function saveEditMode() {
-    const { username, summary } = state;
-    await userService.updateMyUserProfile({ username, summary });
+    mutate();
     setIsEditMode(false);
   }
 

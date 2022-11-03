@@ -1,4 +1,6 @@
 import { onAuthStateChanged, User } from "firebase/auth";
+import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
+import { useQuery } from "react-query";
 import { auth } from "../../../libs/firebase/firebaseAuth";
 import userService from "../../../services/userService";
 import {
@@ -36,14 +38,20 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const [userProfile, setUserProfile] = useState<UserType | null>(null);
 
   /**
+   * 유저정보를 쿼리하는 합니다.
+   */
+  useQuery(
+    [QUERY_KEYS.GET_MY_USER_PROFILE],
+    async () => await userService.getMyUserProfile(),
+    { enabled: !!firebaseProfile, onSuccess: (data) => setUserProfile(data[0]) }
+  );
+  /**
    * firebase 로그인을 감지하여 유저 프로필을 state에 할당합니다.
    */
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         setFirebaseProfile(user);
-        const userData = await userService.getMyUserProfile();
-        setUserProfile(userData[0]);
       } else {
         setFirebaseProfile(null);
         setUserProfile(null);

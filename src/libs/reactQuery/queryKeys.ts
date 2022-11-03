@@ -1,0 +1,3 @@
+export enum QUERY_KEYS {
+  GET_MY_USER_PROFILE = "GET_MY_USER_PROFILE",
+}
