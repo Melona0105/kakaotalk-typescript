@@ -1,3 +1,4 @@
+import { firebaseSignIn, firebaseSignUp } from "libs/firebase/firebaseAuth";
 import axiosInstance from "./axios";
 import { UserType } from "../modules/common/providers/AuthProvider";
 import {
@@ -5,44 +6,45 @@ import {
   UpdateUserProfileApiInput,
 } from "../utils/interfaces/apiInterface";
 
-/**
- * user와 관련된 api 콜을 진행하는 부분입니다.
- */
 const userApis = {
+  signIn: async ({ email, password }: CreateUserProfileApiInput) => {
+    await firebaseSignIn(email, password);
+  },
+
   // 회원가입
   signUp: async ({
     email,
+    password,
     username,
     termsIndexes,
-  }: Omit<CreateUserProfileApiInput, "password">) => {
-    const result = await axiosInstance({
+  }: CreateUserProfileApiInput) => {
+    await firebaseSignUp(email, password);
+    await axiosInstance({
       method: "POST",
       url: "/user",
       data: { email, username, termsIndexes },
     });
-    return result;
   },
 
   // 유저정보 쿼리
   getMyUserProfile: async () => {
-    const result = await axiosInstance<UserType[]>({
+    const { data } = await axiosInstance<UserType[]>({
       method: "GET",
       url: "/user",
     });
-    return result;
+
+    return data;
   },
 
   updateMyUserProfile: async ({
     username,
     summary,
   }: UpdateUserProfileApiInput) => {
-    const result = await axiosInstance<UserType[]>({
+    return await axiosInstance<UserType[]>({
       method: "POST",
       url: "/user/update",
       data: { username, summary },
     });
-
-    return result;
   },
 };
 

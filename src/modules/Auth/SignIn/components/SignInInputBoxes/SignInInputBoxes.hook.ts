@@ -1,7 +1,7 @@
+import userApis from "apis/userApis";
 import { FirebaseError } from "firebase/app";
 import { ChangeEvent, KeyboardEvent, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import userService from "services/userService";
 import signInInputReducer from "./SignInInputBoxes.reducer";
 import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
 import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
@@ -65,7 +65,7 @@ function useSignInInputBoxes() {
     if (!getButtonDisabled()) {
       const { email, password } = state;
       try {
-        await userService.signIn({ email, password });
+        await userApis.signIn({ email, password });
         navigate(PRIVATE_ROUTES.HOME.path, { replace: true });
       } catch (err: unknown) {
         if (err instanceof FirebaseError) {

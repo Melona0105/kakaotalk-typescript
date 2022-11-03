@@ -1,8 +1,8 @@
+import userApis from "apis/userApis";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { useQuery } from "react-query";
 import { auth } from "../../../libs/firebase/firebaseAuth";
-import userService from "../../../services/userService";
 import {
   createContext,
   ReactNode,
@@ -42,7 +42,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
    */
   useQuery(
     [QUERY_KEYS.GET_MY_USER_PROFILE],
-    async () => await userService.getMyUserProfile(),
+    async () => await userApis.getMyUserProfile(),
     { enabled: !!firebaseProfile, onSuccess: (data) => setUserProfile(data[0]) }
   );
   /**

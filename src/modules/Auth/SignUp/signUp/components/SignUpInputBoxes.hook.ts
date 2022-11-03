@@ -1,14 +1,14 @@
+import userApis from "apis/userApis";
+import { FirebaseError } from "firebase/app";
 import { useReducer } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import signUpInputReducer from "./SignUpInputBoxes.reducer";
+import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
+import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
 import {
   SignUpInputStateType,
   SIGN_UP_INPUT_ACTION_TYPE,
 } from "./SignUpInputBoxes.interface";
-import signUpInputReducer from "./SignUpInputBoxes.reducer";
-import userService from "../../../../../services/userService";
-import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
-import { FirebaseError } from "firebase/app";
-import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
 
 const INITIAL_STATE: SignUpInputStateType = {
   email: "",
@@ -64,7 +64,7 @@ function useSignUpInputBoxes() {
     if (!getButtonDisabled()) {
       const { email, password, username } = state;
       try {
-        await userService.signUp({ email, password, username, termsIndexes });
+        await userApis.signUp({ email, password, username, termsIndexes });
         navigate(PRIVATE_ROUTES.HOME.path, { replace: true });
       } catch (err: unknown) {
         if (err instanceof FirebaseError) {

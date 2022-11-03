@@ -1,8 +1,8 @@
+import userApis from "apis/userApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import userService from "services/userService";
 import { ProfileCardStateType } from "./ProfileCardContainer.interface";
 
 function useProfileCardContainer() {
@@ -18,7 +18,7 @@ function useProfileCardContainer() {
   const { mutate } = useMutation({
     mutationFn: async () => {
       const { username, summary } = state;
-      userService.updateMyUserProfile({ username, summary });
+      userApis.updateMyUserProfile({ username, summary });
     },
     onSuccess: () =>
       client.refetchQueries({ queryKey: [QUERY_KEYS.GET_MY_USER_PROFILE] }),
