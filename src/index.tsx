@@ -18,13 +18,13 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AuthProvider>
-          <ScreenDimensionProvider>
-            <ThemeProvider theme={THEME}>
+        <ThemeProvider theme={THEME}>
+          <AuthProvider>
+            <ScreenDimensionProvider>
               <App />
-            </ThemeProvider>
-          </ScreenDimensionProvider>
-        </AuthProvider>
+            </ScreenDimensionProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

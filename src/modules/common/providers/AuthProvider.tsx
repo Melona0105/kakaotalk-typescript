@@ -3,6 +3,7 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { useQuery } from "react-query";
 import { auth, getUserAvatar } from "../../../libs/firebase/firebaseAuth";
+import Loading from "../components/Loading";
 import {
   createContext,
   ReactNode,
@@ -35,6 +36,7 @@ const AuthContext = createContext<AuthContextType>({
  * 로그인 정보를 앱 전체에 전달해주기위한 프로바이더입니다.
  */
 function AuthProvider({ children }: { children: ReactNode }) {
+  const [loading, setLoading] = useState(true);
   const [firebaseProfile, setFirebaseProfile] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<UserType | null>(null);
 
@@ -49,6 +51,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
       onSuccess: async (data) => {
         const avatar = await getUserAvatar(data[0].id);
         setUserProfile({ ...data[0], avatarURL: avatar });
+        setLoading(false);
       },
     }
   );
@@ -74,6 +77,8 @@ function AuthProvider({ children }: { children: ReactNode }) {
     ),
     [firebaseProfile, userProfile]
   );
+
+  if (loading) return <Loading />;
 
   return MemorizedProvider;
 }

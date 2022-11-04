@@ -43,6 +43,7 @@ const userApis = {
     return data;
   },
 
+  // 유저정보를 업데이트한후, 이미지가 존재한다면 이미지도 업데이트합니다.
   updateMyUserProfile: async ({
     username,
     summary,
