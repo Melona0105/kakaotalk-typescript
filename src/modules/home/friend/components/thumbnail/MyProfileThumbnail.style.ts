@@ -29,4 +29,9 @@ export const MyProfileThumbnailDiv = styled.div<ThemeProps>(({ theme }) => ({
 
 export const MyProfileThumbnailName = styled.div<ThemeProps>(({ theme }) => ({
   fontSize: theme.fontSize.small,
+  border: "1px solid red",
+  maxWidth: theme.spacing.xLarge * 4.5,
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
 }));

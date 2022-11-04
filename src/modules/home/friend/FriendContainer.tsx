@@ -1,7 +1,7 @@
+import FriendContainerBody from "./components/FriendContainerBody";
 import InnerContainerHeader from "../common/components/InnerContainerHeader";
 import { HomeInnerContainerProps } from "../common/interfaces/homeInterface";
 import { InnerContaienrWrapper } from "../common/styles/homeStyles";
-import FriendContainerBody from "./components/FriendContainerBody";
 
 function FriendContainer({ tabIndex }: HomeInnerContainerProps) {
   return (

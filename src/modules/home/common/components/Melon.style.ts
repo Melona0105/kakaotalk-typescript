@@ -1,6 +1,6 @@
+import playIcon from "assets/icons/melon_play.png";
 import styled from "styled-components";
 import { ThemeProps } from "utils/theme/theme.interface";
-import playIcon from "assets/icons/melon_play.png";
 
 const MELON_ICON_SIZE = 13;
 

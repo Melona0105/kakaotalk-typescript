@@ -3,6 +3,7 @@ import { UserType } from "../modules/common/providers/AuthProvider";
 import {
   firebaseSignIn,
   firebaseSignUp,
+  getUserAvatar,
   uploadMyUserAvatar,
 } from "libs/firebase/firebaseAuth";
 import {
@@ -41,6 +42,14 @@ const userApis = {
     });
 
     return data;
+  },
+
+  getUserAvatar: async (uid: string) => {
+    try {
+      return await getUserAvatar(uid);
+    } catch (err) {
+      console.log(err);
+    }
   },
 
   // 유저정보를 업데이트한후, 이미지가 존재한다면 이미지도 업데이트합니다.

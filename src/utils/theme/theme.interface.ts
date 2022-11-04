@@ -14,7 +14,7 @@ export interface ThemeType {
 }
 
 interface AppConfigType {
-  width: CSSProperties["width"];
+  width: number;
   height: CSSProperties["height"];
   innerContentHeight: CSSProperties["height"];
   borderRadius: CSSProperties["borderRadius"];

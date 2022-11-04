@@ -49,7 +49,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
     {
       enabled: !!firebaseProfile,
       onSuccess: async (data) => {
-        const avatar = await getUserAvatar(data[0].id);
+        const avatar = await userApis.getUserAvatar(data[0].id);
         setUserProfile({ ...data[0], avatarURL: avatar });
         setLoading(false);
       },
@@ -65,6 +65,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         setFirebaseProfile(null);
         setUserProfile(null);
+        setLoading(false);
       }
     });
   }, []);
