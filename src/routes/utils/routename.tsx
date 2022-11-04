@@ -1,3 +1,4 @@
+import AddFriendContainer from "modules/addFriend/AddFriendContainer";
 import FindPasswordContainer from "modules/auth/FindPassword/FindPasswordContainer";
 import SignInContainer from "modules/auth/SignIn/SignInContainer";
 import SignUpInputContainer from "modules/auth/SignUp/signUp/SignUpInputContainer";
@@ -42,5 +43,9 @@ export const PRIVATE_ROUTES: RoutesType = {
   PROFILE_CARD: {
     path: "/profile",
     element: <ProfileCardContainer />,
+  },
+  ADD_FRIEND: {
+    path: "/add_friend",
+    element: <AddFriendContainer />,
   },
 };

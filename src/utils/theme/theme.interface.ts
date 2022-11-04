@@ -28,6 +28,8 @@ interface ColorType {
   white: string;
   gray: string;
   gray2: string;
+  gray3: string;
+  gray4: string;
   red: string;
   profileDefault: string;
 }

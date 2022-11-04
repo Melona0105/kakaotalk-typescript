@@ -16,6 +16,8 @@ export const THEME: ThemeType = {
     white: "#FFFFFF",
     gray: "#b7b7b7",
     gray2: "#e6e6e6",
+    gray3: "#f6f6f6",
+    gray4: "#a6a6a6",
     red: "#e65e3d",
     profileDefault: "#859199",
   },

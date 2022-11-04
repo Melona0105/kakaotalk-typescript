@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../../../utils/theme/theme.interface";
 
+const ICON_SIZE = 15;
+
 export const SignUpTermsWrapper = styled.div<ThemeProps>(({ theme }) => ({
   paddingBottom: theme.spacing.xLarge,
 }));
@@ -38,8 +40,8 @@ interface SignUpTermsIconStyleProps extends ThemeProps {
 export const SignUpTermsIcon = styled.div<SignUpTermsIconStyleProps>(
   ({ theme, isSelected }) => ({
     border: `2px solid ${theme.colors.inActive}`,
-    width: 20,
-    height: 20,
+    width: ICON_SIZE,
+    height: ICON_SIZE,
     borderRadius: 50,
     backgroundColor: isSelected ? theme.colors.kakaoYellow : theme.colors.white,
   })
@@ -51,7 +53,7 @@ export const SignUpTermsTextDiv = styled.div<ThemeProps>(({ theme }) => ({
 }));
 
 export const SignUpTermsTitle = styled.div<ThemeProps>(({ theme }) => ({
-  fontSize: theme.fontSize.large,
+  fontSize: theme.fontSize.default,
 }));
 
 export const SignUpTermsPhrase = styled.div<ThemeProps>(({ theme }) => ({
