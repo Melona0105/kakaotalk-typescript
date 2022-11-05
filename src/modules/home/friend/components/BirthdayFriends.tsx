@@ -15,7 +15,7 @@ function BirthdayFriends({ birthdayFirends }: BirthdayFriendsProps) {
 
   return (
     <BirthdayFriendsWrapper>
-      <ToggleBox title="생일인 친구">
+      <ToggleBox title="생일인 친구" initialState>
         <FriendProfileThumbnail birthdayFirends={birthdayFirends} />
       </ToggleBox>
     </BirthdayFriendsWrapper>

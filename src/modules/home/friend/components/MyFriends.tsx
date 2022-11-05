@@ -13,7 +13,7 @@ function MyFriends() {
 
   return (
     <MyFriendsWrapper>
-      <ToggleBox title={`친구 ${data?.length}`}>
+      <ToggleBox title={`친구 ${data?.length}`} initialState>
         <MyFriendsDiv>
           {data?.map((friend, index) => (
             <FriendProfileThumbnail key={index} friend={friend} />

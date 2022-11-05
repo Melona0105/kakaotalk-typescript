@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function useToggleBox() {
-  const [showChildren, setShowChildren] = useState<boolean>(false);
+function useToggleBox(initialState: boolean) {
+  const [showChildren, setShowChildren] = useState<boolean>(initialState);
 
   function toggleShowChildren() {
     setShowChildren(!showChildren);

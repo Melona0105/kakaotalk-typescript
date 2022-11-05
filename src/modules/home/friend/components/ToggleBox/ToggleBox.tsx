@@ -1,19 +1,20 @@
+import hideChildrenIcon from "assets/icons/menu_close.png";
+import showChildrenIcon from "assets/icons/menu_open.png";
 import { ReactNode } from "react";
 import useToggleBox from "./ToggleBox.hook";
 import { ToggleBoxDiv, ToggleBoxImage, ToggleBoxText } from "./ToggleBox.style";
-import showChildrenIcon from "assets/icons/menu_open.png";
-import hideChildrenIcon from "assets/icons/menu_close.png";
 
 interface ToggleBoxProps {
   title: string;
   children: ReactNode;
+  initialState?: boolean;
 }
 
 /**
  * 토글 형식으로 childrend을 on/off하는 컴포넌트입니다.
  */
-function ToggleBox({ title, children }: ToggleBoxProps) {
-  const { models, operations } = useToggleBox();
+function ToggleBox({ title, children, initialState = false }: ToggleBoxProps) {
+  const { models, operations } = useToggleBox(initialState);
   const { showChildren } = models;
   const { toggleShowChildren } = operations;
 

@@ -1,3 +1,4 @@
+import defaultImage from "assets/images/friend_default_image.png";
 import Button from "modules/common/components/Button";
 import { useTheme } from "styled-components";
 import { FriendType } from "utils/interfaces/apiInterface";
@@ -30,7 +31,7 @@ function AddFriendSearchResult({ data }: AddFriendSearchResultProps) {
 
   return (
     <AddFriendSearchResultWrapper>
-      <AddFriendSearchResultImage src={avatarURL} />
+      <AddFriendSearchResultImage src={avatarURL || defaultImage} />
       <AddFriendSearchResultText>{username}</AddFriendSearchResultText>
 
       <Button
