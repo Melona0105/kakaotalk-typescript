@@ -36,13 +36,13 @@ interface FriendMunuItemStyleProps extends ThemeProps {
 
 export const FriendMunuItem = styled.div<FriendMunuItemStyleProps>(
   ({ theme, showBorderBottom }) => ({
+    padding: theme.spacing.small,
     paddingRight: theme.spacing.xSmall,
     paddingLeft: theme.spacing.xSmall,
-    paddingTop: theme.spacing.small,
-    paddingBottom: theme.spacing.small,
     borderBottomWidth: showBorderBottom ? 1 : 0,
     borderBottomColor: theme.colors.gray2,
     borderBottomStyle: "solid",
+    fontSize: theme.fontSize.small,
 
     ":hover": {
       borderBottomWidth: 0,

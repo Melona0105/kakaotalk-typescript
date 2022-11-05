@@ -52,6 +52,20 @@ const friendApis = {
       data: { friendId },
     });
   },
+
+  hideFriend: async (friendId: string) =>
+    await axiosInstance({
+      method: "POST",
+      url: `${FRIEND_BASE_URL}/hide`,
+      data: { friendId },
+    }),
+
+  blockFriend: async (friendId: string) =>
+    await axiosInstance({
+      method: "POST",
+      url: `${FRIEND_BASE_URL}/block`,
+      data: { friendId },
+    }),
 };
 
 export default friendApis;

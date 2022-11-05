@@ -6,20 +6,20 @@ import {
 } from "./FriendMenu.style";
 
 interface FriendMenuProps {
+  friendId: string;
   pointerLocate: { clientX: number; clientY: number };
 }
 
-function FriendMenu({ pointerLocate }: FriendMenuProps) {
+function FriendMenu({ friendId, pointerLocate }: FriendMenuProps) {
   const { clientX, clientY } = pointerLocate;
-  const { models } = useFriendMenu();
+  const { models } = useFriendMenu(friendId);
   const { FRIEND_MENU_ITEMS } = models;
 
   return (
     <FriendMenuWrapper top={clientY} left={clientX}>
       {FRIEND_MENU_ITEMS.map((menu, index) => (
-        <FriendMunuItemDiv>
+        <FriendMunuItemDiv key={menu.id}>
           <FriendMunuItem
-            key={menu.id}
             showBorderBottom={index !== FRIEND_MENU_ITEMS.length - 1}
             onClick={menu.onClick}
           >

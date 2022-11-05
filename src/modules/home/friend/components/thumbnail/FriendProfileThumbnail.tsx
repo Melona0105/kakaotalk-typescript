@@ -34,7 +34,7 @@ function FriendProfileThumbnail({
     () =>
       showMenu && (
         <Modal showModal={showMenu} onCloseModalClick={handleShowMenu}>
-          <FriendMenu pointerLocate={pointerLocate} />
+          <FriendMenu friendId={friend!.id} pointerLocate={pointerLocate} />
         </Modal>
       ),
     [showMenu, pointerLocate]
