@@ -8,6 +8,7 @@ interface ButtonWrapperStyleProps extends ThemeProps {
   color?: CSSProperties["color"];
   fontSize?: CSSProperties["fontSize"];
   width?: CSSProperties["width"];
+  padding?: CSSProperties["padding"];
 }
 
 export const ButtonWrapper = styled.div<any>(
@@ -15,6 +16,7 @@ export const ButtonWrapper = styled.div<any>(
     theme,
     disabled,
     marginTop,
+    padding = theme.spacing.xLarge / 2,
     backgroundColor,
     color,
     fontSize = theme.fontSize.default,
@@ -22,7 +24,7 @@ export const ButtonWrapper = styled.div<any>(
   }: ButtonWrapperStyleProps) => ({
     width,
     textAlign: "center",
-    padding: theme.spacing.xLarge / 2,
+    padding,
     backgroundColor: disabled
       ? theme.colors.inActive
       : backgroundColor || theme.colors.kakaoDarkGray,

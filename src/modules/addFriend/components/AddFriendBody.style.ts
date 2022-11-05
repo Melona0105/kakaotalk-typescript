@@ -11,6 +11,7 @@ export const AddFriendBodyWrapper = styled.div<ThemeProps>(({ theme }) => ({
 export const AddFriendBodyTextDiv = styled.div<ThemeProps>(({ theme }) => ({
   borderBottom: `1px solid ${theme.colors.gray}`,
   paddingBottom: theme.spacing.small,
+  marginBottom: theme.spacing.xLarge,
   display: "flex",
   alignItems: "center",
 }));
@@ -31,12 +32,6 @@ export const AddFriendBodyInputClearIcon = styled.img.attrs(() => ({
   paddingRight: theme.spacing.small,
   cursor: "pointer",
 }));
-
-export const AddFriendBodyMyInfoWrapper = styled.div<ThemeProps>(
-  ({ theme }) => ({
-    paddingTop: theme.spacing.xLarge,
-  })
-);
 
 export const AddFriendBodyMyInfoDiv = styled.div<ThemeProps>(({ theme }) => ({
   display: "flex",

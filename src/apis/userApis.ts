@@ -66,6 +66,26 @@ const userApis = {
 
     compressedFile && (await uploadMyUserAvatar(compressedFile));
   },
+
+  getUserProfile: async (email: string) => {
+    const { data } = await axiosInstance<UserType[]>({
+      method: "GET",
+      url: `/user/${email}`,
+    });
+    let avatarURL;
+    try {
+      avatarURL = await getUserAvatar(data[0].id);
+    } catch (err) {
+      console.log(err);
+    }
+
+    const result: UserType = {
+      ...data[0],
+      avatarURL,
+    };
+
+    return result;
+  },
 };
 
 export default userApis;

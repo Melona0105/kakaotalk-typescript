@@ -7,6 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: CSSProperties["color"];
   fontSize?: CSSProperties["fontSize"];
   width?: CSSProperties["width"];
+  padding?: CSSProperties["padding"];
 }
 
 function Button({ title, marginTop, width, ...rest }: ButtonProps) {

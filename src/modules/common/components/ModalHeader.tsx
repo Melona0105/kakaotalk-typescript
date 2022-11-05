@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   ModalHeaderCloseIcon,
   ModalHeaderTitle,
@@ -9,9 +10,11 @@ interface ModalHeaderProps {
 }
 
 function ModalHeader({ title }: ModalHeaderProps) {
+  const navigate = useNavigate();
+
   return (
     <ModalHeaderWrapper>
-      <ModalHeaderCloseIcon />
+      <ModalHeaderCloseIcon onClick={() => navigate(-1)} />
       <ModalHeaderTitle>{title}</ModalHeaderTitle>
     </ModalHeaderWrapper>
   );

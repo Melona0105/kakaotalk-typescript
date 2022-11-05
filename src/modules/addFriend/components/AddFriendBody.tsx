@@ -1,18 +1,21 @@
+import Loading from "modules/common/components/Loading";
 import { useMemo } from "react";
 import useAddFriendBody from "./AddFriendBody.hook";
+import AddFriendSearchResult from "./AddFriendSearchResult";
 import {
   AddFriendBodyTextDiv,
   AddFriendBodyInput,
   AddFriendBodyWrapper,
-  AddFriendBodyMyInfoWrapper,
   AddFriendBodyMyInfoDiv,
   AddFriendBodyInputClearIcon,
 } from "./AddFriendBody.style";
 
+const EMAIL_MAX_LENGTH = 30;
+
 function AddFriendBody() {
   const { models, operations } = useAddFriendBody();
-  const { keyword } = models;
-  const { onKeywordChange, onClearInputClick } = operations;
+  const { data, isLoading, keyword, showResult } = models;
+  const { onKeywordChange, onClearInputClick, onKeyDown } = operations;
 
   const MemorizedInput = useMemo(
     () => (
@@ -20,26 +23,27 @@ function AddFriendBody() {
         <AddFriendBodyInput
           placeholder="친구 이메일"
           value={keyword}
+          onKeyDown={onKeyDown}
           onChange={onKeywordChange}
-          maxLength={20}
+          maxLength={EMAIL_MAX_LENGTH}
         />
-        {!!keyword.length && (
+        {!!keyword.length && !showResult && (
           <AddFriendBodyInputClearIcon onClick={onClearInputClick} />
         )}
-        <div>{keyword.length}/20</div>
+        <div>
+          {keyword.length}/{EMAIL_MAX_LENGTH}
+        </div>
       </AddFriendBodyTextDiv>
     ),
-    [keyword]
+    [keyword, showResult]
   );
 
   const MemorizedInfo = useMemo(
     () => (
-      <AddFriendBodyMyInfoWrapper>
-        <AddFriendBodyMyInfoDiv>
-          <div>내 아이디</div>
-          <div>duduki</div>
-        </AddFriendBodyMyInfoDiv>
-      </AddFriendBodyMyInfoWrapper>
+      <AddFriendBodyMyInfoDiv>
+        <div>내 아이디</div>
+        <div>duduki</div>
+      </AddFriendBodyMyInfoDiv>
     ),
     []
   );
@@ -47,7 +51,13 @@ function AddFriendBody() {
   return (
     <AddFriendBodyWrapper>
       {MemorizedInput}
-      {MemorizedInfo}
+      {isLoading && <Loading />}
+
+      {!isLoading && showResult ? (
+        <AddFriendSearchResult data={data} />
+      ) : (
+        MemorizedInfo
+      )}
     </AddFriendBodyWrapper>
   );
 }

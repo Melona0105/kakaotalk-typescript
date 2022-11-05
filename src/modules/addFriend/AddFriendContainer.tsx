@@ -5,7 +5,7 @@ import AddFriendBody from "./components/AddFriendBody";
 function AddFriendContainer() {
   return (
     <AddFriendContainerWrapper>
-      <ModalHeader title="카카오톡 ID로 추가" />
+      <ModalHeader title="이메일 검색으로 추가" />
       <AddFriendBody />
     </AddFriendContainerWrapper>
   );

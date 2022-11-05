@@ -2,7 +2,7 @@ import userApis from "apis/userApis";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { useQuery } from "react-query";
-import { auth, getUserAvatar } from "../../../libs/firebase/firebaseAuth";
+import { auth } from "../../../libs/firebase/firebaseAuth";
 import Loading from "../components/Loading";
 import {
   createContext,
@@ -17,7 +17,7 @@ export interface UserType {
   id: string;
   email: string;
   username: string;
-  agree_terms: JSON;
+  agree_terms?: JSON;
   summary?: string;
   avatarURL?: string;
 }
