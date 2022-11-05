@@ -14,9 +14,11 @@ export const FriendProfileThumbnailImage = styled.img<ThemeProps>(
   ({ theme }) => ({
     width: THUMBNAIL_IMAGE_SIZE,
     height: THUMBNAIL_IMAGE_SIZE,
-    paddingTop: theme.spacing.xSmall,
-    paddingBottom: theme.spacing.xSmall,
-    paddingRight: theme.spacing.small,
+    marginTop: theme.spacing.xSmall,
+    marginBottom: theme.spacing.xSmall,
+    marginRight: theme.spacing.small,
+    borderRadius: 15,
+    objectFit: "cover",
   })
 );
 

@@ -1,15 +1,17 @@
+import birthdayDefaultImage from "assets/images/friend_birthday_default_image.png";
+import defaultImage from "assets/images/friend_default_image.png";
+import { FlexDiv } from "modules/common/styles/commonStyles";
+import Melon from "modules/home/common/components/Melon";
+import { FriendType } from "utils/interfaces/apiInterface";
 import {
   FriendProfileThumbnailCount,
   FriendProfileThumbnailImage,
   FriendProfileThumbnailText,
   FriendProfileThumbnailWrapper,
 } from "./FriendProfileThumbnail.style";
-import defaultImage from "assets/images/friend_default_image.png";
-import birthdayDefaultImage from "assets/images/friend_birthday_default_image.png";
-import Melon from "modules/home/common/components/Melon";
-import { FlexDiv } from "modules/common/styles/commonStyles";
 
 interface FriendProfileThumbnailProps {
+  friend?: FriendType;
   birthdayFirends?: any[];
 }
 
@@ -17,16 +19,21 @@ interface FriendProfileThumbnailProps {
  * birthday firends props에 따라서 다른 친구들을 렌더링합니다.
  */
 function FriendProfileThumbnail({
+  friend,
   birthdayFirends,
 }: FriendProfileThumbnailProps) {
   return (
     <FriendProfileThumbnailWrapper>
       <FlexDiv>
         <FriendProfileThumbnailImage
-          src={birthdayFirends ? birthdayDefaultImage : defaultImage}
+          src={
+            birthdayFirends
+              ? birthdayDefaultImage
+              : friend?.avatarURL || defaultImage
+          }
         />
         <FriendProfileThumbnailText showBirthDay={!!birthdayFirends}>
-          {birthdayFirends ? "친구의 생일을 확인해보세요!" : "고등어"}
+          {birthdayFirends ? "친구의 생일을 확인해보세요!" : friend?.username}
           {birthdayFirends && (
             <FriendProfileThumbnailCount>
               {birthdayFirends.length}
