@@ -1,6 +1,7 @@
 import Button from "modules/common/components/Button";
-import { UserType } from "modules/common/providers/AuthProvider";
 import { useTheme } from "styled-components";
+import { FriendType } from "utils/interfaces/apiInterface";
+import useAddFriendSearchResult from "./AddFriendSearchResult.hook";
 import {
   AddFriendSearchResultImage,
   AddFriendSearchResultText,
@@ -8,11 +9,14 @@ import {
 } from "./AddFriendSearchResult.style";
 
 interface AddFriendSearchResultProps {
-  data?: UserType;
+  data?: FriendType;
 }
 
 function AddFriendSearchResult({ data }: AddFriendSearchResultProps) {
   const theme = useTheme();
+  const { models, operations } = useAddFriendSearchResult();
+  const { isAdded } = models;
+  const { onAddFriendClick } = operations;
 
   if (!data?.id) {
     return (
@@ -22,7 +26,7 @@ function AddFriendSearchResult({ data }: AddFriendSearchResultProps) {
     );
   }
 
-  const { id, username, avatarURL } = data;
+  const { id, username, avatarURL, isFriend } = data;
 
   return (
     <AddFriendSearchResultWrapper>
@@ -30,14 +34,14 @@ function AddFriendSearchResult({ data }: AddFriendSearchResultProps) {
       <AddFriendSearchResultText>{username}</AddFriendSearchResultText>
 
       <Button
-        title="친구 추가"
+        disabled={isFriend || isAdded}
+        title={isFriend || isAdded ? "이미 친구입니다." : "친구 추가"}
         backgroundColor={theme.colors.kakaoYellow}
         color={theme.colors.black}
         fontSize={theme.fontSize.small}
-        width={60}
         marginTop={theme.spacing.middle}
         padding={theme.spacing.small}
-        onClick={() => console.log(id)}
+        onClick={() => onAddFriendClick(id)}
       />
     </AddFriendSearchResultWrapper>
   );

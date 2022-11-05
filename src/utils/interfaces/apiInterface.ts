@@ -10,3 +10,11 @@ export interface UpdateUserProfileApiInput {
   summary?: string;
   compressedFile?: File;
 }
+
+export interface FriendType {
+  id: string;
+  email: string;
+  username: string;
+  avatarURL?: string;
+  isFriend: boolean;
+}

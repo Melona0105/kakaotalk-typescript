@@ -1,4 +1,4 @@
-import userApis from "apis/userApis";
+import friendApis from "apis/friendApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useQuery } from "react-query";
@@ -11,8 +11,7 @@ function useAddFriendBody() {
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: QUERY_KEYS.GET_USER_PROFILE,
-    queryFn: async () => await userApis.getUserProfile(keyword),
-
+    queryFn: async () => await friendApis.getFriend(keyword),
     enabled: false,
   });
 

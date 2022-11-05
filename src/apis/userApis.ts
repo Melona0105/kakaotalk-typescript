@@ -11,6 +11,8 @@ import {
   UpdateUserProfileApiInput,
 } from "../utils/interfaces/apiInterface";
 
+const USER_BASE_URL = "/user";
+
 /**
  * 유저에 관련된 API를 관리합니다.
  */
@@ -29,7 +31,7 @@ const userApis = {
     await firebaseSignUp(email, password);
     await axiosInstance({
       method: "POST",
-      url: "/user",
+      url: USER_BASE_URL,
       data: { email, username, termsIndexes },
     });
   },
@@ -38,7 +40,7 @@ const userApis = {
   getMyUserProfile: async () => {
     const { data } = await axiosInstance<UserType[]>({
       method: "GET",
-      url: "/user",
+      url: USER_BASE_URL,
     });
 
     return data;
@@ -60,31 +62,11 @@ const userApis = {
   }: UpdateUserProfileApiInput) => {
     await axiosInstance<UserType[]>({
       method: "POST",
-      url: "/user/update",
+      url: `${USER_BASE_URL}/update`,
       data: { username, summary },
     });
 
     compressedFile && (await uploadMyUserAvatar(compressedFile));
-  },
-
-  getUserProfile: async (email: string) => {
-    const { data } = await axiosInstance<UserType[]>({
-      method: "GET",
-      url: `/user/${email}`,
-    });
-    let avatarURL;
-    try {
-      avatarURL = await getUserAvatar(data[0].id);
-    } catch (err) {
-      console.log(err);
-    }
-
-    const result: UserType = {
-      ...data[0],
-      avatarURL,
-    };
-
-    return result;
   },
 };
 
