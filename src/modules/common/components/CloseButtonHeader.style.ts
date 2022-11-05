@@ -4,14 +4,14 @@ import { ThemeProps } from "utils/theme/theme.interface";
 
 const CLOSE_ICON_SIZE = 20;
 
-export const ModalHeaderWrapper = styled.div<ThemeProps>(({ theme }) => ({
+export const CloseButtonHeaderWrapper = styled.div<ThemeProps>(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   position: "relative",
   paddingTop: theme.spacing.small,
 }));
 
-export const ModalHeaderCloseIcon = styled.img.attrs(() => ({
+export const CloseButtonHeaderIcon = styled.img.attrs(() => ({
   src: closeIcon,
 }))<ThemeProps>(({ theme }) => ({
   width: CLOSE_ICON_SIZE,
@@ -21,6 +21,6 @@ export const ModalHeaderCloseIcon = styled.img.attrs(() => ({
   cursor: "pointer",
 }));
 
-export const ModalHeaderTitle = styled.div<ThemeProps>(({ theme }) => ({
+export const CloseButtonHeaderTitle = styled.div<ThemeProps>(({ theme }) => ({
   fontSize: theme.fontSize.default,
 }));

@@ -1,8 +1,12 @@
 import birthdayDefaultImage from "assets/images/friend_birthday_default_image.png";
 import defaultImage from "assets/images/friend_default_image.png";
+import Modal from "modules/common/components/Modal";
 import { FlexDiv } from "modules/common/styles/commonStyles";
 import Melon from "modules/home/common/components/Melon";
+import { useMemo } from "react";
 import { FriendType } from "utils/interfaces/apiInterface";
+import useFriendProfileThumbnail from "./FriendProfileThumbnail.hook";
+import FriendMenu from "../FriendMenu";
 import {
   FriendProfileThumbnailCount,
   FriendProfileThumbnailImage,
@@ -22,8 +26,23 @@ function FriendProfileThumbnail({
   friend,
   birthdayFirends,
 }: FriendProfileThumbnailProps) {
+  const { models, operations } = useFriendProfileThumbnail();
+  const { showMenu, pointerLocate } = models;
+  const { handleShowMenu, onContenxtMunu } = operations;
+
+  const MemorizedModal = useMemo(
+    () =>
+      showMenu && (
+        <Modal showModal={showMenu} onCloseModalClick={handleShowMenu}>
+          <FriendMenu pointerLocate={pointerLocate} />
+        </Modal>
+      ),
+    [showMenu, pointerLocate]
+  );
+
   return (
-    <FriendProfileThumbnailWrapper>
+    <FriendProfileThumbnailWrapper onContextMenu={onContenxtMunu}>
+      {MemorizedModal}
       <FlexDiv>
         <FriendProfileThumbnailImage
           src={

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Modal from "react-modal";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -29,3 +30,5 @@ root.render(
     </QueryClientProvider>
   </React.StrictMode>
 );
+
+Modal.setAppElement("#root");
