@@ -18,7 +18,11 @@ function ManagementFriends({ friends }: ManagementFriendsProps) {
         </ManagementFriendsEmptyText>
       ) : (
         friends.map((friend) => (
-          <FriendProfileThumbnail key={friend.id} friend={friend} />
+          <FriendProfileThumbnail
+            key={friend.id}
+            friend={friend}
+            showManagementMenu
+          />
         ))
       )}
     </ManagementFriendsWrapper>

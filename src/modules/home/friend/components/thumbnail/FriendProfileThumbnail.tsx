@@ -17,6 +17,7 @@ import {
 interface FriendProfileThumbnailProps {
   friend?: FriendType;
   birthdayFirends?: any[];
+  showManagementMenu?: boolean;
 }
 
 /**
@@ -25,8 +26,12 @@ interface FriendProfileThumbnailProps {
 function FriendProfileThumbnail({
   friend,
   birthdayFirends,
+  showManagementMenu = false,
 }: FriendProfileThumbnailProps) {
-  const { models, operations } = useFriendProfileThumbnail(friend!.id);
+  const { models, operations } = useFriendProfileThumbnail(
+    friend!.id,
+    showManagementMenu
+  );
   const { showMenu, pointerLocate, FRIEND_MENU_ITEMS } = models;
   const { handleShowMenu, onContenxtMunu } = operations;
 

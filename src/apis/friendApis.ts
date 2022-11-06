@@ -67,6 +67,13 @@ const friendApis = {
       data: { friendId },
     }),
 
+  rollbackFriend: async (friendId: string) =>
+    await axiosInstance({
+      method: "POST",
+      url: `${FRIEND_BASE_URL}/rollback`,
+      data: { friendId },
+    }),
+
   getMyHiddenFriends: async (): Promise<FriendType[]> => {
     console.log("getMyHiddenFriends");
     const { data } = await axiosInstance<FriendType[]>({
@@ -103,6 +110,14 @@ const friendApis = {
       return { ...friend, avatarURL };
     });
     return Promise.all(myFriends);
+  },
+
+  delteFriend: async (friendId: string) => {
+    await axiosInstance({
+      method: "DELETE",
+      url: `${FRIEND_BASE_URL}`,
+      data: { friendId },
+    });
   },
 };
 
