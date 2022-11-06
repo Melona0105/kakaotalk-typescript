@@ -31,10 +31,10 @@ export const FriendProfileThumbnailText =
     ({ theme, showBirthDay }) => ({
       fontSize: theme.fontSize.small,
       maxWidth: showBirthDay ? undefined : TEXT_MAT_WIDTH,
+      display: showBirthDay ? "flex" : "inline",
+      overflow: "hidden",
       whiteSpace: "nowrap",
       textOverflow: "ellipsis",
-      overflow: "hidden",
-      display: "flex",
     })
   );
 

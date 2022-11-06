@@ -2,23 +2,22 @@ import { CSSProperties } from "react";
 import styled from "styled-components";
 import { ThemeProps } from "utils/theme/theme.interface";
 
-interface FriendMenuWrapperStyleProps extends ThemeProps {
+interface RightClickMenuWrapperStyleProps extends ThemeProps {
   top: CSSProperties["top"];
   left: CSSProperties["left"];
 }
 
-export const FriendMenuWrapper = styled.div<FriendMenuWrapperStyleProps>(
-  ({ theme, top, left }) => ({
+export const RightClickMenuWrapper =
+  styled.div<RightClickMenuWrapperStyleProps>(({ theme, top, left }) => ({
     position: "absolute",
     top,
     left,
     backgroundColor: theme.colors.gray3,
     borderRadius: 10,
     border: `1px solid ${theme.colors.gray}`,
-  })
-);
+  }));
 
-export const FriendMunuItemDiv = styled.div<ThemeProps>(({ theme }) => ({
+export const RightClickMenuDiv = styled.div<ThemeProps>(({ theme }) => ({
   paddingRight: theme.spacing.xSmall,
   paddingLeft: theme.spacing.xSmall,
   borderRadius: 5,
@@ -30,11 +29,11 @@ export const FriendMunuItemDiv = styled.div<ThemeProps>(({ theme }) => ({
   },
 }));
 
-interface FriendMunuItemStyleProps extends ThemeProps {
+interface RightClickMenuStyleProps extends ThemeProps {
   showBorderBottom: boolean;
 }
 
-export const FriendMunuItem = styled.div<FriendMunuItemStyleProps>(
+export const RightClickMenuItem = styled.div<RightClickMenuStyleProps>(
   ({ theme, showBorderBottom }) => ({
     padding: theme.spacing.small,
     paddingRight: theme.spacing.xSmall,

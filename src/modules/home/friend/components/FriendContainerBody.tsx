@@ -7,7 +7,7 @@ function FriendContainerBody() {
   return (
     <FriendContainerBodyWrapper>
       <MyProfileThumbnail />
-      <BirthdayFriends birthdayFirends={[1]} />
+      <BirthdayFriends birthdayFirends={[]} />
       <MyFriends />
     </FriendContainerBodyWrapper>
   );

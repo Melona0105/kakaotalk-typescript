@@ -1,41 +1,40 @@
+import Modal from "modules/common/components/Modal";
+import RightClickMenu from "modules/common/components/RightClickMenu";
+import useNavigationBar from "./NavigationBar.hook";
 import {
   NavigationBarImageButton,
   NavigationBarDiv,
   NavigationBarWrapper,
 } from "./NavigationBar.style";
-import friendActive from "assets/icons/friend_active.png";
-import friendInactive from "assets/icons/friend_inactive.png";
-import chatActive from "assets/icons/chat_active.png";
-import chatInactive from "assets/icons/chat_inactive.png";
-import etcActive from "assets/icons/etc_active.png";
-import etcInactive from "assets/icons/etc_inactive.png";
-import noti from "assets/icons/noti.png";
-import setting from "assets/icons/setting.png";
-import { firebaseSignOut } from "libs/firebase/firebaseAuth";
 
-interface NavigationMenu {
-  id: number;
-  src: string;
-  inactiveSrc?: string;
-  onClick?: () => void;
-}
-
-const NAVIGATION_MENUS: NavigationMenu[] = [
-  { id: 0, src: friendActive, inactiveSrc: friendInactive },
-  { id: 1, src: chatActive, inactiveSrc: chatInactive },
-  { id: 2, src: etcActive, inactiveSrc: etcInactive },
-  { id: 3, src: noti, onClick: () => console.log(1) },
-  // TODO: 임시 버튼입니다. 이후 제거해야합니다.
-  { id: 4, src: setting, onClick: firebaseSignOut },
-];
 interface NavigationBarProps {
   tabIndex: number;
   onTabPress: (index: number) => void;
 }
 
 function NavigationBar({ tabIndex, onTabPress }: NavigationBarProps) {
+  const { models, operations } = useNavigationBar();
+  const {
+    showSettingModal,
+    NAVIGATION_MENUS,
+    SETTING_MODAL_ITEMS,
+    pointerLocate,
+  } = models;
+  const { onCloseModalClick } = operations;
+
   return (
     <NavigationBarWrapper>
+      {showSettingModal && (
+        <Modal
+          showModal={showSettingModal}
+          onCloseModalClick={onCloseModalClick}
+        >
+          <RightClickMenu
+            pointerLocate={pointerLocate}
+            items={SETTING_MODAL_ITEMS}
+          />
+        </Modal>
+      )}
       <NavigationBarDiv>
         {NAVIGATION_MENUS.slice(0, 3).map((menu, index) => (
           <NavigationBarImageButton

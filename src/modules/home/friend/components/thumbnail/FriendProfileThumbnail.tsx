@@ -1,12 +1,12 @@
 import birthdayDefaultImage from "assets/images/friend_birthday_default_image.png";
 import defaultImage from "assets/images/friend_default_image.png";
 import Modal from "modules/common/components/Modal";
+import RightClickMenu from "modules/common/components/RightClickMenu";
 import { FlexDiv } from "modules/common/styles/commonStyles";
 import Melon from "modules/home/common/components/Melon";
 import { useMemo } from "react";
 import { FriendType } from "utils/interfaces/apiInterface";
 import useFriendProfileThumbnail from "./FriendProfileThumbnail.hook";
-import FriendMenu from "../FriendMenu";
 import {
   FriendProfileThumbnailCount,
   FriendProfileThumbnailImage,
@@ -26,15 +26,18 @@ function FriendProfileThumbnail({
   friend,
   birthdayFirends,
 }: FriendProfileThumbnailProps) {
-  const { models, operations } = useFriendProfileThumbnail();
-  const { showMenu, pointerLocate } = models;
+  const { models, operations } = useFriendProfileThumbnail(friend!.id);
+  const { showMenu, pointerLocate, FRIEND_MENU_ITEMS } = models;
   const { handleShowMenu, onContenxtMunu } = operations;
 
   const MemorizedModal = useMemo(
     () =>
       showMenu && (
         <Modal showModal={showMenu} onCloseModalClick={handleShowMenu}>
-          <FriendMenu friendId={friend!.id} pointerLocate={pointerLocate} />
+          <RightClickMenu
+            items={FRIEND_MENU_ITEMS}
+            pointerLocate={pointerLocate}
+          />
         </Modal>
       ),
     [showMenu, pointerLocate]

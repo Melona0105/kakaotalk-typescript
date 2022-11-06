@@ -5,6 +5,7 @@ import SignUpInputContainer from "modules/auth/SignUp/signUp/SignUpInputContaine
 import SignUpTermsContainer from "modules/auth/SignUp/terms/SignUpTermsContainer";
 import HomeContainer from "modules/home/HomeContainer";
 import ProfileCardContainer from "modules/profileCard/ProfileCardContainer";
+import SettingContainer from "modules/setting/SettingContainer";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
@@ -47,5 +48,9 @@ export const PRIVATE_ROUTES: RoutesType = {
   ADD_FRIEND: {
     path: "/add_friend",
     element: <AddFriendContainer />,
+  },
+  SETTING: {
+    path: "/setting",
+    element: <SettingContainer />,
   },
 };
