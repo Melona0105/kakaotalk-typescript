@@ -1,17 +1,17 @@
 import CloseButtonHeader from "modules/common/components/CloseButtonHeader";
+import { CloseButtonStyleWrapper } from "modules/common/styles/commonStyles";
 import SettingMenus from "./components/SettingMenus";
 import useSettingContainer from "./SettingContainer.hook";
-import { SettingContainerWrapper } from "./SettingContainer.style";
 
 function SettingContainer() {
   const { models } = useSettingContainer();
   const { SETTING_MENU_ITEMS } = models;
 
   return (
-    <SettingContainerWrapper>
+    <CloseButtonStyleWrapper>
       <CloseButtonHeader title="친구" />
       <SettingMenus menus={SETTING_MENU_ITEMS} />
-    </SettingContainerWrapper>
+    </CloseButtonStyleWrapper>
   );
 }
 

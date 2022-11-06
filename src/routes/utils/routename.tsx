@@ -5,6 +5,7 @@ import SignUpInputContainer from "modules/auth/SignUp/signUp/SignUpInputContaine
 import SignUpTermsContainer from "modules/auth/SignUp/terms/SignUpTermsContainer";
 import HomeContainer from "modules/home/HomeContainer";
 import ProfileCardContainer from "modules/profileCard/ProfileCardContainer";
+import ManagementFriendContainer from "modules/setting/managementFriend/ManagementFriendContainer";
 import SettingContainer from "modules/setting/SettingContainer";
 import React from "react";
 import { Outlet } from "react-router-dom";
@@ -51,6 +52,17 @@ export const PRIVATE_ROUTES: RoutesType = {
   },
   SETTING: {
     path: "/setting",
-    element: <SettingContainer />,
+    element: <Outlet />,
+    children: [
+      { path: "", element: <SettingContainer /> },
+      {
+        path: "management_hidden_friend",
+        element: <ManagementFriendContainer />,
+      },
+      {
+        path: "management_blocked_friend",
+        element: <ManagementFriendContainer />,
+      },
+    ],
   },
 };

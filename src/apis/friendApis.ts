@@ -66,6 +66,44 @@ const friendApis = {
       url: `${FRIEND_BASE_URL}/block`,
       data: { friendId },
     }),
+
+  getMyHiddenFriends: async (): Promise<FriendType[]> => {
+    console.log("getMyHiddenFriends");
+    const { data } = await axiosInstance<FriendType[]>({
+      method: "GET",
+      url: `${FRIEND_BASE_URL}/hide`,
+    });
+    const myFriends = [...data].map(async (friend) => {
+      let avatarURL;
+      try {
+        avatarURL = await getUserAvatar(friend.id);
+      } catch (err) {
+        console.log(err);
+      }
+
+      return { ...friend, avatarURL };
+    });
+    return Promise.all(myFriends);
+  },
+  getMyBlockedFriends: async (): Promise<FriendType[]> => {
+    console.log("getMyBlockedFriends");
+    const { data } = await axiosInstance<FriendType[]>({
+      method: "GET",
+      url: `${FRIEND_BASE_URL}/block`,
+    });
+
+    const myFriends = [...data].map(async (friend) => {
+      let avatarURL;
+      try {
+        avatarURL = await getUserAvatar(friend.id);
+      } catch (err) {
+        console.log(err);
+      }
+
+      return { ...friend, avatarURL };
+    });
+    return Promise.all(myFriends);
+  },
 };
 
 export default friendApis;

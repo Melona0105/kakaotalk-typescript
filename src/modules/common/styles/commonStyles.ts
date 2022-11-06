@@ -14,3 +14,9 @@ export const FlexDiv = styled.div<ThemeProps>(({ theme }) => ({
   display: "flex",
   alignItems: "center",
 }));
+
+export const CloseButtonStyleWrapper = styled.div<ThemeProps>(({ theme }) => ({
+  borderRadius: theme.config.borderRadius,
+  flex: 1,
+  padding: theme.spacing.middle,
+}));
