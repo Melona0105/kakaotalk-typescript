@@ -1,7 +1,7 @@
 import profileDefault from "assets/images/profile_default.png";
 import { ChangeEvent } from "react";
 import useProfileBody from "./ProfileBody.hook";
-import { ProfileCardStateType } from "../ProfileCardContainer.interface";
+import { MyProfileCardStateType } from "../myProfileCard/MyProfileCardContainer.interface";
 import {
   ProfileBodyEditDiv,
   ProfileBodyEditIcon,
@@ -13,15 +13,15 @@ import {
 } from "./ProfileBody.style";
 
 interface ProfileBodyProps {
-  isEditMode: boolean;
+  isEditMode?: boolean;
   username?: string;
   summary?: string;
   avatarURL?: string;
   avatarState?: File | null;
-  onTextCange: (
-    payload: Pick<ProfileCardStateType, "username" | "summary">
+  onTextCange?: (
+    payload: Pick<MyProfileCardStateType, "username" | "summary">
   ) => void;
-  onAvatarChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onAvatarChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 function ProfileBody({

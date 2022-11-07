@@ -6,12 +6,17 @@ import {
 } from "./ProfileFooter.style";
 
 interface ProfileFooterProps {
-  isEditMode: boolean;
-  activateEditMode: () => void;
+  isEditMode?: boolean;
+  isMyProfile?: boolean;
+  activateEditMode?: () => void;
 }
 
-function ProfileFooter({ isEditMode, activateEditMode }: ProfileFooterProps) {
-  const { models } = useProfileFooter(activateEditMode);
+function ProfileFooter({
+  isEditMode,
+  isMyProfile = true,
+  activateEditMode,
+}: ProfileFooterProps) {
+  const { models } = useProfileFooter(isMyProfile, activateEditMode);
   const { FOOTER_ITEMS } = models;
 
   return (

@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import { ProfileCardStateType } from "../ProfileCardContainer.interface";
+import { MyProfileCardStateType } from "../myProfileCard/MyProfileCardContainer.interface";
 
 function useProfileBody(
-  onTextCange: (
-    payload: Pick<ProfileCardStateType, "username" | "summary">
+  onTextCange?: (
+    payload: Pick<MyProfileCardStateType, "username" | "summary">
   ) => void,
   username?: string,
   summary?: string
@@ -15,13 +15,13 @@ function useProfileBody(
       id: 0,
       value: username,
       placeholder: "",
-      onChange: (text: string) => onTextCange({ username: text }),
+      onChange: (text: string) => onTextCange?.({ username: text }),
     },
     {
       id: 1,
       value: summary,
       placeholder: "상태메시지를 입력해 주세요.",
-      onChange: (text: string) => onTextCange({ summary: text }),
+      onChange: (text: string) => onTextCange?.({ summary: text }),
     },
   ];
 

@@ -5,16 +5,20 @@ interface FooterItemType {
   id: number;
   src: string;
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
-function useProfileFooter(onEditProfilePress: () => void) {
+function useProfileFooter(
+  isMyProfile: boolean,
+  onEditProfilePress?: () => void
+) {
   const FOOTER_ITEMS: FooterItemType[] = [
     {
       id: 0,
       src: chatIcon,
-      title: "나와의 채팅",
-      onClick: () => console.log("나와의 채팅"),
+      title: isMyProfile ? "나와의 채팅" : "채팅하기",
+      onClick: () =>
+        console.log(isMyProfile ? "나와의 채팅" : "이 유저와 채팅하기"),
     },
     {
       id: 1,
@@ -26,7 +30,7 @@ function useProfileFooter(onEditProfilePress: () => void) {
 
   return {
     models: {
-      FOOTER_ITEMS,
+      FOOTER_ITEMS: isMyProfile ? FOOTER_ITEMS : FOOTER_ITEMS.slice(0, 1),
     },
   };
 }

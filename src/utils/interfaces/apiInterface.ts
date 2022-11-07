@@ -17,4 +17,5 @@ export interface FriendType {
   username: string;
   avatarURL?: string;
   isFriend: boolean;
+  summary?: string;
 }

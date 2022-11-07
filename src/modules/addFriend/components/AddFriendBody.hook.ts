@@ -11,7 +11,7 @@ function useAddFriendBody() {
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: QUERY_KEYS.GET_USER_PROFILE,
-    queryFn: async () => await friendApis.getFriend(keyword),
+    queryFn: async () => await friendApis.searchFriend(keyword),
     enabled: false,
   });
 

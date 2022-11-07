@@ -20,7 +20,7 @@ export const ProfileBodyWrapper = styled.div<ThemeProps>(({ theme }) => ({
 
 interface ProfileBodyImageStyleProps extends ThemeProps {
   source: string;
-  isEditMode: boolean;
+  isEditMode?: boolean;
 }
 
 export const ProfileBodyImage = styled.div<ProfileBodyImageStyleProps>(

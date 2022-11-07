@@ -1,15 +1,15 @@
 import { useMemo } from "react";
-import ProfileBody from "./components/ProfileBody";
-import ProfileFooter from "./components/ProfileFooter";
-import ProfileHeader from "./components/ProfileHeader";
-import useProfileCardContainer from "./ProfileCardContainer.hook";
-import { ProfileCardContainerWrapper } from "./ProfileCardContainer.style";
+import useMyProfileCardContainer from "./MyProfileCardContainer.hook";
+import { ProfileCardContainerWrapper } from "../common/utils/commonStyle";
+import ProfileBody from "../components/ProfileBody";
+import ProfileFooter from "../components/ProfileFooter";
+import ProfileHeader from "../components/ProfileHeader";
 
 /**
  * 유저를 클릭하면 나타나는 프로필 카드입니다.
  */
-function ProfileCardContainer() {
-  const { models, operations } = useProfileCardContainer();
+function MyProfileCardContainer() {
+  const { models, operations } = useMyProfileCardContainer();
   const { state, isEditMode } = models;
   const {
     activateEditMode,
@@ -49,4 +49,4 @@ function ProfileCardContainer() {
   return MemorizedProfileCardContainer;
 }
 
-export default ProfileCardContainer;
+export default MyProfileCardContainer;

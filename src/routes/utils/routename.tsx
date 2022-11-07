@@ -4,7 +4,8 @@ import SignInContainer from "modules/auth/SignIn/SignInContainer";
 import SignUpInputContainer from "modules/auth/SignUp/signUp/SignUpInputContainer";
 import SignUpTermsContainer from "modules/auth/SignUp/terms/SignUpTermsContainer";
 import HomeContainer from "modules/home/HomeContainer";
-import ProfileCardContainer from "modules/profileCard/ProfileCardContainer";
+import FriendsProfileCardContainer from "modules/profileCard/friendProfileCard/FriendsProfileCardContainer";
+import MyProfileCardContainer from "modules/profileCard/myProfileCard/MyProfileCardContainer";
 import ManagementFriendContainer from "modules/setting/managementFriend/ManagementFriendContainer";
 import SettingContainer from "modules/setting/SettingContainer";
 import React from "react";
@@ -24,7 +25,7 @@ export const PUBLIC_ROUTES: RoutesType = {
     element: <SignInContainer />,
   },
   SIGN_UP: {
-    path: "/sign_up",
+    path: "/sign_up/:friendId",
     element: <Outlet />,
     children: [
       { path: "", element: <SignUpTermsContainer /> },
@@ -44,7 +45,17 @@ export const PRIVATE_ROUTES: RoutesType = {
   },
   PROFILE_CARD: {
     path: "/profile",
-    element: <ProfileCardContainer />,
+    element: <Outlet />,
+    children: [
+      {
+        path: "",
+        element: <MyProfileCardContainer />,
+      },
+      {
+        path: ":friendId",
+        element: <FriendsProfileCardContainer />,
+      },
+    ],
   },
   ADD_FRIEND: {
     path: "/add_friend",

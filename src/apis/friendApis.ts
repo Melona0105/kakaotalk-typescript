@@ -25,11 +25,32 @@ const friendApis = {
     return Promise.all(myFriends);
   },
 
-  getFriend: async (email: string) => {
+  searchFriend: async (email: string) => {
     const { data } = await axiosInstance<FriendType>({
       method: "GET",
       url: `${FRIEND_BASE_URL}/${email}`,
     });
+    let avatarURL;
+    try {
+      avatarURL = await getUserAvatar(data.id);
+    } catch (err) {
+      console.log(err);
+    }
+
+    const result: FriendType = {
+      ...data,
+      avatarURL,
+    };
+
+    return result;
+  },
+
+  getFriend: async (friendId: string) => {
+    const { data } = await axiosInstance({
+      method: "GET",
+      url: `${FRIEND_BASE_URL}/get/${friendId}`,
+    });
+
     let avatarURL;
     try {
       avatarURL = await getUserAvatar(data.id);

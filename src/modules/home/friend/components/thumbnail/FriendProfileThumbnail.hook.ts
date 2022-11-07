@@ -3,13 +3,14 @@ import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { RightClickMenuItemType } from "modules/common/components/RightClickMenu";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { useMatch } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
 
 function useFriendProfileThumbnail(
   friendId: string,
   showManagementMenu: boolean
 ) {
+  const navigate = useNavigate();
   const HIDDEN_FRIEND_PATH =
     PRIVATE_ROUTES.SETTING.path +
     "/" +
@@ -26,6 +27,10 @@ function useFriendProfileThumbnail(
 
   function handleShowMenu() {
     setShowMenu(!showMenu);
+  }
+
+  function onFriendClick(friendId?: string) {
+    navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friendId}`);
   }
 
   function onContenxtMunu(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -101,6 +106,7 @@ function useFriendProfileThumbnail(
     operations: {
       handleShowMenu,
       onContenxtMunu,
+      onFriendClick,
     },
   };
 }

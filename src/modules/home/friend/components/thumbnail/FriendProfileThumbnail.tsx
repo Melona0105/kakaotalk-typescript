@@ -33,7 +33,7 @@ function FriendProfileThumbnail({
     showManagementMenu
   );
   const { showMenu, pointerLocate, FRIEND_MENU_ITEMS } = models;
-  const { handleShowMenu, onContenxtMunu } = operations;
+  const { handleShowMenu, onContenxtMunu, onFriendClick } = operations;
 
   const MemorizedModal = useMemo(
     () =>
@@ -49,7 +49,10 @@ function FriendProfileThumbnail({
   );
 
   return (
-    <FriendProfileThumbnailWrapper onContextMenu={onContenxtMunu}>
+    <FriendProfileThumbnailWrapper
+      onContextMenu={onContenxtMunu}
+      onClick={() => onFriendClick(friend?.id)}
+    >
       {MemorizedModal}
       <FlexDiv>
         <FriendProfileThumbnailImage

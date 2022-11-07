@@ -4,19 +4,19 @@ import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { ProfileCardStateType } from "./ProfileCardContainer.interface";
+import { MyProfileCardStateType } from "./MyProfileCardContainer.interface";
 
-function useProfileCardContainer() {
+function useMyProfileCardContainer() {
   const client = useQueryClient();
   const { userProfile } = useAuthContext();
-  const [state, setState] = useState<ProfileCardStateType>({
+  const [state, setState] = useState<MyProfileCardStateType>({
     username: userProfile?.username,
     summary: userProfile?.summary,
     avatarURL: userProfile?.avatarURL,
     avatarState: null,
   });
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [prevState, setPrevState] = useState<ProfileCardStateType>(state);
+  const [prevState, setPrevState] = useState<MyProfileCardStateType>(state);
 
   /**
    * 입력한 프로필을 서버에 전송합니다.
@@ -80,7 +80,7 @@ function useProfileCardContainer() {
   }
 
   function onTextCange(
-    payload: Pick<ProfileCardStateType, "username" | "summary">
+    payload: Pick<MyProfileCardStateType, "username" | "summary">
   ) {
     setState((prev) => ({ ...prev, ...payload }));
   }
@@ -110,4 +110,4 @@ function useProfileCardContainer() {
   };
 }
 
-export default useProfileCardContainer;
+export default useMyProfileCardContainer;

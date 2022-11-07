@@ -1,6 +1,5 @@
 import closeIcon from "assets/icons/button_close.png";
 import settingIcon from "assets/icons/button_setting.png";
-import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ProfileHeaderImage,
@@ -10,9 +9,9 @@ import {
 } from "./ProfileHeader.style";
 
 interface ProfileHeaderProps {
-  isEditMode: boolean;
-  inActivateEditMode: () => void;
-  updateMyUserProfile: () => void;
+  isEditMode?: boolean;
+  inActivateEditMode?: () => void;
+  updateMyUserProfile?: () => void;
 }
 
 function ProfileHeader({
