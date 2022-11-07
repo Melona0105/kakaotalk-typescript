@@ -7,7 +7,6 @@ import { ThemeProvider } from "styled-components";
 import App from "./App";
 import "./index.css";
 import AuthProvider from "./modules/common/providers/AuthProvider";
-import ScreenDimensionProvider from "./modules/common/providers/ScreenDimensionProvider";
 import { THEME } from "./utils/theme/theme";
 
 const queryClient = new QueryClient();
@@ -21,9 +20,7 @@ root.render(
       <BrowserRouter>
         <ThemeProvider theme={THEME}>
           <AuthProvider>
-            <ScreenDimensionProvider>
-              <App />
-            </ScreenDimensionProvider>
+            <App />
           </AuthProvider>
         </ThemeProvider>
       </BrowserRouter>

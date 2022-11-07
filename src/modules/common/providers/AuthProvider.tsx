@@ -9,7 +9,6 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 
@@ -70,18 +69,13 @@ function AuthProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const MemorizedProvider = useMemo(
-    () => (
-      <AuthContext.Provider value={{ firebaseProfile, userProfile }}>
-        {children}
-      </AuthContext.Provider>
-    ),
-    [firebaseProfile, userProfile]
-  );
-
   if (loading) return <Loading />;
 
-  return MemorizedProvider;
+  return (
+    <AuthContext.Provider value={{ firebaseProfile, userProfile }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export default AuthProvider;
