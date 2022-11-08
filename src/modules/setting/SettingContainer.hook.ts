@@ -14,17 +14,6 @@ function useSettingContainer() {
   const SETTING_MENU_ITEMS: SettingMenuType[] = [
     {
       id: 0,
-      title: "",
-      items: [
-        {
-          id: 0,
-          title: "친구 목록 새로고침",
-          onClick: () => console.log("새로고침"),
-        },
-      ],
-    },
-    {
-      id: 1,
       title: "친구 관리",
       items: [
         {

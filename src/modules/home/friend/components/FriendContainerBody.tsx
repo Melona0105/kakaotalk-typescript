@@ -3,12 +3,16 @@ import { FriendContainerBodyWrapper } from "./FriendContainerBody.style";
 import MyFriends from "./MyFriends";
 import MyProfileThumbnail from "./thumbnail/MyProfileThumbnail";
 
-function FriendContainerBody() {
+interface FriendContainerBodyProps {
+  searchKeyword: string;
+}
+
+function FriendContainerBody({ searchKeyword }: FriendContainerBodyProps) {
   return (
     <FriendContainerBodyWrapper>
       <MyProfileThumbnail />
       <BirthdayFriends birthdayFirends={[]} />
-      <MyFriends />
+      <MyFriends searchKeyword={searchKeyword} />
     </FriendContainerBodyWrapper>
   );
 }

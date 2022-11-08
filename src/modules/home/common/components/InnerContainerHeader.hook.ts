@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
 import { HEADER_IMAGE } from "../utils/homeConstants";
@@ -9,22 +10,23 @@ interface HeaderItemsType {
 }
 
 function useInnerContainerHeader(tabIndex: number) {
+  const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
   const navigate = useNavigate();
   const HEADER_FUNCTION = [
-    { 0: onFriendSearchClick, 1: onAddFriendIconClick },
+    { 0: handleShowSearchInput, 1: onAddFriendIconClick },
     { 0: () => console.log("search"), 1: () => console.log(2) },
     { 0: () => console.log("search"), 1: () => console.log(2) },
   ];
 
-  function onFriendSearchClick() {
-    console.log("friend");
+  function handleShowSearchInput() {
+    setShowSearchInput(!showSearchInput);
   }
 
   function onAddFriendIconClick() {
     navigate(PRIVATE_ROUTES.ADD_FRIEND.path);
   }
 
-  const HEADER_ITEMS: HeaderItemsType[] = [
+  const headerItems: HeaderItemsType[] = [
     {
       id: 0,
       src: HEADER_IMAGE[tabIndex][0],
@@ -39,7 +41,8 @@ function useInnerContainerHeader(tabIndex: number) {
 
   return {
     models: {
-      HEADER_ITEMS,
+      showSearchInput,
+      headerItems,
     },
   };
 }

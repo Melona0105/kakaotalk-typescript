@@ -8,6 +8,7 @@ export const FriendProfileThumbnailWrapper = styled.div<ThemeProps>(() => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  cursor: "pointer",
 }));
 
 export const FriendProfileThumbnailImage = styled.img<ThemeProps>(

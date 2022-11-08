@@ -4,8 +4,12 @@ import { MyFriendsDiv, MyFriendsWrapper } from "./MyFriends.style";
 import FriendProfileThumbnail from "./thumbnail/FriendProfileThumbnail";
 import ToggleBox from "./ToggleBox/ToggleBox";
 
-function MyFriends() {
-  const { models } = useMyFriends();
+interface MyFriendsProps {
+  searchKeyword: string;
+}
+
+function MyFriends({ searchKeyword }: MyFriendsProps) {
+  const { models } = useMyFriends(searchKeyword);
   const { data, isLoading, error } = models;
 
   if (isLoading) return <Loading />;

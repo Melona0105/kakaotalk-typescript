@@ -29,7 +29,7 @@ function useFriendProfileThumbnail(
     setShowMenu(!showMenu);
   }
 
-  function onFriendClick(friendId?: string) {
+  function onFriendClick() {
     navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friendId}`);
   }
 
@@ -68,7 +68,6 @@ function useFriendProfileThumbnail(
   const deleteFriend = useMutation({
     mutationFn: async () => await friendApis.delteFriend(friendId),
     onSuccess: async () => {
-      console.log(1);
       await client.refetchQueries({ queryKey: QUERY_KEYS.GET_MY_FRIENDS });
       await client.refetchQueries({
         queryKey: QUERY_KEYS.GET_MY_HIDEEN_FRIENDS,
@@ -81,7 +80,7 @@ function useFriendProfileThumbnail(
 
   const FRIEND_MENU_ITEMS: RightClickMenuItemType[] = [
     { id: 0, title: "채팅하기", onClick: () => console.log(friendId) },
-    { id: 1, title: "프로필 보기", onClick: () => console.log(friendId) },
+    { id: 1, title: "프로필 보기", onClick: onFriendClick },
     { id: 2, title: "숨김", onClick: () => hideFriend.mutate() },
     { id: 3, title: "차단", onClick: () => blockFriend.mutate() },
   ];

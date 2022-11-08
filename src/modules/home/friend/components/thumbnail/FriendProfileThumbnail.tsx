@@ -49,32 +49,34 @@ function FriendProfileThumbnail({
   );
 
   return (
-    <FriendProfileThumbnailWrapper
-      onContextMenu={onContenxtMunu}
-      onClick={() => onFriendClick(friend?.id)}
-    >
+    <div>
       {MemorizedModal}
-      <FlexDiv>
-        <FriendProfileThumbnailImage
-          src={
-            birthdayFirends
-              ? birthdayDefaultImage
-              : friend?.avatarURL || defaultImage
-          }
-        />
-        <FriendProfileThumbnailText showBirthDay={!!birthdayFirends}>
-          {birthdayFirends ? "친구의 생일을 확인해보세요!" : friend?.username}
-          {birthdayFirends && (
-            <FriendProfileThumbnailCount>
-              {birthdayFirends.length}
-            </FriendProfileThumbnailCount>
-          )}
-        </FriendProfileThumbnailText>
-      </FlexDiv>
-      {!birthdayFirends && (
-        <Melon title="흐르는 고등어" onClick={() => console.log("고등어!")} />
-      )}
-    </FriendProfileThumbnailWrapper>
+      <FriendProfileThumbnailWrapper
+        onContextMenu={onContenxtMunu}
+        onClick={onFriendClick}
+      >
+        <FlexDiv>
+          <FriendProfileThumbnailImage
+            src={
+              birthdayFirends
+                ? birthdayDefaultImage
+                : friend?.avatarURL || defaultImage
+            }
+          />
+          <FriendProfileThumbnailText showBirthDay={!!birthdayFirends}>
+            {birthdayFirends ? "친구의 생일을 확인해보세요!" : friend?.username}
+            {birthdayFirends && (
+              <FriendProfileThumbnailCount>
+                {birthdayFirends.length}
+              </FriendProfileThumbnailCount>
+            )}
+          </FriendProfileThumbnailText>
+        </FlexDiv>
+        {!birthdayFirends && (
+          <Melon title="흐르는 고등어" onClick={() => console.log("고등어!")} />
+        )}
+      </FriendProfileThumbnailWrapper>
+    </div>
   );
 }
 

@@ -1,39 +1,84 @@
+import { ChangeEvent, useMemo } from "react";
 import useInnerContainerHeader from "./InnerContainerHeader.hook";
 import {
   InnerContaienrHeaderImage,
   InnerContaienrHeaderTitle,
+  InnerContaienrSearchInput,
+  InnerContaienrSearchInputClearIcon,
+  InnerContaienrSearchInputDiv,
+  InnerContaienrSearchInputIcon,
+  InnerContainerHeaderDiv,
   InnerContainerHeaderWrapper,
 } from "./InnerContainerHeader.style";
 
 interface InnerContainerHeaderProps {
   title: string;
   tabIndex: number;
+  searchKeyword?: string;
+  onSearchKeywordChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClearSearchKewordClick?: () => void;
 }
 
 /**
  * 홈의 내부 컨테이너들의 헤더를 렌더링하는 컴포넌트입니다.
  */
-function InnerContainerHeader({ title, tabIndex }: InnerContainerHeaderProps) {
+function InnerContainerHeader({
+  title,
+  tabIndex,
+  searchKeyword,
+  onSearchKeywordChange,
+  onClearSearchKewordClick,
+}: InnerContainerHeaderProps) {
   const { models } = useInnerContainerHeader(tabIndex);
-  const { HEADER_ITEMS } = models;
+  const { showSearchInput, headerItems } = models;
+
+  const MemoriezedHeaderDiv = useMemo(
+    () => (
+      <InnerContainerHeaderDiv>
+        <InnerContaienrHeaderTitle showPaddingTop={tabIndex === 2}>
+          {title}
+        </InnerContaienrHeaderTitle>
+
+        <div>
+          {headerItems.map((item, index) => (
+            <InnerContaienrHeaderImage
+              key={item.id}
+              src={item.src}
+              visiblity={!!item.src}
+              showMarginRight={index !== headerItems.length - 1}
+              onClick={item.onClick}
+            />
+          ))}
+        </div>
+      </InnerContainerHeaderDiv>
+    ),
+    [showSearchInput]
+  );
+
+  const MemorizedSearchInput = useMemo(
+    () =>
+      showSearchInput && (
+        <InnerContaienrSearchInputDiv>
+          <InnerContaienrSearchInputIcon />
+
+          <InnerContaienrSearchInput
+            value={searchKeyword}
+            onChange={onSearchKeywordChange}
+          />
+          {searchKeyword && (
+            <InnerContaienrSearchInputClearIcon
+              onClick={onClearSearchKewordClick}
+            />
+          )}
+        </InnerContaienrSearchInputDiv>
+      ),
+    [showSearchInput, searchKeyword]
+  );
 
   return (
     <InnerContainerHeaderWrapper>
-      <InnerContaienrHeaderTitle showPaddingTop={tabIndex === 2}>
-        {title}
-      </InnerContaienrHeaderTitle>
-
-      <div>
-        {HEADER_ITEMS.map((item, index) => (
-          <InnerContaienrHeaderImage
-            key={item.id}
-            src={item.src}
-            visiblity={!!item.src}
-            showMarginRight={index !== HEADER_ITEMS.length - 1}
-            onClick={item.onClick}
-          />
-        ))}
-      </div>
+      {MemoriezedHeaderDiv}
+      {MemorizedSearchInput}
     </InnerContainerHeaderWrapper>
   );
 }

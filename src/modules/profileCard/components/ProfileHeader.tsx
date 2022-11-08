@@ -1,11 +1,9 @@
 import closeIcon from "assets/icons/button_close.png";
-import settingIcon from "assets/icons/button_setting.png";
 import { useNavigate } from "react-router-dom";
 import {
   ProfileHeaderImage,
   ProfileHeaderTextButton,
   ProfileHeaderWrapper,
-  ProfileHedaerImageDiv,
 } from "./ProfileHeader.style";
 
 interface ProfileHeaderProps {
@@ -30,14 +28,10 @@ function ProfileHeader({
       ) : (
         <ProfileHeaderImage src={closeIcon} onClick={() => natigate(-1)} />
       )}
-      {isEditMode ? (
+      {isEditMode && (
         <ProfileHeaderTextButton onClick={updateMyUserProfile}>
           완료
         </ProfileHeaderTextButton>
-      ) : (
-        <ProfileHedaerImageDiv onClick={() => console.log("세팅")}>
-          <ProfileHeaderImage src={settingIcon} />
-        </ProfileHedaerImageDiv>
       )}
     </ProfileHeaderWrapper>
   );
