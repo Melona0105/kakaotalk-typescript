@@ -1,13 +1,13 @@
-import chattingApis from "apis/chattingAPis";
+import socket from "libs/webSocket/webSocket.config";
+import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 /**
  * 입력하는 채팅의 상태를 footer에서 관리합니다.
  */
 
 function useChattingRoomFooter() {
-  const client = useQueryClient();
+  const { userProfile } = useAuthContext();
   const { roomId } = useParams();
   const [text, setText] = useState<string>("");
 
@@ -15,20 +15,21 @@ function useChattingRoomFooter() {
     setText(e.target.value);
   }
 
-  const sendMessage = useMutation({
-    mutationFn: async () => await chattingApis.sendMessage(text, roomId!),
-    onSuccess: () => {
-      // TODO: 채팅 리페치쿼리
-      // TODO: 채팅 웹소켓
-      setText("");
-    },
-  });
-
+  socket.on("my-event", () => console.log(1));
   /**
    * 텍스트가 존재할 경우에만 mutation을 합니다.
    */
   async function onSubmitButtonClick() {
-    text && sendMessage.mutate();
+    const message = {
+      sender_id: userProfile?.id,
+      text: text,
+      room_id: roomId,
+    };
+    socket.emit("message", message);
+    socket.on("message_send", () => {
+      console.log("데이터 전송 완료");
+      setText("");
+    });
   }
 
   /**
