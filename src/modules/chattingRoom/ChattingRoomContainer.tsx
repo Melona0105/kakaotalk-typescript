@@ -5,7 +5,7 @@ import ChattingRoomFooter from "./components/ChattingRoomFooter";
 import ChattingRoomHeader from "./components/ChattingRoomHeader";
 
 function ChattingRoomContainer() {
-  const { models, operations } = useChattingRoomContainer();
+  const { models } = useChattingRoomContainer();
   const { data } = models;
 
   return (

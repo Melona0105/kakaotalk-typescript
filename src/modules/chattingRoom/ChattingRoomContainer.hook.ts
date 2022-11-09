@@ -17,7 +17,6 @@ function useChattingRoomContainer() {
       isLoading,
       isError,
     },
-    operations: {},
   };
 }
 
