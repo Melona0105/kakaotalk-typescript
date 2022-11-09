@@ -7,7 +7,10 @@ function useFriendsProfileCardContainer() {
 
   const { data, isLoading, isError } = useQuery({
     queryFn: async () => await friendApis.getFriend(friendId!),
+    retry: false,
   });
+
+  console.log(data);
 
   return {
     models: {

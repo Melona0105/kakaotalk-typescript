@@ -16,12 +16,14 @@ function useManagementFriendContainer() {
     queryKey: QUERY_KEYS.GET_MY_HIDEEN_FRIENDS,
     queryFn: async () => await friendApis.getMyHiddenFriends(),
     enabled: !!isHiddenFreindPath,
+    retry: false,
   });
 
   const getMyBlockedFriends = useQuery({
     queryKey: QUERY_KEYS.GET_MY_BLOCKED_FRIENDS,
     queryFn: async () => await friendApis.getMyBlockedFriends(),
     enabled: !isHiddenFreindPath,
+    retry: false,
   });
 
   return {

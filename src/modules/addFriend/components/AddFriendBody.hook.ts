@@ -13,6 +13,7 @@ function useAddFriendBody() {
     queryKey: QUERY_KEYS.GET_USER_PROFILE,
     queryFn: async () => await friendApis.searchFriend(keyword),
     enabled: false,
+    retry: false,
   });
 
   function onKeywordChange(e: ChangeEvent<HTMLInputElement>) {

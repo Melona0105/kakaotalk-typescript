@@ -3,6 +3,7 @@ import FindPasswordContainer from "modules/auth/FindPassword/FindPasswordContain
 import SignInContainer from "modules/auth/SignIn/SignInContainer";
 import SignUpInputContainer from "modules/auth/SignUp/signUp/SignUpInputContainer";
 import SignUpTermsContainer from "modules/auth/SignUp/terms/SignUpTermsContainer";
+import ChattingRoomContainer from "modules/chattingRoom/ChattingRoomContainer";
 import HomeContainer from "modules/home/HomeContainer";
 import FriendsProfileCardContainer from "modules/profileCard/friendProfileCard/FriendsProfileCardContainer";
 import MyProfileCardContainer from "modules/profileCard/myProfileCard/MyProfileCardContainer";
@@ -25,7 +26,7 @@ export const PUBLIC_ROUTES: RoutesType = {
     element: <SignInContainer />,
   },
   SIGN_UP: {
-    path: "/sign_up/:friendId",
+    path: "/sign_up",
     element: <Outlet />,
     children: [
       { path: "", element: <SignUpTermsContainer /> },
@@ -73,6 +74,16 @@ export const PRIVATE_ROUTES: RoutesType = {
       {
         path: "management_blocked_friend",
         element: <ManagementFriendContainer />,
+      },
+    ],
+  },
+  CHATTING_ROOM: {
+    path: "/chatting_room",
+    element: <Outlet />,
+    children: [
+      {
+        path: ":roomId",
+        element: <ChattingRoomContainer />,
       },
     ],
   },

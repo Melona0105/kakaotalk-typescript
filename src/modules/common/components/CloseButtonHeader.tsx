@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import useCustomNavigation from "../hooks/useCustromNavigation";
 import {
   CloseButtonHeaderIcon,
   CloseButtonHeaderTitle,
@@ -10,11 +10,11 @@ interface ModalHeaderProps {
 }
 
 function CloseButtonHeader({ title }: ModalHeaderProps) {
-  const navigate = useNavigate();
+  const { goBack } = useCustomNavigation();
 
   return (
     <CloseButtonHeaderWrapper>
-      <CloseButtonHeaderIcon onClick={() => navigate(-1)} />
+      <CloseButtonHeaderIcon onClick={goBack} />
       <CloseButtonHeaderTitle>{title}</CloseButtonHeaderTitle>
     </CloseButtonHeaderWrapper>
   );

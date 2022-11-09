@@ -9,7 +9,9 @@ import "./index.css";
 import AuthProvider from "./modules/common/providers/AuthProvider";
 import { THEME } from "./utils/theme/theme";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { staleTime: 60000 } },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

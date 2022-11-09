@@ -19,3 +19,7 @@ export interface FriendType {
   isFriend: boolean;
   summary?: string;
 }
+
+export interface ChattingRoomType {
+  roomId: number;
+}

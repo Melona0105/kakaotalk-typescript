@@ -8,6 +8,7 @@ function useMyFriends(searchKeyword: string) {
     queryKey: QUERY_KEYS.GET_MY_FRIENDS,
     queryFn: async () => await friendApis.getMyFriends(),
     staleTime: 500000,
+    retry: false,
   });
 
   function getSortedData() {

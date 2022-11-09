@@ -1,5 +1,5 @@
+import { UserType } from "modules/common/providers/authProvider.interface";
 import axiosInstance from "./axios";
-import { UserType } from "../modules/common/providers/AuthProvider";
 import {
   firebaseSignIn,
   firebaseSignUp,

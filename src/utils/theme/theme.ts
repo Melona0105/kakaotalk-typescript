@@ -20,6 +20,7 @@ export const THEME: ThemeType = {
     gray4: "#a6a6a6",
     red: "#e65e3d",
     profileDefault: "#859199",
+    chattingDefault: "#abc1d1",
   },
   spacing: {
     xxSmall: 2,

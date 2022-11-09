@@ -9,7 +9,10 @@ interface HeaderItemsType {
   onClick: () => void;
 }
 
-function useInnerContainerHeader(tabIndex: number) {
+function useInnerContainerHeader(
+  tabIndex: number,
+  onClearSearchKewordClick?: () => void
+) {
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
   const navigate = useNavigate();
   const HEADER_FUNCTION = [
@@ -19,6 +22,9 @@ function useInnerContainerHeader(tabIndex: number) {
   ];
 
   function handleShowSearchInput() {
+    if (showSearchInput) {
+      onClearSearchKewordClick && onClearSearchKewordClick();
+    }
     setShowSearchInput(!showSearchInput);
   }
 

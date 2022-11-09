@@ -29,7 +29,10 @@ function InnerContainerHeader({
   onSearchKeywordChange,
   onClearSearchKewordClick,
 }: InnerContainerHeaderProps) {
-  const { models } = useInnerContainerHeader(tabIndex);
+  const { models } = useInnerContainerHeader(
+    tabIndex,
+    onClearSearchKewordClick
+  );
   const { showSearchInput, headerItems } = models;
 
   const MemoriezedHeaderDiv = useMemo(
@@ -63,6 +66,7 @@ function InnerContainerHeader({
 
           <InnerContaienrSearchInput
             value={searchKeyword}
+            autoFocus
             onChange={onSearchKeywordChange}
           />
           {searchKeyword && (

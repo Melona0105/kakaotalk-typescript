@@ -1,3 +1,4 @@
+import chattingRoomApis from "apis/chattingRoomApis";
 import friendApis from "apis/friendApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { RightClickMenuItemType } from "modules/common/components/RightClickMenu";
@@ -79,7 +80,14 @@ function useFriendProfileThumbnail(
   });
 
   const FRIEND_MENU_ITEMS: RightClickMenuItemType[] = [
-    { id: 0, title: "채팅하기", onClick: () => console.log(friendId) },
+    {
+      id: 0,
+      title: "채팅하기",
+      onClick: async () => {
+        const { roomId } = await chattingRoomApis.getChattingRoom(friendId);
+        navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${roomId}`);
+      },
+    },
     { id: 1, title: "프로필 보기", onClick: onFriendClick },
     { id: 2, title: "숨김", onClick: () => hideFriend.mutate() },
     { id: 3, title: "차단", onClick: () => blockFriend.mutate() },

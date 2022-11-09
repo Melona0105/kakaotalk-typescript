@@ -32,6 +32,7 @@ interface ColorType {
   gray4: string;
   red: string;
   profileDefault: string;
+  chattingDefault: string;
 }
 
 interface SpacingType {
