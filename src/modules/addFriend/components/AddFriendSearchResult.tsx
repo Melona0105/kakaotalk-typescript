@@ -1,8 +1,8 @@
+import { FriendType } from "apis/interfaces/apiInterface";
 import defaultImage from "assets/images/friend_default_image.png";
 import Button from "modules/common/components/Button";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { useTheme } from "styled-components";
-import { FriendType } from "utils/interfaces/apiInterface";
 import useAddFriendSearchResult from "./AddFriendSearchResult.hook";
 import {
   AddFriendSearchResultImage,

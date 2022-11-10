@@ -1,3 +1,4 @@
+import Loading from "modules/common/components/Loading";
 import useChattingRoomContainer from "./ChattingRoomContainer.hook";
 import { ChattingRoomContainerWrapper } from "./ChattingRoomContainer.style";
 import ChattingRoomBody from "./components/ChattingRoomBody";
@@ -6,12 +7,15 @@ import ChattingRoomHeader from "./components/ChattingRoomHeader";
 
 function ChattingRoomContainer() {
   const { models } = useChattingRoomContainer();
-  const { data } = models;
+  const { data, isLoading, isError } = models;
+
+  if (isLoading) return <Loading />;
+  if (isError) return null;
 
   return (
     <ChattingRoomContainerWrapper>
-      <ChattingRoomHeader />
-      <ChattingRoomBody />
+      <ChattingRoomHeader userData={data} />
+      <ChattingRoomBody userData={data} />
       <ChattingRoomFooter />
     </ChattingRoomContainerWrapper>
   );

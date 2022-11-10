@@ -18,6 +18,7 @@ function Loading() {
         left: "0px",
         right: "0px",
         bottom: "0px",
+        backgroundColor: "transparent",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

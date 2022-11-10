@@ -16,8 +16,8 @@ function useAddFriendSearchResult() {
     // 뮤테이션에 성공하고나면, 업데이트 상태를 종료합니다.
     onSuccess: () => {
       setIsUpdating(false);
-      client.refetchQueries({ queryKey: QUERY_KEYS.GET_MY_FRIENDS });
-      client.refetchQueries({ queryKey: QUERY_KEYS.GET_USER_PROFILE });
+      client.refetchQueries({ queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS });
+      client.refetchQueries({ queryKey: QUERY_KEYS.PROFILE.GET_USER_PROFILE });
     },
     onError: (err) => console.log(err),
   });

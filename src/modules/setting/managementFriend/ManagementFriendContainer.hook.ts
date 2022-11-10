@@ -1,10 +1,12 @@
 import friendApis from "apis/friendApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
+import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { useQuery } from "react-query";
 import { useMatch } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
 
 function useManagementFriendContainer() {
+  const { userProfile } = useAuthContext();
   const HIDDEN_FRIEND_PATH =
     PRIVATE_ROUTES.SETTING.path +
     "/" +
@@ -13,17 +15,15 @@ function useManagementFriendContainer() {
   const isHiddenFreindPath = useMatch({ path: HIDDEN_FRIEND_PATH });
 
   const getMyHiddenFriends = useQuery({
-    queryKey: QUERY_KEYS.GET_MY_HIDEEN_FRIENDS,
+    queryKey: [QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS, userProfile?.id],
     queryFn: async () => await friendApis.getMyHiddenFriends(),
     enabled: !!isHiddenFreindPath,
-    retry: false,
   });
 
   const getMyBlockedFriends = useQuery({
-    queryKey: QUERY_KEYS.GET_MY_BLOCKED_FRIENDS,
+    queryKey: [QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS, userProfile?.id],
     queryFn: async () => await friendApis.getMyBlockedFriends(),
     enabled: !isHiddenFreindPath,
-    retry: false,
   });
 
   return {

@@ -34,13 +34,13 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState(initialValue);
 
   /**
-   * 유저정보를 쿼리하는 합니다.
+   * 유저정보를 쿼리합니다.
    */
-  useQuery(
-    [QUERY_KEYS.GET_MY_USER_PROFILE],
+  const { refetch } = useQuery(
+    [QUERY_KEYS.PROFILE.GET_MY_USER_PROFILE, state.firebaseProfile?.uid],
     async () => await userApis.getMyUserProfile(),
     {
-      enabled: !!state.firebaseProfile,
+      enabled: false,
       onSuccess: async (data) => {
         const avatar = await userApis.getUserAvatar(data[0].id);
         setState((prev) => ({
@@ -49,9 +49,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
           userProfile: { ...data[0], avatarURL: avatar },
         }));
       },
-      retry: false,
     }
   );
+
   /**
    * firebase 로그인을 감지하여 유저 프로필을 state에 할당합니다.
    */
@@ -64,6 +64,15 @@ function AuthProvider({ children }: { children: ReactNode }) {
       }
     });
   }, []);
+
+  /**
+   * firebase로그인이 변화할경우, firebase로그인이 존재할때만 userProfile을 쿼리하는 함수입니다.
+   */
+  useEffect(() => {
+    if (state.firebaseProfile) {
+      refetch();
+    }
+  }, [state.firebaseProfile]);
 
   if (state.loading) return <Loading />;
 

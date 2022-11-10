@@ -9,7 +9,6 @@ import setting from "assets/icons/setting.png";
 import { firebaseSignOut } from "libs/firebase/firebaseAuth";
 import { RightClickMenuItemType } from "modules/common/components/RightClickMenu";
 import { useState } from "react";
-import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
 
@@ -21,7 +20,6 @@ interface NavigationMenu {
 }
 
 function useNavigationBar() {
-  const client = useQueryClient();
   const navigate = useNavigate();
   const [showSettingModal, setShowSettingModal] = useState<boolean>(false);
   const [pointerLocate, setPointerLocate] = useState({
@@ -58,11 +56,7 @@ function useNavigationBar() {
     setShowSettingModal(false);
   }
 
-  /**
-   * 로그아웃시, 캐시도 초기화합니다.
-   */
   async function onSignOutClick() {
-    client.resetQueries();
     await firebaseSignOut();
   }
 

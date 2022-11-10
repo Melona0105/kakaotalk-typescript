@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import useChattingRoomFooter from "./ChattingRoomFooter.hook";
 import {
   ChattingRoomFooterWrapper,
@@ -12,9 +13,8 @@ function ChattingRoomFooter() {
   const { text } = models;
   const { onTextChange, onSubmitButtonClick, onEnterKeyPress } = operations;
 
-  return (
-    <ChattingRoomFooterWrapper>
-      <ChattingRoomFooterAddIcon />
+  const MemoreizedInput = useMemo(
+    () => (
       <ChattingRoomFooterInputDiv>
         <ChattingRoomFooterInput
           value={text}
@@ -23,6 +23,14 @@ function ChattingRoomFooter() {
         />
         {text && <ChattingRoomFooterSubmitIcon onClick={onSubmitButtonClick} />}
       </ChattingRoomFooterInputDiv>
+    ),
+    [text]
+  );
+
+  return (
+    <ChattingRoomFooterWrapper>
+      <ChattingRoomFooterAddIcon />
+      {MemoreizedInput}
     </ChattingRoomFooterWrapper>
   );
 }

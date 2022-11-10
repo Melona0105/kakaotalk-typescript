@@ -10,12 +10,19 @@ import AuthProvider from "./modules/common/providers/AuthProvider";
 import { THEME } from "./utils/theme/theme";
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 60000 } },
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 5,
+      retry: false,
+    },
+  },
 });
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>

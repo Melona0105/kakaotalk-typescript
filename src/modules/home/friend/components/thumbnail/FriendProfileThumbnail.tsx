@@ -1,3 +1,4 @@
+import { FriendType } from "apis/interfaces/apiInterface";
 import birthdayDefaultImage from "assets/images/friend_birthday_default_image.png";
 import defaultImage from "assets/images/friend_default_image.png";
 import Modal from "modules/common/components/Modal";
@@ -5,7 +6,6 @@ import RightClickMenu from "modules/common/components/RightClickMenu";
 import { FlexDiv } from "modules/common/styles/commonStyles";
 import Melon from "modules/home/common/components/Melon";
 import { useMemo } from "react";
-import { FriendType } from "utils/interfaces/apiInterface";
 import useFriendProfileThumbnail from "./FriendProfileThumbnail.hook";
 import {
   FriendProfileThumbnailCount,

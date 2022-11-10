@@ -1,14 +1,14 @@
 import friendApis from "apis/friendApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
+import { useAuthContext } from "modules/common/providers/AuthProvider";
 import getStringBySearchKeyword from "modules/common/utils/getStringBySearchKeyword";
 import { useQuery } from "react-query";
 
 function useMyFriends(searchKeyword: string) {
+  const { userProfile } = useAuthContext();
   const { data, isLoading, error } = useQuery({
-    queryKey: QUERY_KEYS.GET_MY_FRIENDS,
+    queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
     queryFn: async () => await friendApis.getMyFriends(),
-    staleTime: 500000,
-    retry: false,
   });
 
   function getSortedData() {

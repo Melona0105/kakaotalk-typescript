@@ -44,24 +44,30 @@ function useFriendProfileThumbnail(
   const hideFriend = useMutation({
     mutationFn: async () => await friendApis.hideFriend(friendId),
     onSuccess: async () =>
-      await client.refetchQueries({ queryKey: QUERY_KEYS.GET_MY_FRIENDS }),
+      await client.refetchQueries({
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
+      }),
   });
 
   const blockFriend = useMutation({
     mutationFn: async () => await friendApis.blockFriend(friendId),
     onSuccess: async () =>
-      await client.refetchQueries({ queryKey: QUERY_KEYS.GET_MY_FRIENDS }),
+      await client.refetchQueries({
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
+      }),
   });
 
   const rollbackFriend = useMutation({
     mutationFn: async () => await friendApis.rollbackFriend(friendId),
     onSuccess: async () => {
-      await client.refetchQueries({ queryKey: QUERY_KEYS.GET_MY_FRIENDS });
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.GET_MY_HIDEEN_FRIENDS,
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
       });
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.GET_MY_BLOCKED_FRIENDS,
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS,
+      });
+      await client.refetchQueries({
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS,
       });
     },
   });
@@ -69,12 +75,14 @@ function useFriendProfileThumbnail(
   const deleteFriend = useMutation({
     mutationFn: async () => await friendApis.delteFriend(friendId),
     onSuccess: async () => {
-      await client.refetchQueries({ queryKey: QUERY_KEYS.GET_MY_FRIENDS });
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.GET_MY_HIDEEN_FRIENDS,
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
       });
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.GET_MY_BLOCKED_FRIENDS,
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS,
+      });
+      await client.refetchQueries({
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS,
       });
     },
   });

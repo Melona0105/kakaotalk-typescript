@@ -10,10 +10,10 @@ function useAddFriendBody() {
   const [showResult, setShowResult] = useState<boolean>(false);
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: QUERY_KEYS.GET_USER_PROFILE,
+    queryKey: [QUERY_KEYS.PROFILE.GET_USER_PROFILE, keyword],
     queryFn: async () => await friendApis.searchFriend(keyword),
     enabled: false,
-    retry: false,
+    onSuccess: () => setShowResult(true),
   });
 
   function onKeywordChange(e: ChangeEvent<HTMLInputElement>) {
@@ -27,8 +27,7 @@ function useAddFriendBody() {
 
   async function onKeyDown({ key }: KeyboardEvent<HTMLInputElement>) {
     if (keyword && key === "Enter") {
-      await refetch();
-      setShowResult(true);
+      refetch();
     }
   }
 

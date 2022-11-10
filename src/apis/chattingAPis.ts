@@ -1,16 +1,15 @@
 import axiosInstance from "./axios";
+import { ChattingType } from "./interfaces/apiInterface";
 
 const CHATTING_BASE_URL = "/chatting";
 
 const chattingApis = {
-  sendMessage: async (message: string, roomId: string) => {
-    const { data } = await axiosInstance({
-      method: "POST",
+  getChattings: async (roomId: string) => {
+    console.log("getChattings");
+    const { data } = await axiosInstance<ChattingType[]>({
+      method: "GET",
       url: CHATTING_BASE_URL + `/${roomId}`,
-      data: { message },
     });
-
-    console.log(data);
 
     return data;
   },

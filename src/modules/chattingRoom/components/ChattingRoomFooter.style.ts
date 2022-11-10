@@ -13,6 +13,8 @@ export const ChattingRoomFooterWrapper = styled.div<ThemeProps>(
     paddingTop: theme.spacing.xSmall,
     paddingBottom: theme.spacing.xSmall,
     paddingRight: theme.spacing.small,
+    borderBottomRightRadius: theme.config.borderRadius,
+    borderBottomLeftRadius: theme.config.borderRadius,
   })
 );
 
@@ -21,6 +23,7 @@ export const ChattingRoomFooterAddIcon = styled.img.attrs(() => ({
 }))<ThemeProps>(() => ({
   width: ADD_ICON_SIZE,
   height: ADD_ICON_SIZE,
+  borderRadius: 50,
 }));
 
 export const ChattingRoomFooterInputDiv = styled.div<ThemeProps>(

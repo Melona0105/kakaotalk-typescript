@@ -1,5 +1,5 @@
+import { FriendType } from "apis/interfaces/apiInterface";
 import { getUserAvatar } from "libs/firebase/firebaseAuth";
-import { FriendType } from "utils/interfaces/apiInterface";
 import axiosInstance from "./axios";
 
 const FRIEND_BASE_URL = "/friend";
@@ -7,6 +7,7 @@ const FRIEND_BASE_URL = "/friend";
 const friendApis = {
   // TODO: 이후 avarar URL 자체를 url로 보관할 수 있는방법 찾아보기 -> n 한번 줄일 수 있을 듯 함
   getMyFriends: async () => {
+    console.log("getMyFriends");
     const { data } = await axiosInstance<FriendType[]>({
       method: "GET",
       url: `${FRIEND_BASE_URL}`,
@@ -26,6 +27,7 @@ const friendApis = {
   },
 
   searchFriend: async (email: string) => {
+    console.log("searchFriend");
     const { data } = await axiosInstance<FriendType>({
       method: "GET",
       url: `${FRIEND_BASE_URL}/${email}`,
@@ -46,6 +48,7 @@ const friendApis = {
   },
 
   getFriend: async (friendId: string) => {
+    console.log("getFriend");
     const { data } = await axiosInstance({
       method: "GET",
       url: `${FRIEND_BASE_URL}/get/${friendId}`,
@@ -67,6 +70,7 @@ const friendApis = {
   },
 
   addFriend: async (friendId: string) => {
+    console.log("addFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}`,
@@ -74,26 +78,32 @@ const friendApis = {
     });
   },
 
-  hideFriend: async (friendId: string) =>
+  hideFriend: async (friendId: string) => {
+    console.log("hideFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/hide`,
       data: { friendId },
-    }),
+    });
+  },
 
-  blockFriend: async (friendId: string) =>
+  blockFriend: async (friendId: string) => {
+    console.log("blockFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/block`,
       data: { friendId },
-    }),
+    });
+  },
 
-  rollbackFriend: async (friendId: string) =>
+  rollbackFriend: async (friendId: string) => {
+    console.log("rollbackFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/rollback`,
       data: { friendId },
-    }),
+    });
+  },
 
   getMyHiddenFriends: async (): Promise<FriendType[]> => {
     console.log("getMyHiddenFriends");
@@ -134,6 +144,7 @@ const friendApis = {
   },
 
   delteFriend: async (friendId: string) => {
+    console.log("delteFriend");
     await axiosInstance({
       method: "DELETE",
       url: `${FRIEND_BASE_URL}`,

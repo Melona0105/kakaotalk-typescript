@@ -9,15 +9,17 @@ import {
 import {
   CreateUserProfileApiInput,
   UpdateUserProfileApiInput,
-} from "../utils/interfaces/apiInterface";
+} from "./interfaces/apiInterface";
 
 const USER_BASE_URL = "/user";
 
 /**
  * 유저에 관련된 API를 관리합니다.
  */
+// TODO: 체크용 콘솔로그 삭제
 const userApis = {
   signIn: async ({ email, password }: CreateUserProfileApiInput) => {
+    console.log("signIn");
     await firebaseSignIn(email, password);
   },
 
@@ -28,6 +30,7 @@ const userApis = {
     username,
     termsIndexes,
   }: CreateUserProfileApiInput) => {
+    console.log("signUp");
     await firebaseSignUp(email, password);
     await axiosInstance({
       method: "POST",
@@ -38,6 +41,7 @@ const userApis = {
 
   // 유저정보 쿼리
   getMyUserProfile: async () => {
+    console.log("getMyUserProfile");
     const { data } = await axiosInstance<UserType[]>({
       method: "GET",
       url: USER_BASE_URL,
@@ -47,6 +51,7 @@ const userApis = {
   },
 
   getUserAvatar: async (uid: string) => {
+    console.log("getUserAvatar");
     try {
       return await getUserAvatar(uid);
     } catch (err) {
@@ -60,6 +65,7 @@ const userApis = {
     summary,
     compressedFile,
   }: UpdateUserProfileApiInput) => {
+    console.log("updateMyUserProfile");
     await axiosInstance<UserType[]>({
       method: "POST",
       url: `${USER_BASE_URL}/update`,

@@ -41,7 +41,9 @@ function useMyProfileCardContainer() {
       });
     },
     onSuccess: () => {
-      client.refetchQueries({ queryKey: [QUERY_KEYS.GET_MY_USER_PROFILE] });
+      client.refetchQueries({
+        queryKey: [QUERY_KEYS.PROFILE.GET_MY_USER_PROFILE],
+      });
       setIsEditMode(false);
     },
     onError: (err) => console.log(err),
