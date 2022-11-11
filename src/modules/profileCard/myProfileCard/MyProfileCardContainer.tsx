@@ -44,7 +44,18 @@ function MyProfileCardContainer() {
         />
       </ProfileCardContainerWrapper>
     ),
-    [state, isEditMode]
+    [
+      avatarState,
+      avatarURL,
+      isEditMode,
+      summary,
+      username,
+      onTextCange,
+      inActivateEditMode,
+      updateMyUserProfile,
+      onAvatarChange,
+      activateEditMode,
+    ]
   );
   return MemorizedProfileCardContainer;
 }

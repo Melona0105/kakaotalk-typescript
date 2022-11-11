@@ -51,7 +51,7 @@ function InnerContainerHeader({
         </div>
       </InnerContainerHeaderDiv>
     ),
-    [showSearchInput]
+    [headerItems, index, title]
   );
 
   const MemorizedSearchInput = useMemo(
@@ -73,7 +73,14 @@ function InnerContainerHeader({
           )}
         </InnerContaienrSearchInputDiv>
       ),
-    [showSearchInput, searchKeyword]
+    [
+      showSearchInput,
+      searchKeyword,
+      headerItems,
+      onSearchKeywordChange,
+      onESCKeyPress,
+      onClearSearchKewordClick,
+    ]
   );
   return (
     <InnerContainerHeaderWrapper>

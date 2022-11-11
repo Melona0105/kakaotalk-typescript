@@ -55,7 +55,7 @@ function SignUpTerms({ termsIndexes, onTermClick }: SignUpTermsProps) {
         })}
       </SignUpTermsWrapper>
     ),
-    [termsIndexes]
+    [termsIndexes, onTermClick]
   );
 
   return MemorizedSignUpTerms;

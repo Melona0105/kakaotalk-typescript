@@ -60,7 +60,7 @@ function useResetPasswordContainer() {
   }
 
   function onNavigateLoginPress() {
-    navigate(PUBLIC_ROUTES.SIGN_IN.path);
+    navigate(PUBLIC_ROUTES.SIGN_IN.path, { replace: true });
   }
 
   return {

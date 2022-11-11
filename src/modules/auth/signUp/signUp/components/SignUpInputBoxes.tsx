@@ -2,9 +2,9 @@ import { useMemo } from "react";
 import { useTheme } from "styled-components";
 import useSignUpInputBoxes from "./SignUpInputBoxes.hook";
 import { SIGN_UP_INPUT_ACTION_TYPE } from "./SignUpInputBoxes.interface";
+import { SignUpInputBoxesWrapper } from "./SignUpInputBoxes.style";
 import Button from "../../../../common/components/Button";
 import InputBox from "../../../../common/components/InputBox";
-import { SignUpInputBoxesWrapper } from "./SignUpInputBoxes.style";
 
 /**
  * 회원가입 인풋들을 렌더링하는 컴포넌트입니다.
@@ -22,7 +22,7 @@ function SignUpInputBoxes() {
     passwordConfirmation,
     passwordConfirmationErrorMessage,
     username,
-    usernameErrorMessage: usernameErrorMessgae,
+    usernameErrorMessage,
   } = state;
 
   const MemorizedEmailInput = useMemo(
@@ -49,7 +49,7 @@ function SignUpInputBoxes() {
         errorMessage={emailErrorMessage}
       />
     ),
-    [email, emailErrorMessage]
+    [email, emailErrorMessage, theme.colors.inActive, dispatch]
   );
 
   const MemorizedPaswordInput = useMemo(
@@ -77,12 +77,7 @@ function SignUpInputBoxes() {
         errorMessage={passwordErrorMessage}
       />
     ),
-    [
-      password,
-      passwordErrorMessage,
-      passwordConfirmation,
-      passwordConfirmationErrorMessage,
-    ]
+    [password, passwordErrorMessage, theme, dispatch]
   );
 
   const MemorizedPasswordConfirmationInput = useMemo(
@@ -114,12 +109,7 @@ function SignUpInputBoxes() {
         errorMessage={passwordConfirmationErrorMessage}
       />
     ),
-    [
-      password,
-      passwordErrorMessage,
-      passwordConfirmation,
-      passwordConfirmationErrorMessage,
-    ]
+    [passwordConfirmation, passwordConfirmationErrorMessage, theme, dispatch]
   );
 
   const MemorizedUsername = useMemo(
@@ -147,10 +137,10 @@ function SignUpInputBoxes() {
             type: SIGN_UP_INPUT_ACTION_TYPE.ON_USERNAME_BLUR,
           })
         }
-        errorMessage={usernameErrorMessgae}
+        errorMessage={usernameErrorMessage}
       />
     ),
-    [username, usernameErrorMessgae]
+    [username, usernameErrorMessage, theme, dispatch]
   );
 
   const MemorizedButton = useMemo(
@@ -162,7 +152,7 @@ function SignUpInputBoxes() {
         onClick={onSignUpButtonPress}
       />
     ),
-    [buttonDisabled]
+    [buttonDisabled, theme, onSignUpButtonPress]
   );
 
   return (

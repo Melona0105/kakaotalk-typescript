@@ -1,13 +1,13 @@
 import { useMemo } from "react";
 import useSignInInputBoxes from "./SignInInputBoxes.hook";
 import { SIGN_IN_INPUT_ACTION_TYPE } from "./SignInInputBoxes.interface";
+import Button from "../../../../common/components/Button";
+import InputBox from "../../../../common/components/InputBox";
 import {
   SignInDiv,
   SignInErrorMessage,
   SignInInputBoxesWrapper,
 } from "./SignInInputBoxes.style";
-import Button from "../../../../common/components/Button";
-import InputBox from "../../../../common/components/InputBox";
 
 /**
  * 로그인 인풋들을 렌더링하는 컴포넌트입니다.
@@ -35,7 +35,7 @@ function SignInInputBoxes() {
         onFocus={onFocus}
       />
     ),
-    [email, errorMessage]
+    [email, onEnterKeyPress, onTextChange, onFocus]
   );
 
   const MemorizedPasswordInput = useMemo(
@@ -53,7 +53,7 @@ function SignInInputBoxes() {
         onFocus={onFocus}
       />
     ),
-    [password, errorMessage]
+    [password, onEnterKeyPress, onTextChange, onFocus]
   );
 
   const MemorizedErrorMessage = useMemo(
@@ -72,7 +72,7 @@ function SignInInputBoxes() {
         onClick={onSignInButtonPress}
       />
     ),
-    [email, password, errorMessage]
+    [buttonDisabled, onSignInButtonPress]
   );
 
   return (

@@ -1,10 +1,10 @@
+import { useMemo } from "react";
 import { useTheme } from "styled-components";
 import useSignUpTermsContainer from "./SignUpTermsContainer.hook";
+import { SignUpTermsContainerWrapper } from "./SignUpTermsContainer.style";
 import Button from "../../../common/components/Button";
 import ProgressBar from "../components/ProgressBar";
 import SignUpTerms from "../components/SignUpTerms";
-import { SignUpTermsContainerWrapper } from "./SignUpTermsContainer.style";
-import { useMemo } from "react";
 
 /**
  * 회원가입 약관 컨테이너입니다.
@@ -26,7 +26,7 @@ function SignUpTermsContainer() {
         onClick={onAgreeButtonPress}
       />
     ),
-    [buttonDisabled]
+    [buttonDisabled, theme, onAgreeButtonPress]
   );
 
   return (

@@ -35,7 +35,7 @@ function AddFriendBody() {
         </div>
       </AddFriendBodyTextDiv>
     ),
-    [keyword, showResult]
+    [keyword, showResult, onKeyDown, onKeywordChange, onClearInputClick]
   );
 
   const MemorizedInfo = useMemo(

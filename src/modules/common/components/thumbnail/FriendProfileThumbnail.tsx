@@ -47,7 +47,7 @@ function FriendProfileThumbnail({
           />
         </Modal>
       ),
-    [friendMenuItems, showMenu, pointerLocate]
+    [friendMenuItems, showMenu, pointerLocate, handleShowMenu]
   );
 
   const MemorizedFriendThumbnail = useMemo(
@@ -79,7 +79,13 @@ function FriendProfileThumbnail({
         )} */}
       </FriendProfileThumbnailWrapper>
     ),
-    [friend]
+    [
+      friend,
+      birthdayFirends,
+      onContenxtMunu,
+      onFriendClick,
+      onFriendDoubleClick,
+    ]
   );
 
   return (

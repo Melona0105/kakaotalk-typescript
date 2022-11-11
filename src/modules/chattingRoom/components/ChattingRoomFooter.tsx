@@ -24,7 +24,7 @@ function ChattingRoomFooter() {
         {text && <ChattingRoomFooterSubmitIcon onClick={onSubmitButtonClick} />}
       </ChattingRoomFooterInputDiv>
     ),
-    [text]
+    [text, onTextChange, onEnterKeyPress, onSubmitButtonClick]
   );
 
   return (
