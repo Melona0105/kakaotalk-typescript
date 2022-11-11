@@ -1,6 +1,7 @@
 import userApis from "apis/userApis";
 import imageCompression from "browser-image-compression";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
+import useGobackWhenESCPress from "modules/common/hooks/useGobackWhenESCPress";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
@@ -9,6 +10,7 @@ import { MyProfileCardStateType } from "./MyProfileCardContainer.interface";
 function useMyProfileCardContainer() {
   const client = useQueryClient();
   const { userProfile } = useAuthContext();
+  useGobackWhenESCPress();
   const [state, setState] = useState<MyProfileCardStateType>({
     username: userProfile?.username,
     summary: userProfile?.summary,

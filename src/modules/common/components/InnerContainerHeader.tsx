@@ -27,8 +27,11 @@ function InnerContainerHeader({
   onSearchKeywordChange,
   onClearSearchKewordClick,
 }: InnerContainerHeaderProps) {
-  const { models } = useInnerContainerHeader(onClearSearchKewordClick);
+  const { models, operations } = useInnerContainerHeader(
+    onClearSearchKewordClick
+  );
   const { index, showSearchInput, headerItems } = models;
+  const { onESCKeyPress } = operations;
   const MemoriezedHeaderDiv = useMemo(
     () => (
       <InnerContainerHeaderDiv>
@@ -61,6 +64,7 @@ function InnerContainerHeader({
             value={searchKeyword}
             autoFocus
             onChange={onSearchKeywordChange}
+            onKeyDown={onESCKeyPress}
           />
           {searchKeyword && (
             <InnerContaienrSearchInputClearIcon

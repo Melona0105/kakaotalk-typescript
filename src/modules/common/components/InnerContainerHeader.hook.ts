@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
 import { HEADER_IMAGE } from "../../home/common/utils/homeConstants";
@@ -6,7 +6,7 @@ import { HEADER_IMAGE } from "../../home/common/utils/homeConstants";
 interface HeaderItemsType {
   id: number;
   src?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function useInnerContainerHeader(onClearSearchKewordClick?: () => void) {
@@ -17,10 +17,10 @@ function useInnerContainerHeader(onClearSearchKewordClick?: () => void) {
 
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
   const navigate = useNavigate();
-  const HEADER_FUNCTION = [
+  const headerFunctions = [
     { 0: handleShowSearchInput, 1: onAddFriendIconClick },
     { 0: handleShowSearchInput, 1: () => console.log(2) },
-    { 0: () => console.log("search"), 1: () => console.log(2) },
+    { 0: undefined, 1: undefined },
   ];
 
   function handleShowSearchInput() {
@@ -34,16 +34,25 @@ function useInnerContainerHeader(onClearSearchKewordClick?: () => void) {
     navigate(PRIVATE_ROUTES.ADD_FRIEND.path);
   }
 
+  function onESCKeyPress(e: KeyboardEvent<HTMLInputElement>) {
+    const { key } = e;
+
+    if (key === "Escape") {
+      onClearSearchKewordClick && onClearSearchKewordClick();
+      setShowSearchInput(false);
+    }
+  }
+
   const headerItems: HeaderItemsType[] = [
     {
       id: 0,
       src: HEADER_IMAGE[index][0],
-      onClick: HEADER_FUNCTION[index][0],
+      onClick: headerFunctions[index][0],
     },
     {
       id: 1,
       src: HEADER_IMAGE[index][1],
-      onClick: HEADER_FUNCTION[index][1],
+      onClick: headerFunctions[index][1],
     },
   ];
 
@@ -52,6 +61,9 @@ function useInnerContainerHeader(onClearSearchKewordClick?: () => void) {
       index,
       showSearchInput,
       headerItems,
+    },
+    operations: {
+      onESCKeyPress,
     },
   };
 }
