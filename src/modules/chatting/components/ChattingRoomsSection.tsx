@@ -1,5 +1,5 @@
+import InnerContainerHeader from "modules/common/components/InnerContainerHeader";
 import useManageSearch from "modules/common/hooks/useManageSearch";
-import InnerContainerHeader from "modules/home/common/components/InnerContainerHeader";
 import { InnerContaienrWrapper } from "modules/home/common/styles/homeStyles";
 import ChattingRoomsSectionBody from "./ChattingRoomsSectionBody";
 
@@ -16,7 +16,7 @@ function ChattingRoomsSection() {
         onSearchKeywordChange={onSearchKeywordChange}
         onClearSearchKewordClick={onClearSearchKewordClick}
       />
-      <ChattingRoomsSectionBody />
+      <ChattingRoomsSectionBody searchKeyword={searchKeyword} />
     </InnerContaienrWrapper>
   );
 }

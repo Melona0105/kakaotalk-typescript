@@ -13,9 +13,9 @@ import {
 
 interface InnerContainerHeaderProps {
   title: string;
-  searchKeyword: string;
-  onSearchKeywordChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClearSearchKewordClick: () => void;
+  searchKeyword?: string;
+  onSearchKeywordChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClearSearchKewordClick?: () => void;
 }
 
 /**
@@ -53,7 +53,8 @@ function InnerContainerHeader({
 
   const MemorizedSearchInput = useMemo(
     () =>
-      showSearchInput && (
+      showSearchInput &&
+      headerItems && (
         <InnerContaienrSearchInputDiv>
           <InnerContaienrSearchInputIcon />
           <InnerContaienrSearchInput

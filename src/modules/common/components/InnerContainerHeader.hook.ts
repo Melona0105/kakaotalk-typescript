@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
-import { HEADER_IMAGE } from "../utils/homeConstants";
+import { HEADER_IMAGE } from "../../home/common/utils/homeConstants";
 
 interface HeaderItemsType {
   id: number;
@@ -19,7 +19,7 @@ function useInnerContainerHeader(onClearSearchKewordClick?: () => void) {
   const navigate = useNavigate();
   const HEADER_FUNCTION = [
     { 0: handleShowSearchInput, 1: onAddFriendIconClick },
-    { 0: () => console.log("search"), 1: () => console.log(2) },
+    { 0: handleShowSearchInput, 1: () => console.log(2) },
     { 0: () => console.log("search"), 1: () => console.log(2) },
   ];
 

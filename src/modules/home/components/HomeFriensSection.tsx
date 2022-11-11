@@ -1,6 +1,6 @@
+import InnerContainerHeader from "modules/common/components/InnerContainerHeader";
 import useManageSearch from "modules/common/hooks/useManageSearch";
 import HomeFriensSectionBody from "./HomeFriensSectionBody";
-import InnerContainerHeader from "../common/components/InnerContainerHeader";
 import { InnerContaienrWrapper } from "../common/styles/homeStyles";
 
 function HomeFriensSection() {

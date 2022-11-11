@@ -1,7 +1,7 @@
 import friendApis from "apis/friendApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
-import getStringBySearchKeyword from "modules/common/utils/getStringBySearchKeyword";
+import { getSortedDataByUsernameKeyword } from "modules/common/utils/searchFunctions";
 import { useQuery } from "react-query";
 
 function useHomeMyFriends(searchKeyword: string) {
@@ -11,20 +11,9 @@ function useHomeMyFriends(searchKeyword: string) {
     queryFn: async () => await friendApis.getMyFriends(),
   });
 
-  function getSortedData() {
-    if (searchKeyword) {
-      const newData = data?.filter(
-        (friend) =>
-          getStringBySearchKeyword(friend.username, searchKeyword) && friend
-      );
-
-      return newData;
-    } else return data;
-  }
-
   return {
     models: {
-      data: getSortedData(),
+      data: getSortedDataByUsernameKeyword(data, searchKeyword),
       isLoading,
       error,
     },
