@@ -1,7 +1,7 @@
-import chattingRoomApis from "apis/chattingRoomApis";
 import friendApis from "apis/friendApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { RightClickMenuItemType } from "modules/common/components/RightClickMenu";
+import useNavigateChattingRoomByFriendId from "modules/home/common/hooks/useNavigateChattingRoom";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useMatch, useNavigate } from "react-router-dom";
@@ -11,7 +11,15 @@ function useFriendProfileThumbnail(
   friendId: string,
   showManagementMenu: boolean
 ) {
+  // 더블클릭을 감지하기위한 값입니다.
+  let timer: any = 0;
+  let delay = 200;
+  let prevent = false;
+
   const navigate = useNavigate();
+
+  const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friendId);
+
   const HIDDEN_FRIEND_PATH =
     PRIVATE_ROUTES.SETTING.path +
     "/" +
@@ -30,8 +38,25 @@ function useFriendProfileThumbnail(
     setShowMenu(!showMenu);
   }
 
+  /**
+   * 클릭할경우, 친구의 프로필로 이동합니다.
+   */
   function onFriendClick() {
-    navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friendId}`);
+    timer = setTimeout(() => {
+      if (!prevent) {
+        navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friendId}`);
+      }
+      prevent = false;
+    }, delay);
+  }
+
+  /**
+   * 더블클릭할 경우, 친구와의 채팅으로 이동합니다.
+   */
+  function onFriendDoubleClick() {
+    clearTimeout(timer);
+    prevent = true;
+    navigateChattingRoom();
   }
 
   function onContenxtMunu(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -87,21 +112,18 @@ function useFriendProfileThumbnail(
     },
   });
 
-  const FRIEND_MENU_ITEMS: RightClickMenuItemType[] = [
+  const friendMenuItems: RightClickMenuItemType[] = [
     {
       id: 0,
       title: "채팅하기",
-      onClick: async () => {
-        const { roomId } = await chattingRoomApis.getChattingRoom(friendId);
-        navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${roomId}`);
-      },
+      onClick: async () => navigateChattingRoom(),
     },
     { id: 1, title: "프로필 보기", onClick: onFriendClick },
     { id: 2, title: "숨김", onClick: () => hideFriend.mutate() },
     { id: 3, title: "차단", onClick: () => blockFriend.mutate() },
   ];
 
-  const FRIEND_MANAGEMENT_MENU_ITEMS: RightClickMenuItemType[] = [
+  const friendManagementMenuItems: RightClickMenuItemType[] = [
     {
       id: 0,
       title: isHiddenFreindPath ? "숨김 해제" : "차단 해제",
@@ -114,14 +136,15 @@ function useFriendProfileThumbnail(
     models: {
       showMenu,
       pointerLocate,
-      FRIEND_MENU_ITEMS: showManagementMenu
-        ? FRIEND_MANAGEMENT_MENU_ITEMS
-        : FRIEND_MENU_ITEMS,
+      friendMenuItems: showManagementMenu
+        ? friendManagementMenuItems
+        : friendMenuItems,
     },
     operations: {
       handleShowMenu,
       onContenxtMunu,
       onFriendClick,
+      onFriendDoubleClick,
     },
   };
 }

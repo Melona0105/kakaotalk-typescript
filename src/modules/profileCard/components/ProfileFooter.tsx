@@ -17,11 +17,11 @@ function ProfileFooter({
   activateEditMode,
 }: ProfileFooterProps) {
   const { models } = useProfileFooter(isMyProfile, activateEditMode);
-  const { FOOTER_ITEMS } = models;
+  const { footerItems } = models;
 
   return (
     <ProfileFooterWrapper showBorderTop={!isEditMode}>
-      {FOOTER_ITEMS.map((item) => (
+      {footerItems.map((item) => (
         <ProfileFooterDiv key={item.id} onClick={item.onClick}>
           <ProfileFooterImage src={item.src} />
           <div>{item.title}</div>

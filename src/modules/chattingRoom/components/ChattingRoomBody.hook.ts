@@ -7,7 +7,7 @@ function useChattingRoomBody() {
   const { roomId } = useParams();
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: [QUERY_KEYS.CHATTING.GET_CHAATING_MESSAGES, roomId],
+    queryKey: [QUERY_KEYS.CHATTING.GET_CHATTING_MESSAGES, roomId],
     queryFn: async () => await chattingApis.getChattings(roomId!),
   });
 

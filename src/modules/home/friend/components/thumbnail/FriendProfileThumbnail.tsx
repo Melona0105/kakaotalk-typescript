@@ -23,6 +23,7 @@ interface FriendProfileThumbnailProps {
 /**
  * birthday firends props에 따라서 다른 친구들을 렌더링합니다.
  */
+// TODO: advanced => 멜론 노래 연동해보기
 function FriendProfileThumbnail({
   friend,
   birthdayFirends,
@@ -32,28 +33,29 @@ function FriendProfileThumbnail({
     friend!.id,
     showManagementMenu
   );
-  const { showMenu, pointerLocate, FRIEND_MENU_ITEMS } = models;
-  const { handleShowMenu, onContenxtMunu, onFriendClick } = operations;
+  const { showMenu, pointerLocate, friendMenuItems } = models;
+  const { handleShowMenu, onContenxtMunu, onFriendClick, onFriendDoubleClick } =
+    operations;
 
   const MemorizedModal = useMemo(
     () =>
       showMenu && (
         <Modal showModal={showMenu} onCloseModalClick={handleShowMenu}>
           <RightClickMenu
-            items={FRIEND_MENU_ITEMS}
+            items={friendMenuItems}
             pointerLocate={pointerLocate}
           />
         </Modal>
       ),
-    [showMenu, pointerLocate]
+    [friendMenuItems, showMenu, pointerLocate]
   );
 
-  return (
-    <div>
-      {MemorizedModal}
+  const MemorizedFriendThumbnail = useMemo(
+    () => (
       <FriendProfileThumbnailWrapper
         onContextMenu={onContenxtMunu}
         onClick={onFriendClick}
+        onDoubleClick={onFriendDoubleClick}
       >
         <FlexDiv>
           <FriendProfileThumbnailImage
@@ -72,10 +74,18 @@ function FriendProfileThumbnail({
             )}
           </FriendProfileThumbnailText>
         </FlexDiv>
-        {!birthdayFirends && (
+        {/* {!birthdayFirends && (
           <Melon title="흐르는 고등어" onClick={() => console.log("고등어!")} />
-        )}
+        )} */}
       </FriendProfileThumbnailWrapper>
+    ),
+    [friend]
+  );
+
+  return (
+    <div>
+      {MemorizedModal}
+      {MemorizedFriendThumbnail}
     </div>
   );
 }

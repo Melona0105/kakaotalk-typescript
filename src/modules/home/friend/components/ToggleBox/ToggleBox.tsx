@@ -11,7 +11,7 @@ interface ToggleBoxProps {
 }
 
 /**
- * 토글 형식으로 childrend을 on/off하는 컴포넌트입니다.
+ * 토글 형식으로 children을 on/off하는 컴포넌트입니다.
  */
 function ToggleBox({ title, children, initialState = false }: ToggleBoxProps) {
   const { models, operations } = useToggleBox(initialState);

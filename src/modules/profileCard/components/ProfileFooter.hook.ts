@@ -1,5 +1,8 @@
 import chatIcon from "assets/icons/profile_chat.png";
 import editIcon from "assets/icons/profile_edit.png";
+import { useAuthContext } from "modules/common/providers/AuthProvider";
+import useNavigateChattingRoomByFriendId from "modules/home/common/hooks/useNavigateChattingRoom";
+import { useParams } from "react-router-dom";
 
 interface FooterItemType {
   id: number;
@@ -12,13 +15,18 @@ function useProfileFooter(
   isMyProfile: boolean,
   onEditProfilePress?: () => void
 ) {
-  const FOOTER_ITEMS: FooterItemType[] = [
+  const { userProfile } = useAuthContext();
+  const { friendId } = useParams();
+  const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friendId!);
+
+  const footerItems: FooterItemType[] = [
     {
       id: 0,
       src: chatIcon,
       title: isMyProfile ? "나와의 채팅" : "채팅하기",
       onClick: () =>
-        console.log(isMyProfile ? "나와의 채팅" : "이 유저와 채팅하기"),
+        // TODO: 나와의 채팅 -> 내 채팅 table을 하나 생성해서 해야할듯
+        isMyProfile ? console.log(userProfile?.id) : navigateChattingRoom(),
     },
     {
       id: 1,
@@ -30,7 +38,7 @@ function useProfileFooter(
 
   return {
     models: {
-      FOOTER_ITEMS: isMyProfile ? FOOTER_ITEMS : FOOTER_ITEMS.slice(0, 1),
+      footerItems: isMyProfile ? footerItems : footerItems.slice(0, 1),
     },
   };
 }

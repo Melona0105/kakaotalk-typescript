@@ -48,7 +48,7 @@ function useChattingRoomFooter() {
       socket.on("message_send", () => {
         console.log("데이터 전송 완료");
         client.refetchQueries({
-          queryKey: [QUERY_KEYS.CHATTING.GET_CHAATING_MESSAGES],
+          queryKey: [QUERY_KEYS.CHATTING.GET_CHATTING_MESSAGES],
         });
         setText("");
         setSubmiting(false);
