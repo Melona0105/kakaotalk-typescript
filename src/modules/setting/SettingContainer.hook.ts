@@ -1,4 +1,4 @@
-import useGobackWhenESCPress from "modules/common/hooks/useGobackWhenESCPress";
+import useEscapeShortcut from "modules/common/hooks/useEscapeShortcut";
 import { useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
 import { SettingMenuItemType } from "./components/SettingMenu.interface";
@@ -11,7 +11,7 @@ export interface SettingMenuType {
 
 function useSettingContainer() {
   const navigate = useNavigate();
-  useGobackWhenESCPress();
+  useEscapeShortcut();
 
   const SETTING_MENU_ITEMS: SettingMenuType[] = [
     {

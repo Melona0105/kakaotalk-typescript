@@ -1,6 +1,6 @@
 import chattingRoomApis from "apis/chattingRoomApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
-import useGobackWhenESCPress from "modules/common/hooks/useGobackWhenESCPress";
+import useEscapeShortcut from "modules/common/hooks/useEscapeShortcut";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 function useChattingRoomContainer() {
   const { userProfile } = useAuthContext();
   const { room_id } = useParams();
-  useGobackWhenESCPress();
+  useEscapeShortcut();
 
   // 룸 아이디를 바탕으로 룸 정보를 쿼리합니다.
   const { data, isLoading, isError } = useQuery({

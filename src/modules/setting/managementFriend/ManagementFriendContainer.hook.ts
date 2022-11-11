@@ -1,6 +1,6 @@
 import friendApis from "apis/friendApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
-import useGobackWhenESCPress from "modules/common/hooks/useGobackWhenESCPress";
+import useEscapeShortcut from "modules/common/hooks/useEscapeShortcut";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { useQuery } from "react-query";
 import { useMatch } from "react-router-dom";
@@ -8,7 +8,7 @@ import { PRIVATE_ROUTES } from "routes/utils/routename";
 
 function useManagementFriendContainer() {
   const { userProfile } = useAuthContext();
-  useGobackWhenESCPress();
+  useEscapeShortcut();
 
   const HIDDEN_FRIEND_PATH =
     PRIVATE_ROUTES.SETTING.path +

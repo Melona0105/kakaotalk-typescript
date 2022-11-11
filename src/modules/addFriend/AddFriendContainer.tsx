@@ -1,10 +1,10 @@
 import CloseButtonHeader from "modules/common/components/CloseButtonHeader";
-import useGobackWhenESCPress from "modules/common/hooks/useGobackWhenESCPress";
+import useEscapeShortcut from "modules/common/hooks/useEscapeShortcut";
 import { AddFriendContainerWrapper } from "./AddFriendContainer.style";
 import AddFriendBody from "./components/AddFriendBody";
 
 function AddFriendContainer() {
-  useGobackWhenESCPress();
+  useEscapeShortcut();
 
   return (
     <AddFriendContainerWrapper>
