@@ -3,12 +3,14 @@ import FindPasswordContainer from "modules/auth/FindPassword/FindPasswordContain
 import SignInContainer from "modules/auth/SignIn/SignInContainer";
 import SignUpInputContainer from "modules/auth/SignUp/signUp/SignUpInputContainer";
 import SignUpTermsContainer from "modules/auth/SignUp/terms/SignUpTermsContainer";
+import ChattingContainer from "modules/chatting/ChattingContainer";
 import ChattingRoomContainer from "modules/chattingRoom/ChattingRoomContainer";
 import HomeContainer from "modules/home/HomeContainer";
 import FriendsProfileCardContainer from "modules/profileCard/friendProfileCard/FriendsProfileCardContainer";
 import MyProfileCardContainer from "modules/profileCard/myProfileCard/MyProfileCardContainer";
 import ManagementFriendContainer from "modules/setting/managementFriend/ManagementFriendContainer";
 import SettingContainer from "modules/setting/SettingContainer";
+import ViewMoreContainer from "modules/viewMore/ViewMoreContainer";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
@@ -43,6 +45,14 @@ export const PRIVATE_ROUTES: RoutesType = {
   HOME: {
     path: "/",
     element: <HomeContainer />,
+  },
+  CHATTING: {
+    path: "/chatting",
+    element: <ChattingContainer />,
+  },
+  VIEW_MORE: {
+    path: "/view_more",
+    element: <ViewMoreContainer />,
   },
   PROFILE_CARD: {
     path: "/profile",

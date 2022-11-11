@@ -1,5 +1,5 @@
 import { FriendType } from "apis/interfaces/apiInterface";
-import FriendProfileThumbnail from "modules/home/friend/components/thumbnail/FriendProfileThumbnail";
+import FriendProfileThumbnail from "modules/common/components/thumbnail/FriendProfileThumbnail";
 import {
   ManagementFriendsEmptyText,
   ManagementFriendsWrapper,

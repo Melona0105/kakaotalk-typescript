@@ -1,17 +1,12 @@
 import { MainContainerWrapper } from "modules/common/styles/commonStyles";
 import NavigationBar from "navigation/NavigationBar";
-import HomeFriensSection from "./components/HomeFriensSection";
 
-/**
- * 홈 컴포넌트들을 렌더링하는 컨테이너입니다.
- */
-function HomeContainer() {
+function ViewMoreContainer() {
   return (
     <MainContainerWrapper>
       <NavigationBar />
-      <HomeFriensSection />
     </MainContainerWrapper>
   );
 }
 
-export default HomeContainer;
+export default ViewMoreContainer;

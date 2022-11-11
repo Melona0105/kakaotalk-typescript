@@ -7,7 +7,12 @@ const IMAGE_SIZE = 35;
 const SEARCH_ICON_SIZE = 25;
 const CLEAR_ICON_SIZE = 15;
 
-export const InnerContainerHeaderWrapper = styled.div<ThemeProps>(() => ({}));
+export const InnerContainerHeaderWrapper = styled.div<ThemeProps>(
+  ({ theme }) => ({
+    paddingLeft: theme.spacing.large,
+    paddingRight: theme.spacing.middle,
+  })
+);
 
 export const InnerContainerHeaderDiv = styled.div<ThemeProps>(({ theme }) => ({
   display: "flex",
@@ -16,7 +21,7 @@ export const InnerContainerHeaderDiv = styled.div<ThemeProps>(({ theme }) => ({
 }));
 
 interface InnerContaienrHeaderTitleStyleProps extends ThemeProps {
-  showPaddingTop: boolean;
+  showPaddingTop?: boolean;
 }
 
 export const InnerContaienrHeaderTitle =

@@ -1,7 +1,7 @@
 import chatIcon from "assets/icons/profile_chat.png";
 import editIcon from "assets/icons/profile_edit.png";
+import useNavigateChattingRoomByFriendId from "modules/common/hooks/useNavigateChattingRoom";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
-import useNavigateChattingRoomByFriendId from "modules/home/common/hooks/useNavigateChattingRoom";
 import { useParams } from "react-router-dom";
 
 interface FooterItemType {

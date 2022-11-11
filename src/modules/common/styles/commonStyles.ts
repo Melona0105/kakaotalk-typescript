@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ThemeProps } from "../../../utils/theme/theme.interface";
 
+export const MainContainerWrapper = styled.div<ThemeProps>(({ theme }) => ({
+  display: "flex",
+  flex: 1,
+}));
+
 export const ButtonStyleLink = styled(Link)<any>(({ theme }: ThemeProps) => ({
   color: theme.colors.kakaoDarkGray,
   fontSize: theme.fontSize.small,

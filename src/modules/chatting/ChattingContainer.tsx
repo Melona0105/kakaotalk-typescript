@@ -1,17 +1,14 @@
 import { MainContainerWrapper } from "modules/common/styles/commonStyles";
 import NavigationBar from "navigation/NavigationBar";
-import HomeFriensSection from "./components/HomeFriensSection";
+import ChattingRoomsSection from "./components/ChattingRoomsSection";
 
-/**
- * 홈 컴포넌트들을 렌더링하는 컨테이너입니다.
- */
-function HomeContainer() {
+function ChattingContainer() {
   return (
     <MainContainerWrapper>
       <NavigationBar />
-      <HomeFriensSection />
+      <ChattingRoomsSection />
     </MainContainerWrapper>
   );
 }
 
-export default HomeContainer;
+export default ChattingContainer;

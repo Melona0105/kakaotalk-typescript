@@ -13,10 +13,9 @@ import {
 
 interface InnerContainerHeaderProps {
   title: string;
-  tabIndex: number;
-  searchKeyword?: string;
-  onSearchKeywordChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClearSearchKewordClick?: () => void;
+  searchKeyword: string;
+  onSearchKeywordChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClearSearchKewordClick: () => void;
 }
 
 /**
@@ -24,24 +23,18 @@ interface InnerContainerHeaderProps {
  */
 function InnerContainerHeader({
   title,
-  tabIndex,
   searchKeyword,
   onSearchKeywordChange,
   onClearSearchKewordClick,
 }: InnerContainerHeaderProps) {
-  const { models } = useInnerContainerHeader(
-    tabIndex,
-    onClearSearchKewordClick
-  );
-  const { showSearchInput, headerItems } = models;
-
+  const { models } = useInnerContainerHeader(onClearSearchKewordClick);
+  const { index, showSearchInput, headerItems } = models;
   const MemoriezedHeaderDiv = useMemo(
     () => (
       <InnerContainerHeaderDiv>
-        <InnerContaienrHeaderTitle showPaddingTop={tabIndex === 2}>
+        <InnerContaienrHeaderTitle showPaddingTop={index === 2}>
           {title}
         </InnerContaienrHeaderTitle>
-
         <div>
           {headerItems.map((item, index) => (
             <InnerContaienrHeaderImage
@@ -63,7 +56,6 @@ function InnerContainerHeader({
       showSearchInput && (
         <InnerContaienrSearchInputDiv>
           <InnerContaienrSearchInputIcon />
-
           <InnerContaienrSearchInput
             value={searchKeyword}
             autoFocus
@@ -78,7 +70,6 @@ function InnerContainerHeader({
       ),
     [showSearchInput, searchKeyword]
   );
-
   return (
     <InnerContainerHeaderWrapper>
       {MemoriezedHeaderDiv}
