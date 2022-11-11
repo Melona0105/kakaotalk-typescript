@@ -51,8 +51,9 @@ function useSignInInputBoxes() {
    * input에서 엔터를 누를경우 로그인을 시도하는 함수입니다.
    */
   function onEnterKeyPress(e: KeyboardEvent<HTMLInputElement>) {
-    const { key } = e;
-    key === "Enter" && onSignInButtonPress();
+    if (e.key === "Enter") {
+      onSignInButtonClick();
+    }
   }
 
   /**
@@ -61,7 +62,7 @@ function useSignInInputBoxes() {
    * 2. firebase 로그인을 시도한뒤, 성공할경우 홈화면으로 이동합니다.
    * 3. 실패할경우, firebase error code에 따라 에러메세지를 활성화합니다.
    */
-  async function onSignInButtonPress() {
+  async function onSignInButtonClick() {
     if (!getButtonDisabled()) {
       const { email, password } = state;
       try {
@@ -101,7 +102,7 @@ function useSignInInputBoxes() {
       onTextChange,
       onFocus,
       onEnterKeyPress,
-      onSignInButtonPress,
+      onSignInButtonClick,
     },
   };
 }

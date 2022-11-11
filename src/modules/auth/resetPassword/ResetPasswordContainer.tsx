@@ -3,6 +3,7 @@ import InputBox from "modules/common/components/InputBox";
 import { useMemo } from "react";
 import { useTheme } from "styled-components";
 import useResetPasswordContainer from "./ResetPasswordContainer.hook";
+import ProgressBar from "../common/components/ProgressBar";
 import {
   ResetPasswordContainerDiv,
   ResetPasswordContainerHeader,
@@ -66,6 +67,7 @@ function ResetPasswordContainer() {
 
   return (
     <ResetPasswordContainerWrapper>
+      <ProgressBar width="100%" />
       <ResetPasswordContainerHeader>
         비밀번호 재설정
       </ResetPasswordContainerHeader>

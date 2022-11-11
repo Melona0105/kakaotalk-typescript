@@ -1,4 +1,4 @@
-import ProgressBar from "../../components/ProgressBar";
+import ProgressBar from "modules/auth/common/components/ProgressBar";
 import {
   SignUpInputHeaderTitle,
   SignUpInputHeaderWrapper,

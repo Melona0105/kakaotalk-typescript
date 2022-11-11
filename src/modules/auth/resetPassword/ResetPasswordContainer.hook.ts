@@ -1,5 +1,5 @@
 import { sendResetPasswordEmail } from "libs/firebase/firebaseAuth";
-import { ChangeEvent, useReducer, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PUBLIC_ROUTES } from "routes/utils/routename";
 import resetPasswordReducer from "./ResetPasswordContainer.reducer";
@@ -44,6 +44,15 @@ function useResetPasswordContainer() {
     return !state.email || !!state.emailErrorMessage;
   }
 
+  /**
+   * input에서 엔터를 누를경우 이메일을 전송을 시도하는 함수입니다.
+   */
+  function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      onSendEmailClick();
+    }
+  }
+
   async function onSendEmailClick() {
     if (!getButtonDisabled() && !isSending) {
       try {
@@ -74,6 +83,7 @@ function useResetPasswordContainer() {
       onChange,
       onFocus,
       onBlur,
+      onKeyDown,
     },
     operations: {
       onSendEmailClick,

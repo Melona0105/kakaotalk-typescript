@@ -15,7 +15,7 @@ import {
 function SignInInputBoxes() {
   const { models, operations } = useSignInInputBoxes();
   const { state, buttonDisabled } = models;
-  const { onTextChange, onFocus, onEnterKeyPress, onSignInButtonPress } =
+  const { onTextChange, onFocus, onEnterKeyPress, onSignInButtonClick } =
     operations;
 
   const { email, password, errorMessage } = state;
@@ -69,10 +69,10 @@ function SignInInputBoxes() {
         width={230}
         disabled={buttonDisabled}
         marginTop={10}
-        onClick={onSignInButtonPress}
+        onClick={onSignInButtonClick}
       />
     ),
-    [buttonDisabled, onSignInButtonPress]
+    [buttonDisabled, onSignInButtonClick]
   );
 
   return (

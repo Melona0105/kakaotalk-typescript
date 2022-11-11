@@ -1,3 +1,4 @@
+import validateEmail from "modules/common/utils/validateEmail";
 import {
   ResetPassworActionValue,
   ResetPasswordStateType,
@@ -18,8 +19,8 @@ function resetPasswordReducer(
     }
 
     case RESET_PASSWORD_ACTION_TYPE.ON_EMAIL_BLUR: {
-      if (state.email.length === 0) {
-        return { ...state, emailErrorMessage: "이메일을 입력해주세요." };
+      if (!validateEmail(state.email)) {
+        return { ...state, emailErrorMessage: "이메일을 확인해주세요." };
       } else return state;
     }
 

@@ -1,9 +1,9 @@
+import ProgressBar from "modules/auth/common/components/ProgressBar";
 import { useMemo } from "react";
 import { useTheme } from "styled-components";
 import useSignUpTermsContainer from "./SignUpTermsContainer.hook";
 import { SignUpTermsContainerWrapper } from "./SignUpTermsContainer.style";
 import Button from "../../../common/components/Button";
-import ProgressBar from "../components/ProgressBar";
 import SignUpTerms from "../components/SignUpTerms";
 
 /**
