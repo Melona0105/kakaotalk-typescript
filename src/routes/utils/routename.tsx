@@ -1,5 +1,5 @@
 import AddFriendContainer from "modules/addFriend/AddFriendContainer";
-import FindPasswordContainer from "modules/auth/findPassword/FindPasswordContainer";
+import ResetPasswordContainer from "modules/auth/resetPassword/ResetPasswordContainer";
 import SignInContainer from "modules/auth/signIn/SignInContainer";
 import SignUpInputContainer from "modules/auth/signUp/signUp/SignUpInputContainer";
 import SignUpTermsContainer from "modules/auth/signUp/terms/SignUpTermsContainer";
@@ -37,7 +37,7 @@ export const PUBLIC_ROUTES: RoutesType = {
   },
   FIND_PASSWORD: {
     path: "/find_password",
-    element: <FindPasswordContainer />,
+    element: <ResetPasswordContainer />,
   },
 };
 

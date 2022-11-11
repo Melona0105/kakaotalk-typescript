@@ -1,14 +1,9 @@
 import { initializeApp } from "firebase/app";
-import {
-  deleteObject,
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytes,
-} from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -43,6 +38,10 @@ export async function firebaseSignOut() {
 
 export async function getFirebaseToken() {
   return await auth.currentUser?.getIdToken();
+}
+
+export async function sendResetPasswordEmail(email: string) {
+  await sendPasswordResetEmail(auth, email);
 }
 
 export async function uploadMyUserAvatar(file: File) {

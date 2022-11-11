@@ -16,7 +16,7 @@ function SignInFooter() {
       </ButtonStyleLink>
       <SignInVerticalSeparate />
       <ButtonStyleLink to={PUBLIC_ROUTES.FIND_PASSWORD.path}>
-        비밀번호 찾기
+        비밀번호 재설정
       </ButtonStyleLink>
     </SignInFooterWrapper>
   );
