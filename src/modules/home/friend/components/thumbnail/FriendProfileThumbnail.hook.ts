@@ -1,6 +1,7 @@
 import friendApis from "apis/friendApis";
 import { QUERY_KEYS } from "libs/reactQuery/queryKeys";
 import { RightClickMenuItemType } from "modules/common/components/RightClickMenu";
+import { useAuthContext } from "modules/common/providers/AuthProvider";
 import useNavigateChattingRoomByFriendId from "modules/home/common/hooks/useNavigateChattingRoom";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
@@ -8,9 +9,10 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
 
 function useFriendProfileThumbnail(
-  friendId: string,
+  friend_id: string,
   showManagementMenu: boolean
 ) {
+  const { userProfile } = useAuthContext();
   // 더블클릭을 감지하기위한 값입니다.
   let timer: any = 0;
   let delay = 200;
@@ -18,7 +20,7 @@ function useFriendProfileThumbnail(
 
   const navigate = useNavigate();
 
-  const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friendId);
+  const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friend_id);
 
   const HIDDEN_FRIEND_PATH =
     PRIVATE_ROUTES.SETTING.path +
@@ -44,7 +46,7 @@ function useFriendProfileThumbnail(
   function onFriendClick() {
     timer = setTimeout(() => {
       if (!prevent) {
-        navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friendId}`);
+        navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friend_id}`);
       }
       prevent = false;
     }, delay);
@@ -67,47 +69,55 @@ function useFriendProfileThumbnail(
   }
 
   const hideFriend = useMutation({
-    mutationFn: async () => await friendApis.hideFriend(friendId),
-    onSuccess: async () =>
+    mutationFn: async () => await friendApis.hideFriend(friend_id),
+    onSuccess: async () => {
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
-      }),
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
+      });
+      await client.refetchQueries({
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS, userProfile?.id],
+      });
+    },
   });
 
   const blockFriend = useMutation({
-    mutationFn: async () => await friendApis.blockFriend(friendId),
-    onSuccess: async () =>
+    mutationFn: async () => await friendApis.blockFriend(friend_id),
+    onSuccess: async () => {
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
-      }),
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
+      });
+      await client.refetchQueries({
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS, userProfile?.id],
+      });
+    },
   });
 
   const rollbackFriend = useMutation({
-    mutationFn: async () => await friendApis.rollbackFriend(friendId),
+    mutationFn: async () => await friendApis.rollbackFriend(friend_id),
     onSuccess: async () => {
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
       });
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS,
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS, userProfile?.id],
       });
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS,
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS, userProfile?.id],
       });
     },
   });
 
   const deleteFriend = useMutation({
-    mutationFn: async () => await friendApis.delteFriend(friendId),
+    mutationFn: async () => await friendApis.delteFriend(friend_id),
     onSuccess: async () => {
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
       });
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS,
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS, userProfile?.id],
       });
       await client.refetchQueries({
-        queryKey: QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS,
+        queryKey: [QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS, userProfile?.id],
       });
     },
   });

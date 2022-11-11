@@ -16,8 +16,8 @@ function useProfileFooter(
   onEditProfilePress?: () => void
 ) {
   const { userProfile } = useAuthContext();
-  const { friendId } = useParams();
-  const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friendId!);
+  const { friend_id } = useParams();
+  const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friend_id!);
 
   const footerItems: FooterItemType[] = [
     {

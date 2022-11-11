@@ -21,7 +21,12 @@ export interface FriendType {
 }
 
 export interface ChattingRoomType {
-  roomId: number;
+  room_id: number;
+  user_id?: string;
+  username?: string;
+  text?: string;
+  avatarURL?: string;
+  createdAt?: string;
 }
 
 export interface ChattingType {

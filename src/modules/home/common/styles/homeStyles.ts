@@ -6,4 +6,6 @@ export const InnerContaienrWrapper = styled.div<ThemeProps>(({ theme }) => ({
   padding: theme.spacing.large,
   paddingTop: theme.spacing.small,
   maxWidth: theme.config.width - 97,
+  display: "flex",
+  flexDirection: "column",
 }));

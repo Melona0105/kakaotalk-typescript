@@ -4,11 +4,11 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 function useFriendsProfileCardContainer() {
-  const { friendId } = useParams();
+  const { friend_id } = useParams();
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: [QUERY_KEYS.FRIEND.GET_FRIEND, friendId],
-    queryFn: async () => await friendApis.getFriend(friendId!),
+    queryKey: [QUERY_KEYS.FRIEND.GET_FRIEND, friend_id],
+    queryFn: async () => await friendApis.getFriend(friend_id!),
   });
 
   return {

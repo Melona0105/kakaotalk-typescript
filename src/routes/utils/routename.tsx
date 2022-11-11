@@ -53,7 +53,7 @@ export const PRIVATE_ROUTES: RoutesType = {
         element: <MyProfileCardContainer />,
       },
       {
-        path: ":friendId",
+        path: ":friend_id",
         element: <FriendsProfileCardContainer />,
       },
     ],
@@ -82,7 +82,7 @@ export const PRIVATE_ROUTES: RoutesType = {
     element: <Outlet />,
     children: [
       {
-        path: ":roomId",
+        path: ":room_id",
         element: <ChattingRoomContainer />,
       },
     ],

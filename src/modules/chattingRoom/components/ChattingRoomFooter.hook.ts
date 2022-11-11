@@ -19,7 +19,7 @@ function useChattingRoomFooter() {
   // 데이터 페칭을 관리하는함수입니다.
   const [submiting, setSubmiting] = useState<boolean>(false);
   const { userProfile } = useAuthContext();
-  const { roomId } = useParams();
+  const { room_id } = useParams();
   const [text, setText] = useState<string>("");
 
   function onTextChange(e: ChangeEvent<HTMLInputElement>) {
@@ -41,7 +41,7 @@ function useChattingRoomFooter() {
       const message: MessageType = {
         sender_id: userProfile?.id,
         text: text,
-        room_id: roomId,
+        room_id: room_id,
       };
 
       socket.emit("message", message);

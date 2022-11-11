@@ -12,18 +12,17 @@ function useManagementFriendContainer() {
     "/" +
     PRIVATE_ROUTES.SETTING.children![1].path;
 
-  const isHiddenFreindPath = useMatch({ path: HIDDEN_FRIEND_PATH });
+  const isHiddenFreindPath = !!useMatch({ path: HIDDEN_FRIEND_PATH });
+  console.log(isHiddenFreindPath);
 
   const getMyHiddenFriends = useQuery({
     queryKey: [QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS, userProfile?.id],
     queryFn: async () => await friendApis.getMyHiddenFriends(),
-    enabled: !!isHiddenFreindPath,
   });
 
   const getMyBlockedFriends = useQuery({
     queryKey: [QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS, userProfile?.id],
     queryFn: async () => await friendApis.getMyBlockedFriends(),
-    enabled: !isHiddenFreindPath,
   });
 
   return {

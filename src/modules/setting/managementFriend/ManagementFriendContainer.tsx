@@ -7,6 +7,8 @@ function ManagementFriendContainer() {
   const { models } = useManagementFriendContainer();
   const { isHiddenFreindPath, data } = models;
 
+  console.log({ data });
+
   return (
     <CloseButtonStyleWrapper
       style={{ display: "flex", flexDirection: "column" }}

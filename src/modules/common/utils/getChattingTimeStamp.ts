@@ -6,7 +6,11 @@ import { ko } from "date-fns/locale";
  * 1. 오늘일 경우에는 (오전 02:34)의 형태로 출력합니다.
  * 2. 지난 시각의 경우에는 (11월 10일)의 형태로 출력합니다.
  */
-function getTimeStamp(dateString: string) {
+function getTimeStamp(dateString?: string) {
+  if (!dateString) {
+    return "";
+  }
+
   const date = new Date(dateString);
 
   if (isToday(date)) {

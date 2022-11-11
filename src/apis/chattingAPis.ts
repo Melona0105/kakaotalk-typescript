@@ -4,11 +4,11 @@ import { ChattingType } from "./interfaces/apiInterface";
 const CHATTING_BASE_URL = "/chatting";
 
 const chattingApis = {
-  getChattings: async (roomId: string) => {
+  getChattings: async (room_id: string) => {
     console.log("getChattings");
     const { data } = await axiosInstance<ChattingType[]>({
       method: "GET",
-      url: CHATTING_BASE_URL + `/${roomId}`,
+      url: CHATTING_BASE_URL + `/${room_id}`,
     });
 
     return data;

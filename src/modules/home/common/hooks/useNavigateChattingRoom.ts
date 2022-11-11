@@ -14,8 +14,8 @@ function useNavigateChattingRoomByFriendId(firendId: string) {
     queryKey: [QUERY_KEYS.CHATTING.GET_CHATTING_ROOM_ID, firendId],
     queryFn: async ({ queryKey }) =>
       await chattingRoomApis.getChattingRoom(queryKey[1]),
-    onSuccess: ({ roomId }) =>
-      navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${roomId}`),
+    onSuccess: ({ room_id }) =>
+      navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${room_id}`),
     enabled: false,
   });
 

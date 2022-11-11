@@ -4,11 +4,11 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 function useChattingRoomBody() {
-  const { roomId } = useParams();
+  const { room_id } = useParams();
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: [QUERY_KEYS.CHATTING.GET_CHATTING_MESSAGES, roomId],
-    queryFn: async () => await chattingApis.getChattings(roomId!),
+    queryKey: [QUERY_KEYS.CHATTING.GET_CHATTING_MESSAGES, room_id],
+    queryFn: async () => await chattingApis.getChattings(room_id!),
   });
 
   return {

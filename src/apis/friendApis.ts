@@ -47,11 +47,11 @@ const friendApis = {
     return result;
   },
 
-  getFriend: async (friendId: string) => {
+  getFriend: async (friend_id: string) => {
     console.log("getFriend");
     const { data } = await axiosInstance({
       method: "GET",
-      url: `${FRIEND_BASE_URL}/get/${friendId}`,
+      url: `${FRIEND_BASE_URL}/get/${friend_id}`,
     });
 
     let avatarURL;
@@ -69,39 +69,39 @@ const friendApis = {
     return result;
   },
 
-  addFriend: async (friendId: string) => {
+  addFriend: async (friend_id: string) => {
     console.log("addFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}`,
-      data: { friendId },
+      data: { friend_id },
     });
   },
 
-  hideFriend: async (friendId: string) => {
+  hideFriend: async (friend_id: string) => {
     console.log("hideFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/hide`,
-      data: { friendId },
+      data: { friend_id },
     });
   },
 
-  blockFriend: async (friendId: string) => {
+  blockFriend: async (friend_id: string) => {
     console.log("blockFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/block`,
-      data: { friendId },
+      data: { friend_id },
     });
   },
 
-  rollbackFriend: async (friendId: string) => {
+  rollbackFriend: async (friend_id: string) => {
     console.log("rollbackFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/rollback`,
-      data: { friendId },
+      data: { friend_id },
     });
   },
 
@@ -143,12 +143,12 @@ const friendApis = {
     return Promise.all(myFriends);
   },
 
-  delteFriend: async (friendId: string) => {
+  delteFriend: async (friend_id: string) => {
     console.log("delteFriend");
     await axiosInstance({
       method: "DELETE",
       url: `${FRIEND_BASE_URL}`,
-      data: { friendId },
+      data: { friend_id },
     });
   },
 };

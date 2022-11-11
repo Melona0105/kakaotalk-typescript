@@ -6,16 +6,16 @@ import { useParams } from "react-router-dom";
 
 function useChattingRoomContainer() {
   const { userProfile } = useAuthContext();
-  const { roomId } = useParams();
+  const { room_id } = useParams();
 
   // 룸 아이디를 바탕으로 룸 정보를 쿼리합니다.
   const { data, isLoading, isError } = useQuery({
     queryKey: [
       QUERY_KEYS.CHATTING.GET_CHATTING_ROOM_INFO,
-      roomId,
+      room_id,
       userProfile?.id,
     ],
-    queryFn: async () => await chattingRoomApis.getChattingRoomInfo(roomId!),
+    queryFn: async () => await chattingRoomApis.getChattingRoomInfo(room_id!),
   });
 
   return {
