@@ -1,8 +1,8 @@
 import Loading from "modules/common/components/Loading";
 import { useAuthContext } from "modules/common/providers/AuthProvider";
 import { UserType } from "modules/common/providers/authProvider.interface";
-import FriendChat from "./Chat/FriendChat";
-import MyChat from "./Chat/MyChat";
+import FriendChat from "./chat/FriendChat";
+import MyChat from "./chat/MyChat";
 import useChattingRoomBody from "./ChattingRoomBody.hook";
 import { ChattingRoomBodyWrapper } from "./ChattingRoomBody.style";
 import { getSortedChattings } from "../utils/getSortedChattings";
