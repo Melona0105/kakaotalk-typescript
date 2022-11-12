@@ -61,7 +61,7 @@ function useFriendProfileThumbnail(
     navigateChattingRoom();
   }
 
-  function onContenxtMunu(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function onContextMenu(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const { clientX, clientY } = e;
     e.preventDefault();
     setPointerLocate({ clientX, clientY });
@@ -152,7 +152,7 @@ function useFriendProfileThumbnail(
     },
     operations: {
       handleShowMenu,
-      onContenxtMunu,
+      onContextMenu,
       onFriendClick,
       onFriendDoubleClick,
     },

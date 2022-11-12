@@ -1,10 +1,10 @@
 import FriendProfileThumbnail from "modules/common/components/thumbnail/FriendProfileThumbnail";
+import { UserType } from "modules/common/providers/authProvider.interface";
 import { HomeBirthdayFriendsWrapper } from "./HomeBirthdayFriends.style";
 import HomeToggleBox from "./ToggleBox/HomeToggleBox";
 
 interface HomeBirthdayFriendsProps {
-  // TODO: 이후 유저 데이터 타입 정의해야합니다.
-  birthdayFirends: any[];
+  birthdayFirends: UserType[];
 }
 
 function BirthdayFriends({ birthdayFirends }: HomeBirthdayFriendsProps) {

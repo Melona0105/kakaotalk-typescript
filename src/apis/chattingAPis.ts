@@ -5,7 +5,6 @@ const CHATTING_BASE_URL = "/chatting";
 
 const chattingApis = {
   getChattings: async (room_id: string) => {
-    console.log("getChattings");
     const { data } = await axiosInstance<ChattingType[]>({
       method: "GET",
       url: CHATTING_BASE_URL + `/${room_id}`,

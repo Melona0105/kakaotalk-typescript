@@ -7,7 +7,6 @@ const FRIEND_BASE_URL = "/friend";
 const friendApis = {
   // TODO: 이후 avarar URL 자체를 url로 보관할 수 있는방법 찾아보기 -> n 한번 줄일 수 있을 듯 함
   getMyFriends: async () => {
-    console.log("getMyFriends");
     const { data } = await axiosInstance<FriendType[]>({
       method: "GET",
       url: `${FRIEND_BASE_URL}`,
@@ -27,7 +26,6 @@ const friendApis = {
   },
 
   searchFriend: async (email: string) => {
-    console.log("searchFriend");
     const { data } = await axiosInstance<FriendType>({
       method: "GET",
       url: `${FRIEND_BASE_URL}/${email}`,
@@ -48,7 +46,6 @@ const friendApis = {
   },
 
   getFriend: async (friend_id: string) => {
-    console.log("getFriend");
     const { data } = await axiosInstance({
       method: "GET",
       url: `${FRIEND_BASE_URL}/get/${friend_id}`,
@@ -70,7 +67,6 @@ const friendApis = {
   },
 
   addFriend: async (friend_id: string) => {
-    console.log("addFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}`,
@@ -79,7 +75,6 @@ const friendApis = {
   },
 
   hideFriend: async (friend_id: string) => {
-    console.log("hideFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/hide`,
@@ -88,7 +83,6 @@ const friendApis = {
   },
 
   blockFriend: async (friend_id: string) => {
-    console.log("blockFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/block`,
@@ -97,7 +91,6 @@ const friendApis = {
   },
 
   rollbackFriend: async (friend_id: string) => {
-    console.log("rollbackFriend");
     await axiosInstance({
       method: "POST",
       url: `${FRIEND_BASE_URL}/rollback`,
@@ -106,7 +99,6 @@ const friendApis = {
   },
 
   getMyHiddenFriends: async (): Promise<FriendType[]> => {
-    console.log("getMyHiddenFriends");
     const { data } = await axiosInstance<FriendType[]>({
       method: "GET",
       url: `${FRIEND_BASE_URL}/hide`,
@@ -124,7 +116,6 @@ const friendApis = {
     return Promise.all(myFriends);
   },
   getMyBlockedFriends: async (): Promise<FriendType[]> => {
-    console.log("getMyBlockedFriends");
     const { data } = await axiosInstance<FriendType[]>({
       method: "GET",
       url: `${FRIEND_BASE_URL}/block`,
@@ -144,7 +135,6 @@ const friendApis = {
   },
 
   delteFriend: async (friend_id: string) => {
-    console.log("delteFriend");
     await axiosInstance({
       method: "DELETE",
       url: `${FRIEND_BASE_URL}`,

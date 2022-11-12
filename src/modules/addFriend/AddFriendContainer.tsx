@@ -8,7 +8,7 @@ function AddFriendContainer() {
 
   return (
     <AddFriendContainerWrapper>
-      <CloseButtonHeader title="이메일 검색으로 추가" />
+      <CloseButtonHeader title="친구추가" />
       <AddFriendBody />
     </AddFriendContainerWrapper>
   );

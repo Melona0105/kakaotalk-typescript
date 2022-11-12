@@ -34,7 +34,7 @@ function FriendProfileThumbnail({
     showManagementMenu
   );
   const { showMenu, pointerLocate, friendMenuItems } = models;
-  const { handleShowMenu, onContenxtMunu, onFriendClick, onFriendDoubleClick } =
+  const { handleShowMenu, onContextMenu, onFriendClick, onFriendDoubleClick } =
     operations;
 
   const MemorizedModal = useMemo(
@@ -53,7 +53,7 @@ function FriendProfileThumbnail({
   const MemorizedFriendThumbnail = useMemo(
     () => (
       <FriendProfileThumbnailWrapper
-        onContextMenu={onContenxtMunu}
+        onContextMenu={onContextMenu}
         onClick={onFriendClick}
         onDoubleClick={onFriendDoubleClick}
       >
@@ -79,13 +79,7 @@ function FriendProfileThumbnail({
         )} */}
       </FriendProfileThumbnailWrapper>
     ),
-    [
-      friend,
-      birthdayFirends,
-      onContenxtMunu,
-      onFriendClick,
-      onFriendDoubleClick,
-    ]
+    [friend, birthdayFirends, onContextMenu, onFriendClick, onFriendDoubleClick]
   );
 
   return (

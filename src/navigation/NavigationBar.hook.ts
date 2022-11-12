@@ -46,8 +46,7 @@ function useNavigationBar() {
       src: isViewMorePath ? etcActive : etcInactive,
       onClick: () => navigate(PRIVATE_ROUTES.VIEW_MORE.path),
     },
-    { id: 3, src: noti, onClick: () => console.log(1) },
-    { id: 4, src: setting, onClick: handleShowSettingModal },
+    { id: 3, src: setting, onClick: handleShowSettingModal },
   ];
 
   const SETTING_MODAL_ITEMS: RightClickMenuItemType[] = [
