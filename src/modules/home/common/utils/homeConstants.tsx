@@ -1,13 +1,13 @@
 import chattingCreateIcon from "assets/icons/chatting_create.png";
 import friendAddIcon from "assets/icons/friend_add.png";
 import searchIcon from "assets/icons/friend_search.png";
+import { PRIVATE_ROUTES } from "routes/utils/routename";
 
 interface HeaderImageType {
-  [key: number]: string[] | undefined[];
+  [key: string]: string[] | undefined[];
 }
 
 export const HEADER_IMAGE: HeaderImageType = {
-  0: [searchIcon, friendAddIcon],
-  1: [searchIcon, chattingCreateIcon],
-  2: [undefined, undefined],
+  [PRIVATE_ROUTES.HOME.path]: [searchIcon, friendAddIcon],
+  [PRIVATE_ROUTES.CHATTING.path]: [searchIcon, chattingCreateIcon],
 };

@@ -1,27 +1,21 @@
+import chattingCreateIcon from "assets/icons/chatting_create.png";
+import friendAddIcon from "assets/icons/friend_add.png";
+import searchIcon from "assets/icons/friend_search.png";
 import { KeyboardEvent, useState } from "react";
-import { useMatch, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PRIVATE_ROUTES } from "routes/utils/routename";
-import { HEADER_IMAGE } from "../../home/common/utils/homeConstants";
 
 interface HeaderItemsType {
-  id: number;
-  src?: string;
-  onClick?: () => void;
+  [key: string]: { id: number; src: string; onClick: () => void }[];
 }
 
 function useInnerContainerHeader(onClearSearchKewordClick?: () => void) {
-  const isHomePath = !!useMatch({ path: PRIVATE_ROUTES.HOME.path });
-  const isChattingPath = !!useMatch({ path: PRIVATE_ROUTES.CHATTING.path });
+  const { pathname } = useLocation();
 
-  const index = isHomePath ? 0 : isChattingPath ? 1 : 2;
-
+  // 검색창의 on/off를 관리하는 상태입니다.
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
+
   const navigate = useNavigate();
-  const headerFunctions = [
-    { 0: handleShowSearchInput, 1: onAddFriendIconClick },
-    { 0: handleShowSearchInput, 1: () => console.log(2) },
-    { 0: undefined, 1: undefined },
-  ];
 
   function handleShowSearchInput() {
     if (showSearchInput) {
@@ -43,24 +37,21 @@ function useInnerContainerHeader(onClearSearchKewordClick?: () => void) {
     }
   }
 
-  const headerItems: HeaderItemsType[] = [
-    {
-      id: 0,
-      src: HEADER_IMAGE[index][0],
-      onClick: headerFunctions[index][0],
-    },
-    {
-      id: 1,
-      src: HEADER_IMAGE[index][1],
-      onClick: headerFunctions[index][1],
-    },
-  ];
+  const headerItems: HeaderItemsType = {
+    [PRIVATE_ROUTES.HOME.path]: [
+      { id: 0, src: searchIcon, onClick: handleShowSearchInput },
+      { id: 1, src: friendAddIcon, onClick: onAddFriendIconClick },
+    ],
+    [PRIVATE_ROUTES.CHATTING.path]: [
+      { id: 0, src: searchIcon, onClick: handleShowSearchInput },
+      { id: 1, src: chattingCreateIcon, onClick: () => console.log(2) },
+    ],
+  };
 
   return {
     models: {
-      index,
       showSearchInput,
-      headerItems,
+      headerItems: headerItems[pathname],
     },
     operations: {
       onESCKeyPress,

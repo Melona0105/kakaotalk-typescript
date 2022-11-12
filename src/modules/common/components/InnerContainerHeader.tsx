@@ -30,16 +30,18 @@ function InnerContainerHeader({
   const { models, operations } = useInnerContainerHeader(
     onClearSearchKewordClick
   );
-  const { index, showSearchInput, headerItems } = models;
+  const { showSearchInput, headerItems } = models;
   const { onESCKeyPress } = operations;
   const MemoriezedHeaderDiv = useMemo(
     () => (
       <InnerContainerHeaderDiv>
-        <InnerContaienrHeaderTitle showPaddingTop={index === 2}>
+        <InnerContaienrHeaderTitle
+        // showPaddingTop={index === 2}
+        >
           {title}
         </InnerContaienrHeaderTitle>
         <div>
-          {headerItems.map((item, index) => (
+          {headerItems?.map((item, index) => (
             <InnerContaienrHeaderImage
               key={item.id}
               src={item.src}
@@ -51,7 +53,7 @@ function InnerContainerHeader({
         </div>
       </InnerContainerHeaderDiv>
     ),
-    [headerItems, index, title]
+    [headerItems, title]
   );
 
   const MemorizedSearchInput = useMemo(
