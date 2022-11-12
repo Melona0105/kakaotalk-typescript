@@ -63,6 +63,7 @@ function FriendProfileThumbnail({
       >
         <FlexDiv>
           <FriendProfileThumbnailImage
+            showDefaultImage={!friend?.avatarURL}
             src={
               birthdayFirends
                 ? birthdayDefaultImage

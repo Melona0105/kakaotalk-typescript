@@ -3,6 +3,7 @@ import { ThemeProps } from "utils/theme/theme.interface";
 
 const TEXT_MAT_WIDTH = 80;
 const THUMBNAIL_IMAGE_SIZE = 45;
+const DEFAULT_THUMBNAIL_IMAGE_SIZE = 50;
 
 interface FriendProfileThumbnailWrapperStyleProps extends ThemeProps {
   hoverEnabled?: boolean;
@@ -23,17 +24,27 @@ export const FriendProfileThumbnailWrapper =
     })
   );
 
-export const FriendProfileThumbnailImage = styled.img<ThemeProps>(
-  ({ theme }) => ({
-    width: THUMBNAIL_IMAGE_SIZE,
-    height: THUMBNAIL_IMAGE_SIZE,
-    marginTop: theme.spacing.xSmall,
-    marginBottom: theme.spacing.xSmall,
-    marginRight: theme.spacing.small,
-    borderRadius: 15,
-    objectFit: "cover",
-  })
-);
+interface FriendProfileThumbnailImageStyleProps extends ThemeProps {
+  showDefaultImage?: boolean;
+}
+
+export const FriendProfileThumbnailImage =
+  styled.img<FriendProfileThumbnailImageStyleProps>(
+    ({ theme, showDefaultImage }) => ({
+      width: showDefaultImage
+        ? DEFAULT_THUMBNAIL_IMAGE_SIZE
+        : THUMBNAIL_IMAGE_SIZE,
+      height: showDefaultImage
+        ? DEFAULT_THUMBNAIL_IMAGE_SIZE
+        : THUMBNAIL_IMAGE_SIZE,
+      marginTop: theme.spacing.xSmall,
+      marginBottom: theme.spacing.xSmall,
+      marginRight: theme.spacing.small,
+      marginLeft: showDefaultImage ? 0 : theme.spacing.xxSmall,
+      borderRadius: 15,
+      objectFit: "cover",
+    })
+  );
 
 interface FriendProfileThumbnailTextStyleProps extends ThemeProps {
   showBirthDay: boolean;

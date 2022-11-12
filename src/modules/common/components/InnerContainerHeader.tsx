@@ -11,6 +11,7 @@ import {
 interface InnerContainerHeaderProps {
   title: string;
   searchKeyword?: string;
+  showPaddingTop?: boolean;
   onSearchKeywordChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onClearSearchKewordClick?: () => void;
 }
@@ -21,6 +22,7 @@ interface InnerContainerHeaderProps {
 function InnerContainerHeader({
   title,
   searchKeyword,
+  showPaddingTop,
   onSearchKeywordChange,
   onClearSearchKewordClick,
 }: InnerContainerHeaderProps) {
@@ -32,9 +34,7 @@ function InnerContainerHeader({
   const MemoriezedHeaderDiv = useMemo(
     () => (
       <InnerContainerHeaderDiv>
-        <InnerContaienrHeaderTitle
-        // showPaddingTop={index === 2}
-        >
+        <InnerContaienrHeaderTitle showPaddingTop={showPaddingTop}>
           {title}
         </InnerContaienrHeaderTitle>
         <div>
