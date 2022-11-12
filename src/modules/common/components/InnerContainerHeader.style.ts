@@ -1,10 +1,8 @@
 import resetIcon from "assets/icons/button_close.png";
-import searchBarIcon from "assets/icons/searchbar_icon.png";
 import styled from "styled-components";
 import { ThemeProps } from "utils/theme/theme.interface";
 
 const IMAGE_SIZE = 35;
-const SEARCH_ICON_SIZE = 25;
 const CLEAR_ICON_SIZE = 15;
 
 export const InnerContainerHeaderWrapper = styled.div<ThemeProps>(
@@ -49,15 +47,6 @@ export const InnerContaienrHeaderImage =
     })
   );
 
-export const InnerContaienrSearchInputDiv = styled.div<ThemeProps>(
-  ({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    // padding: theme.spacing.xSmall,
-    backgroundColor: theme.colors.gray3,
-  })
-);
-
 export const InnerContaienrSearchInput = styled.input<ThemeProps>(
   ({ theme }) => ({
     flex: 1,
@@ -67,14 +56,6 @@ export const InnerContaienrSearchInput = styled.input<ThemeProps>(
     backgroundColor: theme.colors.gray3,
   })
 );
-
-export const InnerContaienrSearchInputIcon = styled.img.attrs(() => ({
-  src: searchBarIcon,
-}))<ThemeProps>(({ theme }) => ({
-  width: SEARCH_ICON_SIZE,
-  height: SEARCH_ICON_SIZE,
-  paddingRight: theme.spacing.xSmall,
-}));
 
 export const InnerContaienrSearchInputClearIcon = styled.img.attrs(() => ({
   src: resetIcon,

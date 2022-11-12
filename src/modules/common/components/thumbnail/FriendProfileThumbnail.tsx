@@ -7,6 +7,7 @@ import { FlexDiv } from "modules/common/styles/commonStyles";
 import Melon from "modules/home/common/components/Melon";
 import { useMemo } from "react";
 import useFriendProfileThumbnail from "./FriendProfileThumbnail.hook";
+import CheckBox from "../CheckBox";
 import {
   FriendProfileThumbnailCount,
   FriendProfileThumbnailImage,
@@ -17,21 +18,23 @@ import {
 interface FriendProfileThumbnailProps {
   friend?: FriendType;
   birthdayFirends?: any[];
+  selected?: boolean;
   showManagementMenu?: boolean;
+  onFriendSelect?: (friendId: string) => void;
 }
 
-/**
- * birthday firends props에 따라서 다른 친구들을 렌더링합니다.
- */
 // TODO: advanced => 멜론 노래 연동해보기
 function FriendProfileThumbnail({
   friend,
   birthdayFirends,
+  selected = false,
   showManagementMenu = false,
+  onFriendSelect,
 }: FriendProfileThumbnailProps) {
   const { models, operations } = useFriendProfileThumbnail(
     friend!.id,
-    showManagementMenu
+    showManagementMenu,
+    onFriendSelect
   );
   const { showMenu, pointerLocate, friendMenuItems } = models;
   const { handleShowMenu, onContextMenu, onFriendClick, onFriendDoubleClick } =
@@ -53,6 +56,7 @@ function FriendProfileThumbnail({
   const MemorizedFriendThumbnail = useMemo(
     () => (
       <FriendProfileThumbnailWrapper
+        hoverEnabled={!onFriendSelect}
         onContextMenu={onContextMenu}
         onClick={onFriendClick}
         onDoubleClick={onFriendDoubleClick}
@@ -77,9 +81,20 @@ function FriendProfileThumbnail({
         {/* {!birthdayFirends && (
           <Melon title="흐르는 고등어" onClick={() => console.log("고등어!")} />
         )} */}
+        {onFriendSelect && (
+          <CheckBox isSelected={selected} showPaddingRight={false} />
+        )}
       </FriendProfileThumbnailWrapper>
     ),
-    [friend, birthdayFirends, onContextMenu, onFriendClick, onFriendDoubleClick]
+    [
+      friend,
+      birthdayFirends,
+      selected,
+      onFriendSelect,
+      onContextMenu,
+      onFriendClick,
+      onFriendDoubleClick,
+    ]
   );
 
   return (

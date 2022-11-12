@@ -44,7 +44,11 @@ function useInnerContainerHeader(onClearSearchKewordClick?: () => void) {
     ],
     [PRIVATE_ROUTES.CHATTING.path]: [
       { id: 0, src: searchIcon, onClick: handleShowSearchInput },
-      { id: 1, src: chattingCreateIcon, onClick: () => console.log(2) },
+      {
+        id: 1,
+        src: chattingCreateIcon,
+        onClick: () => navigate(PRIVATE_ROUTES.CREATE_NEW_CHATTING.path),
+      },
     ],
   };
 

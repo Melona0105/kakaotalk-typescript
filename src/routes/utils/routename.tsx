@@ -5,6 +5,7 @@ import SignUpInputContainer from "modules/auth/signUp/signUp/SignUpInputContaine
 import SignUpTermsContainer from "modules/auth/signUp/terms/SignUpTermsContainer";
 import ChattingContainer from "modules/chatting/ChattingContainer";
 import ChattingRoomContainer from "modules/chattingRoom/ChattingRoomContainer";
+import CreateChattingContainer from "modules/createChatting/CreateChattingContainer";
 import HomeContainer from "modules/home/HomeContainer";
 import FriendsProfileCardContainer from "modules/profileCard/friendProfileCard/FriendsProfileCardContainer";
 import MyProfileCardContainer from "modules/profileCard/myProfileCard/MyProfileCardContainer";
@@ -72,6 +73,11 @@ export const PRIVATE_ROUTES: RoutesType = {
     path: "/add_friend",
     element: <AddFriendContainer />,
   },
+  CREATE_NEW_CHATTING: {
+    path: "/new_chatting",
+    element: <CreateChattingContainer />,
+  },
+
   SETTING: {
     path: "/setting",
     element: <Outlet />,

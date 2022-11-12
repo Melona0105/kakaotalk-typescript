@@ -4,19 +4,24 @@ import { ThemeProps } from "utils/theme/theme.interface";
 const TEXT_MAT_WIDTH = 80;
 const THUMBNAIL_IMAGE_SIZE = 45;
 
-export const FriendProfileThumbnailWrapper = styled.div<ThemeProps>(
-  ({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingLeft: theme.spacing.middle,
-    cursor: "pointer",
+interface FriendProfileThumbnailWrapperStyleProps extends ThemeProps {
+  hoverEnabled?: boolean;
+}
 
-    ":hover": {
-      backgroundColor: theme.colors.gray3,
-    },
-  })
-);
+export const FriendProfileThumbnailWrapper =
+  styled.div<FriendProfileThumbnailWrapperStyleProps>(
+    ({ theme, hoverEnabled = true }) => ({
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      paddingLeft: hoverEnabled ? theme.spacing.middle : 0,
+      cursor: "pointer",
+
+      ":hover": {
+        backgroundColor: hoverEnabled ? theme.colors.gray3 : "none",
+      },
+    })
+  );
 
 export const FriendProfileThumbnailImage = styled.img<ThemeProps>(
   ({ theme }) => ({

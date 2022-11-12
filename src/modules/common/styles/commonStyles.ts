@@ -20,6 +20,16 @@ export const FlexDiv = styled.div<ThemeProps>(({ theme }) => ({
   alignItems: "center",
 }));
 
+export const CloseModalContainerWrapper = styled.div<ThemeProps>(
+  ({ theme }) => ({
+    flex: 1,
+    borderRadius: theme.config.borderRadius,
+    padding: theme.spacing.large,
+    display: "flex",
+    flexDirection: "column",
+  })
+);
+
 export const CloseButtonStyleWrapper = styled.div<ThemeProps>(({ theme }) => ({
   borderRadius: theme.config.borderRadius,
   flex: 1,

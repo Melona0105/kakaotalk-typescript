@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../../../utils/theme/theme.interface";
 
-const ICON_SIZE = 15;
-
 export const SignUpTermsWrapper = styled.div<ThemeProps>(({ theme }) => ({
   paddingBottom: theme.spacing.xLarge,
 }));
@@ -26,24 +24,6 @@ export const SignUpTermsDiv = styled.div<SignUpTermsDivStyleProps>(
       : undefined,
     paddingBottom: showBottomborder ? 20 : 0,
     cursor: "pointer",
-  })
-);
-
-export const SignUpTermsIconDiv = styled.div<ThemeProps>(({ theme }) => ({
-  width: theme.spacing.xxLarge,
-}));
-
-interface SignUpTermsIconStyleProps extends ThemeProps {
-  isSelected: boolean;
-}
-
-export const SignUpTermsIcon = styled.div<SignUpTermsIconStyleProps>(
-  ({ theme, isSelected }) => ({
-    border: `2px solid ${theme.colors.inActive}`,
-    width: ICON_SIZE,
-    height: ICON_SIZE,
-    borderRadius: 50,
-    backgroundColor: isSelected ? theme.colors.kakaoYellow : theme.colors.white,
   })
 );
 

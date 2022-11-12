@@ -1,6 +1,6 @@
-import Loading from "modules/common/components/Loading";
 import { BodyWrapper } from "modules/home/common/styles/homeStyles";
 import useChattingRoomsSectionBody from "./ChattingRoomsSectionBody.hook";
+import { ChattingRoomsSectionBodyEmptyDiv } from "./ChattingRoomsSectionBody.style";
 import ChattingRoomThumbnail from "./thumbnail/ChattingRoomThumbnail";
 
 interface ChattingRoomsSectionBodyProps {
@@ -16,8 +16,15 @@ function ChattingRoomsSectionBody({
   const { models } = useChattingRoomsSectionBody(searchKeyword);
   const { data, isLoading, isError } = models;
 
-  if (isLoading) return <Loading />;
-  if (isError) return null;
+  if (data?.length === 0) {
+    return (
+      <ChattingRoomsSectionBodyEmptyDiv>
+        아직 채팅이 없어요.
+        <br />
+        새로운 채팅을 시작해보세요.
+      </ChattingRoomsSectionBodyEmptyDiv>
+    );
+  }
 
   return (
     <BodyWrapper>

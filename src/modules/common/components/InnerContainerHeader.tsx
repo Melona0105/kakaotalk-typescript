@@ -1,12 +1,9 @@
 import { ChangeEvent, useMemo } from "react";
 import useInnerContainerHeader from "./InnerContainerHeader.hook";
+import SearchInput from "./SearchInput";
 import {
   InnerContaienrHeaderImage,
   InnerContaienrHeaderTitle,
-  InnerContaienrSearchInput,
-  InnerContaienrSearchInputClearIcon,
-  InnerContaienrSearchInputDiv,
-  InnerContaienrSearchInputIcon,
   InnerContainerHeaderDiv,
   InnerContainerHeaderWrapper,
 } from "./InnerContainerHeader.style";
@@ -60,20 +57,12 @@ function InnerContainerHeader({
     () =>
       showSearchInput &&
       headerItems && (
-        <InnerContaienrSearchInputDiv>
-          <InnerContaienrSearchInputIcon />
-          <InnerContaienrSearchInput
-            value={searchKeyword}
-            autoFocus
-            onChange={onSearchKeywordChange}
-            onKeyDown={onESCKeyPress}
-          />
-          {searchKeyword && (
-            <InnerContaienrSearchInputClearIcon
-              onClick={onClearSearchKewordClick}
-            />
-          )}
-        </InnerContaienrSearchInputDiv>
+        <SearchInput
+          searchKeyword={searchKeyword}
+          onSearchKeywordChange={onSearchKeywordChange}
+          onClearSearchKewordClick={onClearSearchKewordClick}
+          onESCKeyPress={onESCKeyPress}
+        />
       ),
     [
       showSearchInput,

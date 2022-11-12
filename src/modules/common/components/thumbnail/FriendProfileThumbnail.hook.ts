@@ -10,7 +10,8 @@ import { PRIVATE_ROUTES } from "routes/utils/routename";
 
 function useFriendProfileThumbnail(
   friend_id: string,
-  showManagementMenu: boolean
+  showManagementMenu: boolean,
+  onFriendSelect?: (friendId: string) => void
 ) {
   const { userProfile } = useAuthContext();
   // 더블클릭을 감지하기위한 값입니다.
@@ -39,33 +40,42 @@ function useFriendProfileThumbnail(
   function handleShowMenu() {
     setShowMenu(!showMenu);
   }
-
   /**
-   * 클릭할경우, 친구의 프로필로 이동합니다.
+   * 클릭할경우 작동하는 함수입니다.
+   * 1.selectbox가 활성화 되어있지않을 경우 친구의 프로필로 이동합니다.
+   * 2. 활성화 되어있을 경우에는 체크박스를 on/off합니다.
    */
   function onFriendClick() {
-    timer = setTimeout(() => {
-      if (!prevent) {
-        navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friend_id}`);
-      }
-      prevent = false;
-    }, delay);
+    if (!onFriendSelect) {
+      timer = setTimeout(() => {
+        if (!prevent) {
+          navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friend_id}`);
+        }
+        prevent = false;
+      }, delay);
+    } else {
+      onFriendSelect(friend_id);
+    }
   }
 
   /**
    * 더블클릭할 경우, 친구와의 채팅으로 이동합니다.
    */
   function onFriendDoubleClick() {
-    clearTimeout(timer);
-    prevent = true;
-    navigateChattingRoom();
+    if (!onFriendSelect) {
+      clearTimeout(timer);
+      prevent = true;
+      navigateChattingRoom();
+    }
   }
 
   function onContextMenu(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const { clientX, clientY } = e;
-    e.preventDefault();
-    setPointerLocate({ clientX, clientY });
-    handleShowMenu();
+    if (!onFriendSelect) {
+      const { clientX, clientY } = e;
+      e.preventDefault();
+      setPointerLocate({ clientX, clientY });
+      handleShowMenu();
+    }
   }
 
   const hideFriend = useMutation({

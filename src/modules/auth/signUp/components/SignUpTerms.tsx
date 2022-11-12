@@ -1,8 +1,7 @@
+import CheckBox from "modules/common/components/CheckBox";
 import { useMemo } from "react";
 import { SIGN_UP_TERMS } from "../common/utils/signUpConstants";
 import {
-  SignUpTermsIcon,
-  SignUpTermsIconDiv,
   SignUpTermsPhrase,
   SignUpTermsTextDiv,
   SignUpTermsTitle,
@@ -37,10 +36,7 @@ function SignUpTerms({ termsIndexes, onTermClick }: SignUpTermsProps) {
               showBottomborder={index === 0}
               onClick={() => onTermClick(index)}
             >
-              <SignUpTermsIconDiv>
-                <SignUpTermsIcon isSelected={termsIndexes[index]} />
-              </SignUpTermsIconDiv>
-
+              <CheckBox isSelected={termsIndexes[index]} />
               <SignUpTermsTextDiv>
                 <SignUpTermsTitle>
                   {index > 1 && (required ? "[필수] " : "[선택] ")} {title}
