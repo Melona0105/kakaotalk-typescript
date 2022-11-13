@@ -1,19 +1,18 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import { RightClickMenuItemType } from "app/modules/common/components/RightClickMenu";
 import useNavigateChattingRoomByFriendId from "app/modules/common/hooks/useNavigateChattingRoom";
-import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import { PRIVATE_ROUTES } from "app/routes/utils/routename";
-import friendApis from "data/apis/friendApis";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useMatch, useNavigate } from "react-router-dom";
+import { useServiceContext } from "../../providers/ServiceProvider";
 
 function useFriendProfileThumbnail(
   friend_id: string,
   showManagementMenu: boolean,
   onFriendSelect?: (friendId: string) => void
 ) {
-  const { userProfile } = useProfileContext();
+  const { friendService } = useServiceContext();
   // 더블클릭을 감지하기위한 값입니다.
   let timer: any = 0;
   let delay = 200;
@@ -79,55 +78,55 @@ function useFriendProfileThumbnail(
   }
 
   const hideFriend = useMutation({
-    mutationFn: async () => await friendApis.hideFriend(friend_id),
+    mutationFn: async () => await friendService.hideFriend(friend_id),
     onSuccess: async () => {
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
       });
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS,
       });
     },
   });
 
   const blockFriend = useMutation({
-    mutationFn: async () => await friendApis.blockFriend(friend_id),
+    mutationFn: async () => await friendService.blockFriend(friend_id),
     onSuccess: async () => {
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
       });
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS,
       });
     },
   });
 
   const rollbackFriend = useMutation({
-    mutationFn: async () => await friendApis.rollbackFriend(friend_id),
+    mutationFn: async () => await friendService.rollbackFriend(friend_id),
     onSuccess: async () => {
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
       });
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS,
       });
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS,
       });
     },
   });
 
   const deleteFriend = useMutation({
-    mutationFn: async () => await friendApis.delteFriend(friend_id),
+    mutationFn: async () => await friendService.delteFriend(friend_id),
     onSuccess: async () => {
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
       });
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_HIDEEN_FRIENDS,
       });
       await client.refetchQueries({
-        queryKey: [QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS, userProfile?.id],
+        queryKey: QUERY_KEYS.FRIEND.GET_MY_BLOCKED_FRIENDS,
       });
     },
   });

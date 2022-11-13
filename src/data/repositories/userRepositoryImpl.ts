@@ -3,6 +3,7 @@ import UserAPIs from "data/apis/userAPI";
 import { User } from "domain/entities/userEntity";
 import { UserRepository } from "domain/repositories/userRepository";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { REPOSITORY_ERROR_MESSAGE } from "./utils/errorMessage";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -25,6 +26,16 @@ class UserRepositoryImpl implements UserRepository {
 
   private _onAuthStateChanged?: (user?: User) => void;
 
+  private getFriebaseToken = async (
+    firebaseUser?: FirebaseUser | null
+  ): Promise<string | undefined> => {
+    try {
+      return await firebaseUser?.getIdToken();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   onAuthStateChanged = (callback: (user?: User) => void) => {
     this._onAuthStateChanged = callback;
   };
@@ -34,23 +45,13 @@ class UserRepositoryImpl implements UserRepository {
       const firebaseToken = await this.getFriebaseToken(auth.currentUser);
 
       if (!firebaseToken) {
-        throw new Error("not found firebaseToken ");
+        throw new Error(REPOSITORY_ERROR_MESSAGE.TOKEN_NOT_FOUND);
       }
 
       const profile = await this.userAPIs.getMyUserProfile(firebaseToken);
       const avatarURL = await this.getUserAvatar(profile.id);
 
       return { ...profile, avatarURL };
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  private getFriebaseToken = async (
-    firebaseUser?: FirebaseUser | null
-  ): Promise<string | undefined> => {
-    try {
-      return await firebaseUser?.getIdToken();
     } catch (err) {
       console.log(err);
     }
@@ -65,7 +66,7 @@ class UserRepositoryImpl implements UserRepository {
       );
 
       if (!firebaseUser) {
-        throw new Error("not found firebaseUser");
+        throw new Error(REPOSITORY_ERROR_MESSAGE.FIREBASE_USER_NOT_FOUND);
       }
 
       const user = await this.getMyUserProfile();
@@ -90,12 +91,12 @@ class UserRepositoryImpl implements UserRepository {
       );
 
       if (!firebaseUser) {
-        throw new Error("not found firebaseUser");
+        throw new Error(REPOSITORY_ERROR_MESSAGE.FIREBASE_USER_NOT_FOUND);
       }
       const firebaseToken = await this.getFriebaseToken(firebaseUser);
 
       if (!firebaseToken) {
-        throw new Error("not found firebaseToken ");
+        throw new Error(REPOSITORY_ERROR_MESSAGE.TOKEN_NOT_FOUND);
       }
 
       await this.userAPIs.signUp(firebaseToken, email, username, termsIndexes);
@@ -132,7 +133,7 @@ class UserRepositoryImpl implements UserRepository {
       const firebaseToken = await this.getFriebaseToken(auth.currentUser!);
 
       if (!firebaseToken) {
-        throw new Error("not found firebaseToken ");
+        throw new Error(REPOSITORY_ERROR_MESSAGE.TOKEN_NOT_FOUND);
       }
 
       await this.userAPIs.updateMyUserProfile(firebaseToken, username, summary);
