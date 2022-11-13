@@ -98,7 +98,7 @@ export const PRIVATE_ROUTES: RoutesType = {
     element: <Outlet />,
     children: [
       {
-        path: ":room_id",
+        path: ":roomId",
         element: <ChattingRoomContainer />,
       },
     ],

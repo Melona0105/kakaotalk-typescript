@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 interface MessageType {
   sender_id?: string;
   text: string;
-  roomId?: string;
+  room_id?: string;
 }
 
 function useChattingRoomFooter() {
@@ -41,9 +41,8 @@ function useChattingRoomFooter() {
       const message: MessageType = {
         sender_id: userProfile?.id,
         text: text,
-        roomId: roomId,
+        room_id: roomId,
       };
-
       socket.emit("message", message);
       socket.on("message_send", () => {
         console.log("데이터 전송 완료");

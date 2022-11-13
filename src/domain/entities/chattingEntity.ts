@@ -1,7 +1,7 @@
 export interface Chatting {
   id: number;
   roomId: number;
-  userId?: string;
+  senderId?: string;
   username?: string;
   text: string;
   avatarURL?: string;

@@ -1,11 +1,12 @@
 import useEscapeShortcut from "app/modules/common/hooks/useEscapeShortcut";
 import { PRIVATE_ROUTES } from "app/routes/utils/routename";
-import chattingRoomApis from "data/apis/chattingRoomApis";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useServiceContext } from "../common/providers/ServiceProvider";
 
 function useCreateChattingContainer() {
+  const { chattingRoomService } = useServiceContext();
   const navigate = useNavigate();
   const [selectedFriendId, setSelectedFriendId] = useState<string>("");
   useEscapeShortcut();
@@ -16,10 +17,10 @@ function useCreateChattingContainer() {
 
   const { refetch } = useQuery({
     queryFn: async () =>
-      await chattingRoomApis.getChattingRoom(selectedFriendId),
+      await chattingRoomService.getChattingRoom(selectedFriendId),
     enabled: false,
-    onSuccess: ({ roomId }) =>
-      navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${roomId}`, {
+    onSuccess: ({ id }) =>
+      navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${id}`, {
         replace: true,
       }),
   });

@@ -1,56 +1,51 @@
+import { AxiosInstance } from "axios";
 import { Chatting } from "domain/entities/chattingEntity";
+import { ChattingRoom } from "domain/entities/chattingRoomRntity";
 import { User } from "domain/entities/userEntity";
-import axiosInstance from "./axios";
 
 const CHATTING_ROOM_BASE_URL = "/room";
 
-const chattingRoomApis = {
-  // 선택한 친구와의 채팅방을 찾고, 없으면 생성한 뒤, roomId를 리턴합니다.
-  getChattingRoom: async (friendId: string) => {
-    const { data } = await axiosInstance<Chatting>({
+class ChattingRoomAPIs {
+  constructor(private readonly httpClient: AxiosInstance) {}
+  getChattingRoom = async (token: string, friendId: string) => {
+    const { data } = await this.httpClient<ChattingRoom>({
       method: "GET",
       url: `${CHATTING_ROOM_BASE_URL}/${friendId}`,
+      headers: { authorization: token },
     });
+
     return data;
-  },
+  };
 
   // 채팅방 정보(기존채팅 및 유저정보)를 가져옵니다.
-  getChattingRoomInfo: async (roomId: string) => {
-    const { data } = await axiosInstance<User>({
+  getChattingRoomInfo = async (token: string, roomId: string) => {
+    const { data } = await this.httpClient<User>({
       method: "GET",
       url: `${CHATTING_ROOM_BASE_URL}/get_room_info/${roomId}`,
+      headers: { authorization: token },
     });
-
-    // TODO: 유저API통합
-    // const avatarURL = await userApis.getUserAvatar(data.id);
     return data;
-    // return { ...data, avatarURL };
-  },
+  };
 
   // 나의 채팅방들을 쿼리합니다.
-  getMyChattingRooms: async () => {
-    const { data } = await axiosInstance<Chatting[]>({
+  getMyChattingRooms = async (token: string) => {
+    const { data } = await this.httpClient<Chatting[]>({
       method: "GET",
       url: CHATTING_ROOM_BASE_URL,
+      headers: { authorization: token },
     });
 
-    const result = [...data].map(async (room) => {
-      // const avatarURL = await userApis.getUserAvatar(room.user_id!);
+    return data;
+  };
 
-      return data;
-      // return { ...room, avatarURL };
-    });
-
-    return Promise.all(result);
-  },
-
-  leaveChattingRoom: async (roomId: string | number) => {
-    await axiosInstance({
+  leaveChattingRoom = async (token: string, roomId: string | number) => {
+    await this.httpClient({
       method: "POST",
       url: CHATTING_ROOM_BASE_URL + "/leave",
       data: { roomId: roomId },
+      headers: { authorization: token },
     });
-  },
-};
+  };
+}
 
-export default chattingRoomApis;
+export default ChattingRoomAPIs;

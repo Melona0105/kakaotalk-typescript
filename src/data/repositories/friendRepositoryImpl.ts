@@ -45,10 +45,8 @@ class FriendRepositoryImpl implements FriendRepository {
       } catch (err) {
         // console.log(err);
       }
-
       return { ...friend, avatarURL };
     });
-
     return Promise.all(myFriends);
   };
 

@@ -15,7 +15,7 @@ export function getSortedChattings(
   return chattings.reduce((acc: SortedChattingType[], cur) => {
     const now = acc[acc.length - 1];
     // 이름이 같은지 확인
-    if (now?.userId === cur.userId) {
+    if (now?.senderId === cur.senderId) {
       // 이름이 같다면, 시간이 같은지 확인한다.
       // 시간이 같다면 그냥 넘어가고,
       // 다르면 데이터에 넣어줘야함

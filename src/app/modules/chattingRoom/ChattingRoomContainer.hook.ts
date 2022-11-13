@@ -1,11 +1,12 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import useEscapeShortcut from "app/modules/common/hooks/useEscapeShortcut";
 import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
-import chattingRoomApis from "data/apis/chattingRoomApis";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { useServiceContext } from "../common/providers/ServiceProvider";
 
 function useChattingRoomContainer() {
+  const { chattingRoomService } = useServiceContext();
   const { userProfile } = useProfileContext();
   const { roomId } = useParams();
   useEscapeShortcut();
@@ -17,7 +18,7 @@ function useChattingRoomContainer() {
       roomId,
       userProfile?.id,
     ],
-    queryFn: async () => await chattingRoomApis.getChattingRoomInfo(roomId!),
+    queryFn: async () => await chattingRoomService.getChattingRoomInfo(roomId!),
   });
 
   return {

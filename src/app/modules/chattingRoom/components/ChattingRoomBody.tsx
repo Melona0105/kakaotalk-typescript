@@ -18,7 +18,7 @@ function ChattingRoomBody({ userData }: { userData?: User }) {
   return (
     <ChattingRoomBodyWrapper>
       {getSortedChattings(data)?.map((chat) => {
-        if (chat.userId === userProfile?.id) {
+        if (chat.senderId === userProfile?.id) {
           return <MyChat key={chat.id} chat={chat} />;
         } else {
           return (
