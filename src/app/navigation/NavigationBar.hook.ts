@@ -1,5 +1,5 @@
 import { RightClickMenuItemType } from "app/modules/common/components/RightClickMenu";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
 import { PRIVATE_ROUTES } from "app/routes/utils/routename";
 import chatActive from "assets/icons/chat_active.png";
 import chatInactive from "assets/icons/chat_inactive.png";
@@ -20,7 +20,7 @@ interface NavigationMenu {
 }
 
 function useNavigationBar() {
-  const { userService } = useAuthContext();
+  const { userService } = useServiceContext();
 
   const isHomePath = !!useMatch({ path: PRIVATE_ROUTES.HOME.path });
   const isChattingPath = !!useMatch({ path: PRIVATE_ROUTES.CHATTING.path });

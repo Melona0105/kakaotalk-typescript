@@ -1,12 +1,12 @@
 import FriendProfileThumbnail from "app/modules/common/components/thumbnail/FriendProfileThumbnail";
-import { FriendType } from "domain/interfaces/apiInterface";
+import { Friend } from "domain/entities/friendEntity";
 import {
   ManagementFriendsEmptyText,
   ManagementFriendsWrapper,
 } from "./ManagementFriends.style";
 
 interface ManagementFriendsProps {
-  friends?: FriendType[];
+  friends?: Friend[];
 }
 
 function ManagementFriends({ friends }: ManagementFriendsProps) {

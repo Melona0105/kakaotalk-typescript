@@ -1,4 +1,4 @@
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import Melon from "app/modules/home/common/components/Melon";
 import defaultImage from "assets/images/friend_default_image.png";
 import useHomeMyProfileThumbnail from "./HomeMyProfileThumbnail.hook";
@@ -13,7 +13,7 @@ import {
  * 친구목록중, 내 프로필 컴포넌트입니다.
  */
 function HomeMyProfileThumbnail() {
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   const { operations } = useHomeMyProfileThumbnail();
   const { onProfileCardPress } = operations;
 

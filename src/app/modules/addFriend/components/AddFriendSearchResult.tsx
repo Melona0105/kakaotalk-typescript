@@ -1,7 +1,7 @@
 import Button from "app/modules/common/components/Button";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import defaultImage from "assets/images/friend_default_image.png";
-import { FriendType } from "domain/interfaces/apiInterface";
+import { Friend } from "domain/entities/friendEntity";
 import { useTheme } from "styled-components";
 import useAddFriendSearchResult from "./AddFriendSearchResult.hook";
 import {
@@ -11,12 +11,12 @@ import {
 } from "./AddFriendSearchResult.style";
 
 interface AddFriendSearchResultProps {
-  data?: FriendType;
+  data?: Friend;
 }
 
 function AddFriendSearchResult({ data }: AddFriendSearchResultProps) {
   const theme = useTheme();
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   const { operations } = useAddFriendSearchResult();
   const { onAddFriendClick } = operations;
 

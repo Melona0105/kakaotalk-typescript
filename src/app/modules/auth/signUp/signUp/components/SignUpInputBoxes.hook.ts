@@ -1,4 +1,4 @@
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
 import { FirebaseError } from "firebase/app";
 import { useReducer } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -25,7 +25,7 @@ const INITIAL_STATE: SignUpInputStateType = {
  * 회원가입 인풋에서 필요한 state와 함수들을 관리하는 훅입니다.
  */
 function useSignUpInputBoxes() {
-  const { userService } = useAuthContext();
+  const { userService } = useServiceContext();
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(signUpInputReducer, INITIAL_STATE);
 

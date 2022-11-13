@@ -1,13 +1,13 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import useEscapeShortcut from "app/modules/common/hooks/useEscapeShortcut";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import { PRIVATE_ROUTES } from "app/routes/utils/routename";
 import friendApis from "data/apis/friendApis";
 import { useQuery } from "react-query";
 import { useMatch } from "react-router-dom";
 
 function useManagementFriendContainer() {
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   useEscapeShortcut();
 
   const HIDDEN_FRIEND_PATH =

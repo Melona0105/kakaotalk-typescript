@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { User } from "domain/entities/user";
+import { User } from "domain/entities/userEntity";
 
 const USER_BASE_URL = "/user";
 

@@ -1,4 +1,4 @@
-import { User } from "domain/entities/user";
+import { User } from "domain/entities/userEntity";
 import { UserRepository } from "domain/repositories/userRepository";
 
 class UserService {
@@ -30,7 +30,11 @@ class UserService {
   };
 
   getUserAvatar = async (userId: string): Promise<string | undefined> => {
-    return await this.getUserAvatar(userId);
+    return await this.userRepository.getUserAvatar(userId);
+  };
+
+  getMyUserProfile = async (): Promise<User | undefined> => {
+    return await this.userRepository.getMyUserProfile();
   };
 
   updateMyUserProfile = async (
@@ -38,7 +42,7 @@ class UserService {
     summary?: string,
     file?: File
   ) => {
-    await this.updateMyUserProfile(username, summary, file);
+    await this.userRepository.updateMyUserProfile(username, summary, file);
   };
 }
 

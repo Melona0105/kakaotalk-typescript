@@ -1,10 +1,10 @@
 import FriendProfileThumbnail from "app/modules/common/components/thumbnail/FriendProfileThumbnail";
-import { UserType } from "app/modules/common/providers/authProvider.interface";
+import { User } from "domain/entities/userEntity";
 import { HomeBirthdayFriendsWrapper } from "./HomeBirthdayFriends.style";
 import HomeToggleBox from "./ToggleBox/HomeToggleBox";
 
 interface HomeBirthdayFriendsProps {
-  birthdayFirends: UserType[];
+  birthdayFirends: User[];
 }
 
 function BirthdayFriends({ birthdayFirends }: HomeBirthdayFriendsProps) {

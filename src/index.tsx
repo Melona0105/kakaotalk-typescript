@@ -1,3 +1,4 @@
+import ServiceProvider from "app/modules/common/providers/ServiceProvider";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Modal from "react-modal";
@@ -5,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import App from "./app/App";
-import AuthProvider from "./app/modules/common/providers/AuthProvider";
+import ProfileProvider from "./app/modules/common/providers/ProfileProvider";
 import { THEME } from "./app/utils/theme/theme";
 import "./index.css";
 
@@ -28,9 +29,11 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ThemeProvider theme={THEME}>
-          <AuthProvider>
-            <App />
-          </AuthProvider>
+          <ServiceProvider>
+            <ProfileProvider>
+              <App />
+            </ProfileProvider>
+          </ServiceProvider>
         </ThemeProvider>
       </BrowserRouter>
     </QueryClientProvider>

@@ -1,6 +1,6 @@
 import { auth, storage } from "app/libs/firebase/firebaseAuth";
 import UserAPIs from "data/apis/userAPI";
-import { User } from "domain/entities/user";
+import { User } from "domain/entities/userEntity";
 import { UserRepository } from "domain/repositories/userRepository";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import {
@@ -13,9 +13,9 @@ import {
 
 class UserRepositoryImpl implements UserRepository {
   constructor(private readonly userAPIs: UserAPIs) {
-    auth.onAuthStateChanged(async (firebaseUser) => {
-      if (firebaseUser) {
-        const user = await this.getUserWithFirebaseUser(firebaseUser);
+    auth.onAuthStateChanged(async () => {
+      if (auth.currentUser) {
+        const user = await this.getMyUserProfile();
         this._onAuthStateChanged?.(user);
       } else {
         this._onAuthStateChanged?.(undefined);
@@ -29,9 +29,9 @@ class UserRepositoryImpl implements UserRepository {
     this._onAuthStateChanged = callback;
   };
 
-  private getUserWithFirebaseUser = async (firebaseUser: FirebaseUser) => {
+  getMyUserProfile = async (): Promise<User | undefined> => {
     try {
-      const firebaseToken = await this.getFriebaseToken(firebaseUser);
+      const firebaseToken = await this.getFriebaseToken(auth.currentUser);
 
       if (!firebaseToken) {
         throw new Error("not found firebaseToken ");
@@ -47,10 +47,10 @@ class UserRepositoryImpl implements UserRepository {
   };
 
   private getFriebaseToken = async (
-    firebaseUser: FirebaseUser
+    firebaseUser?: FirebaseUser | null
   ): Promise<string | undefined> => {
     try {
-      return await firebaseUser.getIdToken();
+      return await firebaseUser?.getIdToken();
     } catch (err) {
       console.log(err);
     }
@@ -68,7 +68,7 @@ class UserRepositoryImpl implements UserRepository {
         throw new Error("not found firebaseUser");
       }
 
-      const user = await this.getUserWithFirebaseUser(firebaseUser);
+      const user = await this.getMyUserProfile();
       this._onAuthStateChanged?.(user);
       return user;
     } catch (err) {
@@ -99,7 +99,7 @@ class UserRepositoryImpl implements UserRepository {
       }
 
       await this.userAPIs.signUp(firebaseToken, email, username, termsIndexes);
-      const user = await this.getUserWithFirebaseUser(firebaseUser);
+      const user = await this.getMyUserProfile();
       this._onAuthStateChanged?.(user);
       return user;
     } catch (err) {
@@ -150,11 +150,9 @@ class UserRepositoryImpl implements UserRepository {
       const avatarURL = await getDownloadURL(ref(storage, userId));
       if (avatarURL) {
         return avatarURL;
-      } else {
-        return "adsf";
       }
     } catch (err) {
-      console.log(err);
+      return;
     }
   };
 }

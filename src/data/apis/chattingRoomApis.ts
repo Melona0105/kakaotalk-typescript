@@ -1,4 +1,4 @@
-import { UserType } from "app/modules/common/providers/authProvider.interface";
+import { User } from "domain/entities/userEntity";
 import { ChattingRoomType } from "domain/interfaces/apiInterface";
 import axiosInstance from "./axios";
 
@@ -16,7 +16,7 @@ const chattingRoomApis = {
 
   // 채팅방 정보(기존채팅 및 유저정보)를 가져옵니다.
   getChattingRoomInfo: async (room_id: string) => {
-    const { data } = await axiosInstance<UserType>({
+    const { data } = await axiosInstance<User>({
       method: "GET",
       url: `${CHATTING_ROOM_BASE_URL}/get_room_info/${room_id}`,
     });

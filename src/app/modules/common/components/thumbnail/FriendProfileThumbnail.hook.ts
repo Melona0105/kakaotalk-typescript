@@ -1,7 +1,7 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import { RightClickMenuItemType } from "app/modules/common/components/RightClickMenu";
 import useNavigateChattingRoomByFriendId from "app/modules/common/hooks/useNavigateChattingRoom";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import { PRIVATE_ROUTES } from "app/routes/utils/routename";
 import friendApis from "data/apis/friendApis";
 import { useState } from "react";
@@ -13,7 +13,7 @@ function useFriendProfileThumbnail(
   showManagementMenu: boolean,
   onFriendSelect?: (friendId: string) => void
 ) {
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   // 더블클릭을 감지하기위한 값입니다.
   let timer: any = 0;
   let delay = 200;

@@ -1,13 +1,13 @@
 import useCustomNavigation from "app/modules/common/hooks/useCustromNavigation";
-import { UserType } from "app/modules/common/providers/authProvider.interface";
 import goBackIcon from "assets/icons/chatting_goback.png";
 import menu from "assets/icons/chatting_menu.png";
+import { User } from "domain/entities/userEntity";
 import {
   ChattingRoomHeaderIcon,
   ChattingRoomHeaderWrapper,
 } from "./ChattingRoomHeader.style";
 
-function ChattingRoomHeader({ userData }: { userData?: UserType }) {
+function ChattingRoomHeader({ userData }: { userData?: User }) {
   const { goBack } = useCustomNavigation();
 
   return (

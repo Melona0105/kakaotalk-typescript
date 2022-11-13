@@ -1,10 +1,11 @@
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
 import { FirebaseError } from "firebase/app";
 import { ChangeEvent, KeyboardEvent, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import signInInputReducer from "./SignInInputBoxes.reducer";
 import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
 import { FIREBASE_ERROR_CODE } from "../../../common/utils/authConstatnts";
+
 import {
   SignInInputStateType,
   SIGN_IN_INPUT_ACTION_TYPE,
@@ -20,7 +21,7 @@ const INITIAL_STATE: SignInInputStateType = {
  * 로그인 인풋의 상태와 함수를 관리하는 훅입니다.
  */
 function useSignInInputBoxes() {
-  const { userService } = useAuthContext();
+  const { userService } = useServiceContext();
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(signInInputReducer, INITIAL_STATE);
 

@@ -1,17 +1,6 @@
 /**
  * @deprecated
  */
-export interface FriendType {
-  id: string;
-  email: string;
-  username: string;
-  avatarURL?: string;
-  isFriend: boolean;
-  summary?: string;
-}
-/**
- * @deprecated
- */
 export interface ChattingRoomType {
   room_id: number;
   user_id?: string;

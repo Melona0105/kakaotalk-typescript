@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "./utils/routename";
-import { useAuthContext } from "../modules/common/providers/AuthProvider";
+import { useProfileContext } from "../modules/common/providers/ProfileProvider";
 
 function RouteContainer() {
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   const ROUTES = userProfile ? PRIVATE_ROUTES : PUBLIC_ROUTES;
 
   return (

@@ -1,12 +1,12 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import useEscapeShortcut from "app/modules/common/hooks/useEscapeShortcut";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import chattingRoomApis from "data/apis/chattingRoomApis";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 function useChattingRoomContainer() {
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   const { room_id } = useParams();
   useEscapeShortcut();
 

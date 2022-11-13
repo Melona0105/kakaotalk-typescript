@@ -1,6 +1,7 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import useEscapeShortcut from "app/modules/common/hooks/useEscapeShortcut";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
+import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
 import imageCompression from "browser-image-compression";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
@@ -8,7 +9,8 @@ import { MyProfileCardStateType } from "./MyProfileCardContainer.interface";
 
 function useMyProfileCardContainer() {
   const client = useQueryClient();
-  const { userProfile, userService } = useAuthContext();
+  const { userProfile } = useProfileContext();
+  const { userService } = useServiceContext();
   useEscapeShortcut();
   const [state, setState] = useState<MyProfileCardStateType>({
     username: userProfile?.username,
@@ -37,9 +39,8 @@ function useMyProfileCardContainer() {
       await userService.updateMyUserProfile(username, summary, compressedFile);
     },
     onSuccess: () => {
-      client.refetchQueries({
-        queryKey: [QUERY_KEYS.PROFILE.GET_MY_USER_PROFILE],
-      });
+      client.refetchQueries(QUERY_KEYS.PROFILE.GET_MY_USER_PROFILE);
+
       setIsEditMode(false);
     },
     onError: (err) => console.log(err),

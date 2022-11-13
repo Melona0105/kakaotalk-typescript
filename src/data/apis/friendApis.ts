@@ -1,12 +1,13 @@
-import { FriendType } from "domain/interfaces/apiInterface";
+import { Friend } from "domain/entities/friendEntity";
 import axiosInstance from "./axios";
+
 
 const FRIEND_BASE_URL = "/friend";
 
 const friendApis = {
   // TODO: 이후 avarar URL 자체를 url로 보관할 수 있는방법 찾아보기 -> n 한번 줄일 수 있을 듯 함
   getMyFriends: async () => {
-    const { data } = await axiosInstance<FriendType[]>({
+    const { data } = await axiosInstance<Friend[]>({
       method: "GET",
       url: `${FRIEND_BASE_URL}`,
     });
@@ -25,7 +26,7 @@ const friendApis = {
   },
 
   searchFriend: async (email: string) => {
-    const { data } = await axiosInstance<FriendType>({
+    const { data } = await axiosInstance<Friend>({
       method: "GET",
       url: `${FRIEND_BASE_URL}/${email}`,
     });
@@ -36,7 +37,7 @@ const friendApis = {
     //   console.log(err);
     // }
 
-    const result: FriendType = {
+    const result: Friend = {
       ...data,
       avatarURL,
     };
@@ -57,7 +58,7 @@ const friendApis = {
     //   console.log(err);
     // }
 
-    const result: FriendType = {
+    const result: Friend = {
       ...data,
       avatarURL,
     };
@@ -97,8 +98,8 @@ const friendApis = {
     });
   },
 
-  getMyHiddenFriends: async (): Promise<FriendType[]> => {
-    const { data } = await axiosInstance<FriendType[]>({
+  getMyHiddenFriends: async (): Promise<Friend[]> => {
+    const { data } = await axiosInstance<Friend[]>({
       method: "GET",
       url: `${FRIEND_BASE_URL}/hide`,
     });
@@ -114,8 +115,8 @@ const friendApis = {
     });
     return Promise.all(myFriends);
   },
-  getMyBlockedFriends: async (): Promise<FriendType[]> => {
-    const { data } = await axiosInstance<FriendType[]>({
+  getMyBlockedFriends: async (): Promise<Friend[]> => {
+    const { data } = await axiosInstance<Friend[]>({
       method: "GET",
       url: `${FRIEND_BASE_URL}/block`,
     });

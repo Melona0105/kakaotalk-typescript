@@ -1,11 +1,11 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import friendApis from "data/apis/friendApis";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
 function useAddFriendSearchResult() {
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   const client = useQueryClient();
   // 업데이트 중에 버튼 상태를 비활성화하기위한 상태입니다.
   const [isUpdating, setIsUpdating] = useState(false);

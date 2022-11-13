@@ -1,14 +1,14 @@
 import Loading from "app/modules/common/components/Loading";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
-import { UserType } from "app/modules/common/providers/authProvider.interface";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
+import { User } from "domain/entities/userEntity";
 import FriendChat from "./chat/FriendChat";
 import MyChat from "./chat/MyChat";
 import useChattingRoomBody from "./ChattingRoomBody.hook";
 import { ChattingRoomBodyWrapper } from "./ChattingRoomBody.style";
 import { getSortedChattings } from "../utils/getSortedChattings";
 
-function ChattingRoomBody({ userData }: { userData?: UserType }) {
-  const { userProfile } = useAuthContext();
+function ChattingRoomBody({ userData }: { userData?: User }) {
+  const { userProfile } = useProfileContext();
   const { models } = useChattingRoomBody();
   const { data, isLoading, isError } = models;
 

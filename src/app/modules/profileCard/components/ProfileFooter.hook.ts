@@ -1,5 +1,5 @@
 import useNavigateChattingRoomByFriendId from "app/modules/common/hooks/useNavigateChattingRoom";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import chatIcon from "assets/icons/profile_chat.png";
 import editIcon from "assets/icons/profile_edit.png";
 import { useParams } from "react-router-dom";
@@ -15,7 +15,7 @@ function useProfileFooter(
   isMyProfile: boolean,
   onEditProfilePress?: () => void
 ) {
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   const { friend_id } = useParams();
   const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friend_id!);
 

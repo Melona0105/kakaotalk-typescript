@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import socket from "app/libs/webSocket/webSocket.config";
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useProfileContext } from "app/modules/common/providers/ProfileProvider";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
@@ -18,7 +18,7 @@ function useChattingRoomFooter() {
   const client = useQueryClient();
   // 데이터 페칭을 관리하는함수입니다.
   const [submiting, setSubmiting] = useState<boolean>(false);
-  const { userProfile } = useAuthContext();
+  const { userProfile } = useProfileContext();
   const { room_id } = useParams();
   const [text, setText] = useState<string>("");
 

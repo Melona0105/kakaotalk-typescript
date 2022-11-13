@@ -1,8 +1,9 @@
-import { useAuthContext } from "app/modules/common/providers/AuthProvider";
+import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
 import { PUBLIC_ROUTES } from "app/routes/utils/routename";
 import { ChangeEvent, KeyboardEvent, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import resetPasswordReducer from "./ResetPasswordContainer.reducer";
+
 import {
   ResetPasswordStateType,
   RESET_PASSWORD_ACTION_TYPE,
@@ -14,7 +15,7 @@ const INITIAL_STATE: ResetPasswordStateType = {
 };
 
 function useResetPasswordContainer() {
-  const { userService } = useAuthContext();
+  const { userService } = useServiceContext();
   const navigate = useNavigate();
   // 이메일 전송중인지 여부를 관리합니다.
   const [isSending, setIsSending] = useState(false);

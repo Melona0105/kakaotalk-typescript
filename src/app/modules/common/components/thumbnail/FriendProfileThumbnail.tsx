@@ -4,7 +4,7 @@ import { FlexDiv } from "app/modules/common/styles/commonStyles";
 import Melon from "app/modules/home/common/components/Melon";
 import birthdayDefaultImage from "assets/images/friend_birthday_default_image.png";
 import defaultImage from "assets/images/friend_default_image.png";
-import { FriendType } from "domain/interfaces/apiInterface";
+import { Friend } from "domain/entities/friendEntity";
 import { useMemo } from "react";
 import useFriendProfileThumbnail from "./FriendProfileThumbnail.hook";
 import CheckBox from "../CheckBox";
@@ -16,7 +16,7 @@ import {
 } from "./FriendProfileThumbnail.style";
 
 interface FriendProfileThumbnailProps {
-  friend?: FriendType;
+  friend?: Friend;
   birthdayFirends?: any[];
   selected?: boolean;
   showManagementMenu?: boolean;

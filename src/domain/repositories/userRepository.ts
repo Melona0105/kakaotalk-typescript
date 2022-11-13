@@ -1,4 +1,4 @@
-import { User } from "domain/entities/user";
+import { User } from "domain/entities/userEntity";
 
 export interface UserRepository {
   onAuthStateChanged(callback: (user?: User) => void): void;
@@ -16,5 +16,6 @@ export interface UserRepository {
     summary?: string,
     file?: File
   ): Promise<void>;
+  getMyUserProfile(auth?: any): Promise<User | undefined>;
   getUserAvatar(userId: string): Promise<string | undefined>;
 }
