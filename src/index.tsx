@@ -4,10 +4,10 @@ import Modal from "react-modal";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import App from "./App";
+import App from "./app/App";
+import AuthProvider from "./app/modules/common/providers/AuthProvider";
+import { THEME } from "./app/utils/theme/theme";
 import "./index.css";
-import AuthProvider from "./modules/common/providers/AuthProvider";
-import { THEME } from "./utils/theme/theme";
 
 const queryClient = new QueryClient({
   defaultOptions: {
