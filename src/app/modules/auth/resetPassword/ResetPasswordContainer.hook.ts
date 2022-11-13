@@ -1,4 +1,4 @@
-import { sendResetPasswordEmail } from "app/libs/firebase/firebaseAuth";
+import { useAuthContext } from "app/modules/common/providers/AuthProvider";
 import { PUBLIC_ROUTES } from "app/routes/utils/routename";
 import { ChangeEvent, KeyboardEvent, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ const INITIAL_STATE: ResetPasswordStateType = {
 };
 
 function useResetPasswordContainer() {
+  const { userService } = useAuthContext();
   const navigate = useNavigate();
   // 이메일 전송중인지 여부를 관리합니다.
   const [isSending, setIsSending] = useState(false);
@@ -57,7 +58,7 @@ function useResetPasswordContainer() {
     if (!getButtonDisabled() && !isSending) {
       try {
         setIsSending(true);
-        await sendResetPasswordEmail(state.email);
+        await userService.sendResetPasswordEmail(state.email);
         setIsCompleted(true);
       } catch (err) {
         console.log(err);

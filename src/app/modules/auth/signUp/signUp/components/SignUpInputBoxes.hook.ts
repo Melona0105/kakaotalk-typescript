@@ -1,4 +1,4 @@
-import userApis from "data/apis/userApis";
+import { useAuthContext } from "app/modules/common/providers/AuthProvider";
 import { FirebaseError } from "firebase/app";
 import { useReducer } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -25,6 +25,7 @@ const INITIAL_STATE: SignUpInputStateType = {
  * 회원가입 인풋에서 필요한 state와 함수들을 관리하는 훅입니다.
  */
 function useSignUpInputBoxes() {
+  const { userService } = useAuthContext();
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(signUpInputReducer, INITIAL_STATE);
 
@@ -64,7 +65,7 @@ function useSignUpInputBoxes() {
     if (!getButtonDisabled()) {
       const { email, password, username } = state;
       try {
-        await userApis.signUp({ email, password, username, termsIndexes });
+        await userService.signUp(email, password, username, termsIndexes);
         navigate(PRIVATE_ROUTES.HOME.path, { replace: true });
       } catch (err: unknown) {
         if (err instanceof FirebaseError) {

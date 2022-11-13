@@ -1,7 +1,6 @@
 import { UserType } from "app/modules/common/providers/authProvider.interface";
 import { ChattingRoomType } from "domain/interfaces/apiInterface";
 import axiosInstance from "./axios";
-import userApis from "./userApis";
 
 const CHATTING_ROOM_BASE_URL = "/room";
 
@@ -22,9 +21,10 @@ const chattingRoomApis = {
       url: `${CHATTING_ROOM_BASE_URL}/get_room_info/${room_id}`,
     });
 
-    const avatarURL = await userApis.getUserAvatar(data.id);
-
-    return { ...data, avatarURL };
+    // TODO: 유저API통합
+    // const avatarURL = await userApis.getUserAvatar(data.id);
+    return data;
+    // return { ...data, avatarURL };
   },
 
   // 나의 채팅방들을 쿼리합니다.
@@ -35,9 +35,10 @@ const chattingRoomApis = {
     });
 
     const result = [...data].map(async (room) => {
-      const avatarURL = await userApis.getUserAvatar(room.user_id!);
+      // const avatarURL = await userApis.getUserAvatar(room.user_id!);
 
-      return { ...room, avatarURL };
+      return data;
+      // return { ...room, avatarURL };
     });
 
     return Promise.all(result);

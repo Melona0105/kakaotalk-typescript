@@ -1,8 +1,8 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import axiosInstance from "data/apis/axios";
-import UserAPIs from "data/apis/user";
-import UserRepositoryImpl from "data/repositories/user";
-import UserService from "domain/services/user";
+import UserAPIs from "data/apis/userAPI";
+import UserRepositoryImpl from "data/repositories/userRepositoryImpl";
+import UserService from "domain/services/userService";
 import { useQueryClient } from "react-query";
 import Loading from "../components/Loading";
 import {

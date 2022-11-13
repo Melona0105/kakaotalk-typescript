@@ -1,12 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -18,41 +12,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
+export const storage = getStorage(app);
+
 export const auth = getAuth(app);
-
-// 회원가입
-export async function firebaseSignUp(email: string, password: string) {
-  await createUserWithEmailAndPassword(auth, email, password);
-}
-
-// 로그인
-/**
- * @deprecated
- */
-export async function firebaseSignIn(email: string, password: string) {
-  await signInWithEmailAndPassword(auth, email, password);
-}
-
-// 로그아웃
-export async function firebaseSignOut() {
-  await signOut(auth);
-}
-
-export async function getFirebaseToken() {
-  return await auth.currentUser?.getIdToken();
-}
-
-export async function sendResetPasswordEmail(email: string) {
-  await sendPasswordResetEmail(auth, email);
-}
-
-export async function uploadMyUserAvatar(file: File) {
-  const storageRef = ref(storage, auth.currentUser?.uid);
-  await uploadBytes(storageRef, file);
-}
-
-export async function getUserAvatar(uid: string) {
-  // TODO: firebase 에러 핸들링
-  return await getDownloadURL(ref(storage, uid));
-}
+(window as any).auth = auth;

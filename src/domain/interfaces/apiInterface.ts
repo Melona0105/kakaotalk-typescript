@@ -1,23 +1,6 @@
 /**
  * @deprecated
  */
-export interface CreateUserProfileApiInput {
-  email: string;
-  password: string;
-  username?: string;
-  termsIndexes?: JSON;
-}
-/**
- * @deprecated
- */
-export interface UpdateUserProfileApiInput {
-  username?: string;
-  summary?: string;
-  compressedFile?: File;
-}
-/**
- * @deprecated
- */
 export interface FriendType {
   id: string;
   email: string;

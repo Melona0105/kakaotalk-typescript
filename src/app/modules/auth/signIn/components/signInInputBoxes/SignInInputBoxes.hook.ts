@@ -1,5 +1,4 @@
 import { useAuthContext } from "app/modules/common/providers/AuthProvider";
-import userApis from "data/apis/userApis";
 import { FirebaseError } from "firebase/app";
 import { ChangeEvent, KeyboardEvent, useReducer } from "react";
 import { useNavigate } from "react-router-dom";

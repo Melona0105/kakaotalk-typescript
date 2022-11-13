@@ -1,5 +1,5 @@
 import { User } from "domain/entities/user";
-import UserService from "domain/services/user";
+import UserService from "domain/services/userService";
 
 export interface UserType {
   id: string;

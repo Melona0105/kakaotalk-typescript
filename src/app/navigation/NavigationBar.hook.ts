@@ -1,5 +1,5 @@
-import { firebaseSignOut } from "app/libs/firebase/firebaseAuth";
 import { RightClickMenuItemType } from "app/modules/common/components/RightClickMenu";
+import { useAuthContext } from "app/modules/common/providers/AuthProvider";
 import { PRIVATE_ROUTES } from "app/routes/utils/routename";
 import chatActive from "assets/icons/chat_active.png";
 import chatInactive from "assets/icons/chat_inactive.png";
@@ -20,6 +20,8 @@ interface NavigationMenu {
 }
 
 function useNavigationBar() {
+  const { userService } = useAuthContext();
+
   const isHomePath = !!useMatch({ path: PRIVATE_ROUTES.HOME.path });
   const isChattingPath = !!useMatch({ path: PRIVATE_ROUTES.CHATTING.path });
   const isViewMorePath = !!useMatch({ path: PRIVATE_ROUTES.VIEW_MORE.path });
@@ -71,7 +73,7 @@ function useNavigationBar() {
   }
 
   async function onSignOutClick() {
-    await firebaseSignOut();
+    await userService.signOut();
   }
 
   return {

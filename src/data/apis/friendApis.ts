@@ -1,4 +1,3 @@
-import { getUserAvatar } from "app/libs/firebase/firebaseAuth";
 import { FriendType } from "domain/interfaces/apiInterface";
 import axiosInstance from "./axios";
 
@@ -14,11 +13,11 @@ const friendApis = {
 
     const myFriends = [...data].map(async (friend) => {
       let avatarURL;
-      try {
-        avatarURL = await getUserAvatar(friend.id);
-      } catch (err) {
-        console.log(err);
-      }
+      // try {
+      //   avatarURL = await getUserAvatar(friend.id);
+      // } catch (err) {
+      //   console.log(err);
+      // }
 
       return { ...friend, avatarURL };
     });
@@ -31,11 +30,11 @@ const friendApis = {
       url: `${FRIEND_BASE_URL}/${email}`,
     });
     let avatarURL;
-    try {
-      avatarURL = await getUserAvatar(data.id);
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   avatarURL = await getUserAvatar(data.id);
+    // } catch (err) {
+    //   console.log(err);
+    // }
 
     const result: FriendType = {
       ...data,
@@ -52,11 +51,11 @@ const friendApis = {
     });
 
     let avatarURL;
-    try {
-      avatarURL = await getUserAvatar(data.id);
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   avatarURL = await getUserAvatar(data.id);
+    // } catch (err) {
+    //   console.log(err);
+    // }
 
     const result: FriendType = {
       ...data,
@@ -105,11 +104,11 @@ const friendApis = {
     });
     const myFriends = [...data].map(async (friend) => {
       let avatarURL;
-      try {
-        avatarURL = await getUserAvatar(friend.id);
-      } catch (err) {
-        console.log(err);
-      }
+      // try {
+      //   avatarURL = await getUserAvatar(friend.id);
+      // } catch (err) {
+      //   console.log(err);
+      // }
 
       return { ...friend, avatarURL };
     });
@@ -123,11 +122,11 @@ const friendApis = {
 
     const myFriends = [...data].map(async (friend) => {
       let avatarURL;
-      try {
-        avatarURL = await getUserAvatar(friend.id);
-      } catch (err) {
-        console.log(err);
-      }
+      // try {
+      //   avatarURL = await getUserAvatar(friend.id);
+      // } catch (err) {
+      //   console.log(err);
+      // }
 
       return { ...friend, avatarURL };
     });
