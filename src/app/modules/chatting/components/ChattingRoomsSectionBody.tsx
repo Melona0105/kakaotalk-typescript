@@ -31,7 +31,7 @@ function ChattingRoomsSectionBody({
       {data?.map(
         (room) =>
           room.text && (
-            <ChattingRoomThumbnail key={room.room_id} roomData={room} />
+            <ChattingRoomThumbnail key={room.roomId} roomData={room} />
           )
       )}
     </BodyWrapper>

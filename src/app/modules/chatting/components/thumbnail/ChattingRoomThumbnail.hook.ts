@@ -2,13 +2,13 @@ import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import { RightClickMenuItemType } from "app/modules/common/components/RightClickMenu";
 import useNavigateChattingRoomByFriendId from "app/modules/common/hooks/useNavigateChattingRoom";
 import chattingRoomApis from "data/apis/chattingRoomApis";
-import { ChattingRoomType } from "domain/interfaces/apiInterface";
+import { Chatting } from "domain/entities/chattingEntity";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
-function useChattingRoomThumbnail(roomData?: ChattingRoomType) {
+function useChattingRoomThumbnail(roomData?: Chatting) {
   const client = useQueryClient();
-  const { user_id, room_id } = roomData!;
+  const { userId: user_id, roomId } = roomData!;
 
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(user_id!);
@@ -19,7 +19,7 @@ function useChattingRoomThumbnail(roomData?: ChattingRoomType) {
   });
 
   const leaveChattingRoom = useMutation({
-    mutationFn: async () => await chattingRoomApis.leaveChattingRoom(room_id!),
+    mutationFn: async () => await chattingRoomApis.leaveChattingRoom(roomId!),
     onSuccess: async () =>
       await client.resetQueries({
         queryKey: QUERY_KEYS.CHATTING.GET_MY_CHATTING_ROOMS,

@@ -64,7 +64,7 @@ export const PRIVATE_ROUTES: RoutesType = {
         element: <MyProfileCardContainer />,
       },
       {
-        path: ":friend_id",
+        path: ":friendId",
         element: <FriendsProfileCardContainer />,
       },
     ],

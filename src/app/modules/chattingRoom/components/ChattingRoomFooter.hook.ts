@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 interface MessageType {
   sender_id?: string;
   text: string;
-  room_id?: string;
+  roomId?: string;
 }
 
 function useChattingRoomFooter() {
@@ -19,7 +19,7 @@ function useChattingRoomFooter() {
   // 데이터 페칭을 관리하는함수입니다.
   const [submiting, setSubmiting] = useState<boolean>(false);
   const { userProfile } = useProfileContext();
-  const { room_id } = useParams();
+  const { roomId } = useParams();
   const [text, setText] = useState<string>("");
 
   function onTextChange(e: ChangeEvent<HTMLInputElement>) {
@@ -41,7 +41,7 @@ function useChattingRoomFooter() {
       const message: MessageType = {
         sender_id: userProfile?.id,
         text: text,
-        room_id: room_id,
+        roomId: roomId,
       };
 
       socket.emit("message", message);
@@ -54,7 +54,7 @@ function useChattingRoomFooter() {
         setSubmiting(false);
       });
     }
-  }, [client, room_id, submiting, text, userProfile?.id]);
+  }, [client, roomId, submiting, text, userProfile?.id]);
 
   /**
    * 엔터키를 누를경우, 입력한 텍스트가 존재할경우에 텍스트를 전송합니다.

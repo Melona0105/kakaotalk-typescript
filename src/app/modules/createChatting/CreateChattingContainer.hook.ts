@@ -18,8 +18,8 @@ function useCreateChattingContainer() {
     queryFn: async () =>
       await chattingRoomApis.getChattingRoom(selectedFriendId),
     enabled: false,
-    onSuccess: ({ room_id }) =>
-      navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${room_id}`, {
+    onSuccess: ({ roomId }) =>
+      navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${roomId}`, {
         replace: true,
       }),
   });

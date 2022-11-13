@@ -1,9 +1,12 @@
 import { SERVER_URL } from "app/utils/config";
 import axios from "axios";
+import ChattingAPIs from "data/apis/chattingAPI";
 import FriendAPIs from "data/apis/friendAPI";
 import UserAPIs from "data/apis/userAPI";
+import ChattingRepositoryImpl from "data/repositories/chattingRepositoryImpl";
 import FriendRepositoryImpl from "data/repositories/friendRepositoryImpl";
 import UserRepositoryImpl from "data/repositories/userRepositoryImpl";
+import ChattingService from "domain/services/chattingService";
 import FriendService from "domain/services/friendService";
 import UserService from "domain/services/userService";
 import { createContext, ReactNode, useContext } from "react";
@@ -16,15 +19,25 @@ const userService = new UserService(
 const friendService = new FriendService(
   new FriendRepositoryImpl(new FriendAPIs(axiosInstance))
 );
+const chattingService = new ChattingService(
+  new ChattingRepositoryImpl(new ChattingAPIs(axiosInstance))
+);
 
 const ServiceContext = createContext({
   userService,
   friendService,
+  chattingService,
 });
 
 function ServiceProvider({ children }: { children: ReactNode }) {
   return (
-    <ServiceContext.Provider value={{ userService, friendService }}>
+    <ServiceContext.Provider
+      value={{
+        userService,
+        friendService,
+        chattingService,
+      }}
+    >
       {children}
     </ServiceContext.Provider>
   );

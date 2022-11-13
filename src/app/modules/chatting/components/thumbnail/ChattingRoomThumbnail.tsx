@@ -2,9 +2,10 @@ import Modal from "app/modules/common/components/Modal";
 import RightClickMenu from "app/modules/common/components/RightClickMenu";
 import getTimeStamp from "app/modules/common/utils/getChattingTimeStamp";
 import defaultImage from "assets/images/room_default_image.png";
-import { ChattingRoomType } from "domain/interfaces/apiInterface";
+import { Chatting } from "domain/entities/chattingEntity";
 import { useMemo } from "react";
 import useChattingRoomThumbnail from "./ChattingRoomThumbnail.hook";
+
 import {
   ChattingRoomThumbnailRightDiv,
   ChattingRoomThumbnailImage,
@@ -16,7 +17,7 @@ import {
 } from "./ChattingRoomThumbnail.style";
 
 interface ChattingRoomThumbnailProps {
-  roomData?: ChattingRoomType;
+  roomData?: Chatting;
 }
 
 function ChattingRoomThumbnail({ roomData }: ChattingRoomThumbnailProps) {

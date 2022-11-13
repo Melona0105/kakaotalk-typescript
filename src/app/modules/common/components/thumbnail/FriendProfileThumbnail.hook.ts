@@ -8,7 +8,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { useServiceContext } from "../../providers/ServiceProvider";
 
 function useFriendProfileThumbnail(
-  friend_id: string,
+  friendId: string,
   showManagementMenu: boolean,
   onFriendSelect?: (friendId: string) => void
 ) {
@@ -20,7 +20,7 @@ function useFriendProfileThumbnail(
 
   const navigate = useNavigate();
 
-  const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friend_id);
+  const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friendId);
 
   const HIDDEN_FRIEND_PATH =
     PRIVATE_ROUTES.SETTING.path +
@@ -48,12 +48,12 @@ function useFriendProfileThumbnail(
     if (!onFriendSelect) {
       timer = setTimeout(() => {
         if (!prevent) {
-          navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friend_id}`);
+          navigate(PRIVATE_ROUTES.PROFILE_CARD.path + `/${friendId}`);
         }
         prevent = false;
       }, delay);
     } else {
-      onFriendSelect(friend_id);
+      onFriendSelect(friendId);
     }
   }
 
@@ -78,7 +78,7 @@ function useFriendProfileThumbnail(
   }
 
   const hideFriend = useMutation({
-    mutationFn: async () => await friendService.hideFriend(friend_id),
+    mutationFn: async () => await friendService.hideFriend(friendId),
     onSuccess: async () => {
       await client.refetchQueries({
         queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
@@ -90,7 +90,7 @@ function useFriendProfileThumbnail(
   });
 
   const blockFriend = useMutation({
-    mutationFn: async () => await friendService.blockFriend(friend_id),
+    mutationFn: async () => await friendService.blockFriend(friendId),
     onSuccess: async () => {
       await client.refetchQueries({
         queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
@@ -102,7 +102,7 @@ function useFriendProfileThumbnail(
   });
 
   const rollbackFriend = useMutation({
-    mutationFn: async () => await friendService.rollbackFriend(friend_id),
+    mutationFn: async () => await friendService.rollbackFriend(friendId),
     onSuccess: async () => {
       await client.refetchQueries({
         queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,
@@ -117,7 +117,7 @@ function useFriendProfileThumbnail(
   });
 
   const deleteFriend = useMutation({
-    mutationFn: async () => await friendService.delteFriend(friend_id),
+    mutationFn: async () => await friendService.delteFriend(friendId),
     onSuccess: async () => {
       await client.refetchQueries({
         queryKey: QUERY_KEYS.FRIEND.GET_MY_FRIENDS,

@@ -1,24 +1,24 @@
+import { Chatting } from "domain/entities/chattingEntity";
 import { User } from "domain/entities/userEntity";
-import { ChattingRoomType } from "domain/interfaces/apiInterface";
 import axiosInstance from "./axios";
 
 const CHATTING_ROOM_BASE_URL = "/room";
 
 const chattingRoomApis = {
   // 선택한 친구와의 채팅방을 찾고, 없으면 생성한 뒤, roomId를 리턴합니다.
-  getChattingRoom: async (friend_id: string) => {
-    const { data } = await axiosInstance<ChattingRoomType>({
+  getChattingRoom: async (friendId: string) => {
+    const { data } = await axiosInstance<Chatting>({
       method: "GET",
-      url: `${CHATTING_ROOM_BASE_URL}/${friend_id}`,
+      url: `${CHATTING_ROOM_BASE_URL}/${friendId}`,
     });
     return data;
   },
 
   // 채팅방 정보(기존채팅 및 유저정보)를 가져옵니다.
-  getChattingRoomInfo: async (room_id: string) => {
+  getChattingRoomInfo: async (roomId: string) => {
     const { data } = await axiosInstance<User>({
       method: "GET",
-      url: `${CHATTING_ROOM_BASE_URL}/get_room_info/${room_id}`,
+      url: `${CHATTING_ROOM_BASE_URL}/get_room_info/${roomId}`,
     });
 
     // TODO: 유저API통합
@@ -29,7 +29,7 @@ const chattingRoomApis = {
 
   // 나의 채팅방들을 쿼리합니다.
   getMyChattingRooms: async () => {
-    const { data } = await axiosInstance<ChattingRoomType[]>({
+    const { data } = await axiosInstance<Chatting[]>({
       method: "GET",
       url: CHATTING_ROOM_BASE_URL,
     });
@@ -48,7 +48,7 @@ const chattingRoomApis = {
     await axiosInstance({
       method: "POST",
       url: CHATTING_ROOM_BASE_URL + "/leave",
-      data: { room_id: roomId },
+      data: { roomId: roomId },
     });
   },
 };

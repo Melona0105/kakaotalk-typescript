@@ -1,21 +1,21 @@
 import { isSameMinute } from "date-fns";
-import { ChattingType } from "domain/interfaces/apiInterface";
+import { Chatting } from "domain/entities/chattingEntity";
 
-export interface SortedChattingType extends Omit<ChattingType, "text"> {
+export interface SortedChattingType extends Omit<Chatting, "text"> {
   chattings: string[];
 }
 
 export function getSortedChattings(
-  chattings?: ChattingType[]
+  chattings?: Chatting[]
 ): SortedChattingType[] {
-  if (!chattings) {
+  if (!chattings || chattings?.length === 0) {
     return [];
   }
 
   return chattings.reduce((acc: SortedChattingType[], cur) => {
     const now = acc[acc.length - 1];
     // 이름이 같은지 확인
-    if (now?.sender_id === cur.sender_id) {
+    if (now?.userId === cur.userId) {
       // 이름이 같다면, 시간이 같은지 확인한다.
       // 시간이 같다면 그냥 넘어가고,
       // 다르면 데이터에 넣어줘야함

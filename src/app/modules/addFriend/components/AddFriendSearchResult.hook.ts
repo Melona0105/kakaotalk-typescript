@@ -10,9 +10,9 @@ function useAddFriendSearchResult() {
   const [isUpdating, setIsUpdating] = useState(false);
 
   const { mutate } = useMutation({
-    mutationFn: async (friend_id: string) => {
+    mutationFn: async (friendId: string) => {
       setIsUpdating(true);
-      await friendService.addFriend(friend_id);
+      await friendService.addFriend(friendId);
     },
     // 뮤테이션에 성공하고나면, 업데이트 상태를 종료합니다.
     onSuccess: async () => {
@@ -27,9 +27,9 @@ function useAddFriendSearchResult() {
     onError: (err) => console.log(err),
   });
 
-  async function onAddFriendClick(friend_id: string) {
+  async function onAddFriendClick(friendId: string) {
     if (!isUpdating) {
-      mutate(friend_id);
+      mutate(friendId);
     }
   }
 

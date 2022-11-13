@@ -18,11 +18,11 @@ function useNavigateChattingRoomByFriendId(firendId: string) {
       await chattingRoomApis.getChattingRoom(queryKey[1]),
 
     // 쿼리에 성공하고나면, 채팅방들을 최신화해줍니다.
-    onSuccess: async ({ room_id }) => {
+    onSuccess: async ({ roomId }) => {
       await client.refetchQueries({
         queryKey: QUERY_KEYS.CHATTING.GET_MY_CHATTING_ROOMS,
       });
-      navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${room_id}`);
+      navigate(PRIVATE_ROUTES.CHATTING_ROOM.path + `/${roomId}`);
     },
     enabled: false,
   });
