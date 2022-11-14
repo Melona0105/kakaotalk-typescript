@@ -1,7 +1,7 @@
 import { SERVER_URL } from "app/utils/config";
 import axios from "axios";
-import ChattingRoomAPIs from "data/apis/a";
 import ChattingAPIs from "data/apis/chattingAPIs";
+import ChattingRoomAPIs from "data/apis/chattingRoomAPIs";
 import FriendAPIs from "data/apis/friendAPIs";
 import UserAPIs from "data/apis/userAPIs";
 import ChattingRepositoryImpl from "data/repositories/chattingRepositoryImpl";

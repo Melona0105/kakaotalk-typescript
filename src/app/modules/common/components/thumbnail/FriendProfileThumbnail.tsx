@@ -1,7 +1,6 @@
 import Modal from "app/modules/common/components/Modal";
 import RightClickMenu from "app/modules/common/components/RightClickMenu";
 import { FlexDiv } from "app/modules/common/styles/commonStyles";
-import Melon from "app/modules/home/common/components/Melon";
 import birthdayDefaultImage from "assets/images/friend_birthday_default_image.png";
 import defaultImage from "assets/images/friend_default_image.png";
 import { Friend } from "domain/entities/friendEntity";
@@ -79,9 +78,6 @@ function FriendProfileThumbnail({
             )}
           </FriendProfileThumbnailText>
         </FlexDiv>
-        {/* {!birthdayFirends && (
-          <Melon title="흐르는 고등어" onClick={() => console.log("고등어!")} />
-        )} */}
         {onFriendSelect && (
           <CheckBox isSelected={selected} showPaddingRight={false} />
         )}

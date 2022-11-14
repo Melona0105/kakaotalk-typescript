@@ -23,11 +23,9 @@ function HomeMyProfileThumbnail() {
         src={userProfile?.avatarURL || defaultImage}
       />
       <HomeMyProfileThumbnailDiv>
-        <HomeMyProfileThumbnailName>{userProfile?.username}</HomeMyProfileThumbnailName>
-        <Melon
-          title="엄마의 프로필 사진은 왜 꽃밭일까 - 김진호"
-          onClick={() => console.log(1)}
-        />
+        <HomeMyProfileThumbnailName>
+          {userProfile?.username}
+        </HomeMyProfileThumbnailName>
       </HomeMyProfileThumbnailDiv>
     </HomeMyProfileThumbnailWrapper>
   );

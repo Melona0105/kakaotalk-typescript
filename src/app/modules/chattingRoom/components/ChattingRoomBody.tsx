@@ -9,7 +9,8 @@ import { getSortedChattings } from "../utils/getSortedChattings";
 
 function ChattingRoomBody({ userData }: { userData?: User }) {
   const { userProfile } = useProfileContext();
-  const { models } = useChattingRoomBody();
+  const { refs, models } = useChattingRoomBody();
+  const { chattingRoomRef } = refs;
   const { data, isLoading, isError } = models;
 
   if (isLoading) return <Loading />;
@@ -30,6 +31,7 @@ function ChattingRoomBody({ userData }: { userData?: User }) {
           );
         }
       })}
+      <div ref={chattingRoomRef} />
     </ChattingRoomBodyWrapper>
   );
 }

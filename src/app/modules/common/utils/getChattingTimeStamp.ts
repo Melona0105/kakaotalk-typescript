@@ -14,7 +14,7 @@ function getTimeStamp(dateString?: string) {
   const date = new Date(dateString);
 
   if (isToday(date)) {
-    return format(new Date(dateString), "aaa HH:mm", { locale: ko });
+    return format(new Date(dateString), "aaa hh:mm", { locale: ko });
   }
   return format(new Date(dateString), "LLL do", { locale: ko });
 }

@@ -18,6 +18,7 @@ interface AppConfigType {
   height: CSSProperties["height"];
   innerContentHeight: CSSProperties["height"];
   borderRadius: CSSProperties["borderRadius"];
+  chattingRoomMaxHeight: CSSProperties["maxHeight"];
 }
 
 interface ColorType {

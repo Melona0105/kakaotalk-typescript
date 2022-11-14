@@ -5,4 +5,6 @@ export const ChattingRoomBodyWrapper = styled.div<ThemeProps>(({ theme }) => ({
   flex: 1,
   paddingTop: theme.spacing.middle,
   paddingBottom: theme.spacing.middle,
+  maxHeight: theme.config.chattingRoomMaxHeight,
+  overflowY: "scroll",
 }));

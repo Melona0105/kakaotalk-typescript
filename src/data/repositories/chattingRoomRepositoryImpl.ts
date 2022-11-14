@@ -1,5 +1,5 @@
 import { auth, storage } from "app/libs/firebase/firebaseAuth";
-import ChattingRoomAPIs from "data/apis/a";
+import ChattingRoomAPIs from "data/apis/chattingRoomAPIs";
 import { Chatting } from "domain/entities/chattingEntity";
 import { ChattingRoom } from "domain/entities/chattingRoomRntity";
 import { User } from "domain/entities/userEntity";

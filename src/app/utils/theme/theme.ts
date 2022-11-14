@@ -7,6 +7,7 @@ export const THEME: ThemeType = {
     height: 640,
     innerContentHeight: 570,
     borderRadius: 10,
+    chattingRoomMaxHeight: 520,
   },
   colors: {
     kakaoDarkGray: "#423630",

@@ -1,9 +1,11 @@
 import { QUERY_KEYS } from "app/libs/reactQuery/queryKeys";
 import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
+import { useEffect, useRef } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 function useChattingRoomBody() {
+  const chattingRoomRef = useRef<HTMLDivElement>(null);
   const { chattingService } = useServiceContext();
   const { roomId } = useParams();
 
@@ -12,7 +14,16 @@ function useChattingRoomBody() {
     queryFn: async () => await chattingService.getChattings(roomId!),
   });
 
+  useEffect(() => {
+    if (chattingRoomRef) {
+      chattingRoomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [data]);
+
   return {
+    refs: {
+      chattingRoomRef,
+    },
     models: {
       data,
       isLoading,
