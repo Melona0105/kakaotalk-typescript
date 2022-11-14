@@ -42,7 +42,7 @@ class ChattingRoomAPIs {
     await this.httpClient({
       method: "POST",
       url: CHATTING_ROOM_BASE_URL + "/leave",
-      data: { roomId: roomId },
+      data: { room_id: roomId },
       headers: { authorization: token },
     });
   };

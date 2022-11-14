@@ -1,5 +1,5 @@
 import { auth, storage } from "app/libs/firebase/firebaseAuth";
-import FriendAPIs from "data/apis/friendAPI";
+import FriendAPIs from "data/apis/friendAPIs";
 import { Friend } from "domain/entities/friendEntity";
 import { FriendRepository } from "domain/repositories/friendRepository";
 import { User as FirebaseUser } from "firebase/auth";

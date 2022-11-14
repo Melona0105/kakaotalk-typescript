@@ -1,5 +1,5 @@
 import { auth } from "app/libs/firebase/firebaseAuth";
-import ChattingAPIs from "data/apis/chattingAPI";
+import ChattingAPIs from "data/apis/chattingAPIs";
 import { Chatting } from "domain/entities/chattingEntity";
 import { ChattingRepository } from "domain/repositories/chattingRepository";
 import { User as FirebaseUser } from "firebase/auth";
