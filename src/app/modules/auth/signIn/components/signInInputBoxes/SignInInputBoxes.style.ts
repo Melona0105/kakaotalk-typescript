@@ -8,6 +8,7 @@ export const SignInInputBoxesWrapper = styled.div<ThemeProps>(() => ({
 export const SignInDiv = styled.div<ThemeProps>(({ theme }) => ({
   width: 250,
   border: `1px solid ${theme.colors.inActive}`,
+  borderRadius: 5
 }));
 
 export const SignInErrorMessage = styled.div<ThemeProps>(({ theme }) => ({

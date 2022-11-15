@@ -28,14 +28,12 @@ function FriendChat({ chat, avatarURL }: FriendChatProps) {
         <div>
           <ChatUsername>{username}</ChatUsername>
           {chattings.map((text, index) => (
-            <div key={index}>
-              <ChatMessageDiv>
-                <ChatMessage>{text}</ChatMessage>
-                {index === chattings.length - 1 && (
-                  <ChatTime>{getTimeStamp(createdAt)}</ChatTime>
-                )}
-              </ChatMessageDiv>
-            </div>
+            <ChatMessageDiv key={text + index}>
+              <ChatMessage>{text}</ChatMessage>
+              {index === chattings.length - 1 && (
+                <ChatTime>{getTimeStamp(createdAt)}</ChatTime>
+              )}
+            </ChatMessageDiv>
           ))}
         </div>
       </ChatFriendDiv>

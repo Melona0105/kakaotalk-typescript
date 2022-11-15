@@ -44,7 +44,6 @@ function SignInInputBoxes() {
         width={230}
         value={password}
         placeholder="비밀번호"
-        showBorderBottom
         onKeyDown={onEnterKeyPress}
         onChange={(e) =>
           onTextChange(e, SIGN_IN_INPUT_ACTION_TYPE.ON_PASSWORD_CHANGE)

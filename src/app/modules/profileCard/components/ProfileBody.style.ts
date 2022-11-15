@@ -28,7 +28,7 @@ export const ProfileBodyImage = styled.div<ProfileBodyImageStyleProps>(
     width: IMAGE_SIZE,
     height: IMAGE_SIZE,
     backgroundImage: `url(${source})`,
-    backgroundSize: 85,
+    backgroundSize: "cover",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

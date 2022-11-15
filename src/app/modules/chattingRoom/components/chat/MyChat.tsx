@@ -16,14 +16,12 @@ function MyChat({ chat }: { chat: SortedChattingType }) {
   return (
     <ChatWrapper isMine>
       {chattings.map((text, index) => (
-        <div key={index}>
-          <ChatMessageDiv isMine>
-            {index === chattings.length - 1 && (
-              <ChatTime isMine>{getTimeStamp(createdAt)}</ChatTime>
-            )}
-            <ChatMessage isMine>{text}</ChatMessage>
-          </ChatMessageDiv>
-        </div>
+        <ChatMessageDiv key={text + index} isMine>
+          {index === chattings.length - 1 && (
+            <ChatTime isMine>{getTimeStamp(createdAt)}</ChatTime>
+          )}
+          <ChatMessage isMine>{text}</ChatMessage>
+        </ChatMessageDiv>
       ))}
     </ChatWrapper>
   );

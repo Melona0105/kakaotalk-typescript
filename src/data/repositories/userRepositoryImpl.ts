@@ -58,23 +58,19 @@ class UserRepositoryImpl implements UserRepository {
   };
 
   signIn = async (email: string, password: string) => {
-    try {
-      const { user: firebaseUser } = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+    const { user: firebaseUser } = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-      if (!firebaseUser) {
-        throw new Error(REPOSITORY_ERROR_MESSAGE.FIREBASE_USER_NOT_FOUND);
-      }
-
-      const user = await this.getMyUserProfile();
-      this._onAuthStateChanged?.(user);
-      return user;
-    } catch (err) {
-      console.log(err);
+    if (!firebaseUser) {
+      throw new Error(REPOSITORY_ERROR_MESSAGE.FIREBASE_USER_NOT_FOUND);
     }
+
+    const user = await this.getMyUserProfile();
+    this._onAuthStateChanged?.(user);
+    return user;
   };
 
   signUp = async (
@@ -83,29 +79,25 @@ class UserRepositoryImpl implements UserRepository {
     username: string,
     termsIndexes: JSON
   ) => {
-    try {
-      const { user: firebaseUser } = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+    const { user: firebaseUser } = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-      if (!firebaseUser) {
-        throw new Error(REPOSITORY_ERROR_MESSAGE.FIREBASE_USER_NOT_FOUND);
-      }
-      const firebaseToken = await this.getFriebaseToken(firebaseUser);
-
-      if (!firebaseToken) {
-        throw new Error(REPOSITORY_ERROR_MESSAGE.TOKEN_NOT_FOUND);
-      }
-
-      await this.userAPIs.signUp(firebaseToken, email, username, termsIndexes);
-      const user = await this.getMyUserProfile();
-      this._onAuthStateChanged?.(user);
-      return user;
-    } catch (err) {
-      console.log(err);
+    if (!firebaseUser) {
+      throw new Error(REPOSITORY_ERROR_MESSAGE.FIREBASE_USER_NOT_FOUND);
     }
+    const firebaseToken = await this.getFriebaseToken(firebaseUser);
+
+    if (!firebaseToken) {
+      throw new Error(REPOSITORY_ERROR_MESSAGE.TOKEN_NOT_FOUND);
+    }
+
+    await this.userAPIs.signUp(firebaseToken, email, username, termsIndexes);
+    const user = await this.getMyUserProfile();
+    this._onAuthStateChanged?.(user);
+    return user;
   };
 
   sendResetPasswordEmail = async (email: string) => {

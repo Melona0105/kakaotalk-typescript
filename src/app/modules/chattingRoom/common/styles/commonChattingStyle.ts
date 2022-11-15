@@ -40,6 +40,7 @@ export const ChatMessage = styled.div<ChatStyleProps>(({ theme, isMine }) => ({
   padding: theme.spacing.xSmall,
   paddingLeft: theme.spacing.small,
   paddingRight: theme.spacing.small,
+  maxWidth: theme.config.width / 1.5,
 }));
 
 export const ChatTime = styled.div<ChatStyleProps>(({ theme, isMine }) => ({
