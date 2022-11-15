@@ -15,7 +15,6 @@ function useProfileFooter(
   isMyProfile: boolean,
   onEditProfilePress?: () => void
 ) {
-  const { userProfile } = useProfileContext();
   const { friendId } = useParams();
   const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(friendId!);
 
@@ -23,10 +22,8 @@ function useProfileFooter(
     {
       id: 0,
       src: chatIcon,
-      title: isMyProfile ? "나와의 채팅" : "채팅하기",
-      onClick: () =>
-        // TODO: 나와의 채팅 -> 내 채팅 table을 하나 생성해서 해야할듯
-        isMyProfile ? console.log(userProfile?.id) : navigateChattingRoom(),
+      title: "채팅하기",
+      onClick: () => navigateChattingRoom(),
     },
     {
       id: 1,
@@ -38,7 +35,7 @@ function useProfileFooter(
 
   return {
     models: {
-      footerItems: isMyProfile ? footerItems : footerItems.slice(0, 1),
+      footerItems: isMyProfile ? footerItems.slice(1) : footerItems.slice(0, 1),
     },
   };
 }
