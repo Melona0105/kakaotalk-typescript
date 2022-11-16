@@ -7,9 +7,15 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
 function useChattingRoomThumbnail(roomData?: Chatting) {
-  const { chattingRoomService } = useServiceContext();
   const client = useQueryClient();
+  const { chattingRoomService } = useServiceContext();
   const { senderId, roomId } = roomData!;
+
+  // 더블클릭을 감지하기위한 값입니다.
+  let timer: any = 0;
+  let delay = 200;
+  let prevent = false;
+
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const { navigateChattingRoom } = useNavigateChattingRoomByFriendId(senderId!);
 
@@ -44,6 +50,22 @@ function useChattingRoomThumbnail(roomData?: Chatting) {
     },
   ];
 
+  function onChattingRoomClick() {
+    // 더블클릭을 진행하는 딜레이동안 doubleClick이벤트가 일어난다면 실행하지않습니다.
+    timer = setTimeout(() => {
+      if (!prevent) {
+        navigateChattingRoom();
+      }
+      prevent = false;
+    }, delay);
+  }
+
+  function onChattingRoomDoubleClick() {
+    clearTimeout(timer);
+    prevent = true;
+    navigateChattingRoom();
+  }
+
   function onContextMenu(e: React.MouseEvent) {
     const { clientX, clientY } = e;
     e.preventDefault();
@@ -58,9 +80,10 @@ function useChattingRoomThumbnail(roomData?: Chatting) {
       friendMenuItems,
     },
     operations: {
-      navigateChattingRoom,
       handleShowMenu,
       onContextMenu,
+      onChattingRoomClick,
+      onChattingRoomDoubleClick,
     },
   };
 }

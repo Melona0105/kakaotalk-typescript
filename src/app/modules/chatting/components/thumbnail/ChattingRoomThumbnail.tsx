@@ -24,7 +24,12 @@ function ChattingRoomThumbnail({ roomData }: ChattingRoomThumbnailProps) {
   const { username, text, avatarURL, createdAt } = roomData!;
   const { models, operations } = useChattingRoomThumbnail(roomData);
   const { showMenu, pointerLocate, friendMenuItems } = models;
-  const { navigateChattingRoom, handleShowMenu, onContextMenu } = operations;
+  const {
+    handleShowMenu,
+    onContextMenu,
+    onChattingRoomClick,
+    onChattingRoomDoubleClick,
+  } = operations;
 
   const MemorizedModal = useMemo(
     () =>
@@ -36,15 +41,15 @@ function ChattingRoomThumbnail({ roomData }: ChattingRoomThumbnailProps) {
           />
         </Modal>
       ),
-    [showMenu, handleShowMenu]
+    [showMenu, friendMenuItems, pointerLocate, handleShowMenu]
   );
 
-  return (
-    <div>
-      {MemorizedModal}
+  const MemorizedChattingRoomThumbnail = useMemo(
+    () => (
       <ChattingRoomThumbnailWrapper
         onContextMenu={(e) => onContextMenu(e)}
-        onClick={() => navigateChattingRoom()}
+        onClick={onChattingRoomClick}
+        onDoubleClick={onChattingRoomDoubleClick}
       >
         <ChattingRoomThumbnailImage src={avatarURL || defaultImage} />
         <ChattingRoomThumbnailRightDiv>
@@ -61,6 +66,22 @@ function ChattingRoomThumbnail({ roomData }: ChattingRoomThumbnailProps) {
           <ChattingRoomThumbnailText>{text}</ChattingRoomThumbnailText>
         </ChattingRoomThumbnailRightDiv>
       </ChattingRoomThumbnailWrapper>
+    ),
+    [
+      avatarURL,
+      username,
+      createdAt,
+      text,
+      onContextMenu,
+      onChattingRoomClick,
+      onChattingRoomDoubleClick,
+    ]
+  );
+
+  return (
+    <div>
+      {MemorizedModal}
+      {MemorizedChattingRoomThumbnail}
     </div>
   );
 }

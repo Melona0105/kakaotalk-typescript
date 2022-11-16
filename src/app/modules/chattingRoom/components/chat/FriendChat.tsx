@@ -1,5 +1,6 @@
 import { SortedChattingType } from "app/modules/chattingRoom/utils/getSortedChattings";
 import getTimeStamp from "app/modules/common/utils/getChattingTimeStamp";
+import profile_default from "assets/images/chatting_room_default.png";
 import {
   ChatFriendDiv,
   ChatFriendImage,
@@ -24,7 +25,7 @@ function FriendChat({ chat, avatarURL }: FriendChatProps) {
   return (
     <ChatWrapper>
       <ChatFriendDiv>
-        <ChatFriendImage src={avatarURL} />
+        <ChatFriendImage src={avatarURL || profile_default} />
         <div>
           <ChatUsername>{username}</ChatUsername>
           {chattings.map((text, index) => (
