@@ -2,6 +2,7 @@ import { ThemeProps } from "app/utils/theme/theme.interface";
 import styled from "styled-components";
 
 const NAVIGATION_BAR_WIDTH = 65;
+const NAVIGATION_IMAGE_BUTTON_SIZE = 40;
 
 export const NavigationBarWrapper = styled.div<ThemeProps>(({ theme }) => ({
   width: NAVIGATION_BAR_WIDTH,
@@ -23,7 +24,7 @@ export const NavigationBarDiv = styled.div<ThemeProps>(() => ({
 }));
 
 export const NavigationBarImageButton = styled.img<ThemeProps>(({ theme }) => ({
-  width: 40,
-  height: 40,
+  width: NAVIGATION_IMAGE_BUTTON_SIZE,
+  height: NAVIGATION_IMAGE_BUTTON_SIZE,
   cursor: "pointer",
 }));

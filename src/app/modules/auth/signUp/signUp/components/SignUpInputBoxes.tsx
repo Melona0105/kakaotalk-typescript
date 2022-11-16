@@ -12,7 +12,7 @@ import InputBox from "../../../../common/components/InputBox";
 function SignUpInputBoxes() {
   const theme = useTheme();
   const { models, operations } = useSignUpInputBoxes();
-  const { state, buttonDisabled } = models;
+  const { state, buttonDisabled, isSubmitting } = models;
   const { dispatch, onSignUpButtonPress } = operations;
   const {
     email,
@@ -146,13 +146,13 @@ function SignUpInputBoxes() {
   const MemorizedButton = useMemo(
     () => (
       <Button
-        title="회원가입"
-        disabled={buttonDisabled}
+        title={isSubmitting ? "잠시만 기다려주세요..." : "회원가입"}
+        disabled={buttonDisabled || isSubmitting}
         marginTop={theme.spacing.xxLarge}
         onClick={onSignUpButtonPress}
       />
     ),
-    [buttonDisabled, theme, onSignUpButtonPress]
+    [isSubmitting, buttonDisabled, theme, onSignUpButtonPress]
   );
 
   return (

@@ -1,6 +1,6 @@
 import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
 import { FirebaseError } from "firebase/app";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import signUpInputReducer from "./SignUpInputBoxes.reducer";
 import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
@@ -27,6 +27,7 @@ const INITIAL_STATE: SignUpInputStateType = {
 function useSignUpInputBoxes() {
   const { userService } = useServiceContext();
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [state, dispatch] = useReducer(signUpInputReducer, INITIAL_STATE);
 
   const {
@@ -62,7 +63,8 @@ function useSignUpInputBoxes() {
    * 3. 실패할경우, Firebase에러라면 firebase 에러를 활성화합니다.
    */
   async function onSignUpButtonPress() {
-    if (!getButtonDisabled()) {
+    if (!getButtonDisabled() && !isSubmitting) {
+      setIsSubmitting(true);
       const { email, password, username } = state;
       try {
         await userService.signUp(email, password, username, termsIndexes);
@@ -78,6 +80,8 @@ function useSignUpInputBoxes() {
         } else {
           console.log(err);
         }
+      } finally {
+        setIsSubmitting(false);
       }
     }
   }
@@ -86,6 +90,7 @@ function useSignUpInputBoxes() {
     models: {
       state,
       buttonDisabled: getButtonDisabled(),
+      isSubmitting,
     },
     operations: {
       dispatch,

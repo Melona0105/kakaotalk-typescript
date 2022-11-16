@@ -14,7 +14,7 @@ import {
  */
 function SignInInputBoxes() {
   const { models, operations } = useSignInInputBoxes();
-  const { state, buttonDisabled } = models;
+  const { state, buttonDisabled, isSubmitting } = models;
   const { onTextChange, onFocus, onEnterKeyPress, onSignInButtonClick } =
     operations;
 
@@ -64,14 +64,14 @@ function SignInInputBoxes() {
   const MemorizedButton = useMemo(
     () => (
       <Button
-        title="로그인"
+        title={isSubmitting ? "잠시만 기다려주세요..." : "로그인"}
         width={230}
-        disabled={buttonDisabled}
+        disabled={buttonDisabled || isSubmitting}
         marginTop={10}
         onClick={onSignInButtonClick}
       />
     ),
-    [buttonDisabled, onSignInButtonClick]
+    [isSubmitting, buttonDisabled, onSignInButtonClick]
   );
 
   return (

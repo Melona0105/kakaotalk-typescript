@@ -13,11 +13,10 @@ export const SCREEN_WIDTH: ScreenWidthType = {
 };
 
 export function getMediaQueryStrings(): { media: MediaQueryType } {
-  // 입력값
   const up: MediaQueryDetailType = {};
   const down: MediaQueryDetailType = {};
 
-  Object.keys(SCREEN_WIDTH).map((key) => {
+  Object.keys(SCREEN_WIDTH).forEach((key) => {
     up[key] = `@media (min-width: ${SCREEN_WIDTH[key]}px)`;
     down[key] = `@media (max-width: ${SCREEN_WIDTH[key]}px)`;
   });

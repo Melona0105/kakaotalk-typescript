@@ -1,6 +1,6 @@
 import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
 import { FirebaseError } from "firebase/app";
-import { ChangeEvent, KeyboardEvent, useReducer } from "react";
+import { ChangeEvent, KeyboardEvent, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import signInInputReducer from "./SignInInputBoxes.reducer";
 import { PRIVATE_ROUTES } from "../../../../../routes/utils/routename";
@@ -23,6 +23,8 @@ const INITIAL_STATE: SignInInputStateType = {
 function useSignInInputBoxes() {
   const { userService } = useServiceContext();
   const navigate = useNavigate();
+  // 버튼을 눌렀을 경우의 상태를 관리합니다.
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [state, dispatch] = useReducer(signInInputReducer, INITIAL_STATE);
 
   function onTextChange(
@@ -60,12 +62,13 @@ function useSignInInputBoxes() {
 
   /**
    * 로그인 버튼을 누를경우 작동하는 함수입니다.
-   * 1. 버튼이 활성일 경우에만 작동합니다.
+   * 1. 버튼이 활성이고 버튼이 눌린 경우가 아닐 경우에만 작동합니다.
    * 2. firebase 로그인을 시도한뒤, 성공할경우 홈화면으로 이동합니다.
    * 3. 실패할경우, firebase error code에 따라 에러메세지를 활성화합니다.
    */
   async function onSignInButtonClick() {
-    if (!getButtonDisabled()) {
+    if (!getButtonDisabled() && !isSubmitting) {
+      setIsSubmitting(true);
       const { email, password } = state;
       try {
         await userService.signIn(email, password);
@@ -91,6 +94,8 @@ function useSignInInputBoxes() {
         } else {
           console.log(err);
         }
+      } finally {
+        setIsSubmitting(false);
       }
     }
   }
@@ -99,6 +104,7 @@ function useSignInInputBoxes() {
     models: {
       state,
       buttonDisabled: getButtonDisabled(),
+      isSubmitting,
     },
     operations: {
       onTextChange,

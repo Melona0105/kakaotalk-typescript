@@ -7,7 +7,6 @@ import etcActive from "assets/icons/etc_active.png";
 import etcInactive from "assets/icons/etc_inactive.png";
 import friendActive from "assets/icons/friend_active.png";
 import friendInactive from "assets/icons/friend_inactive.png";
-import noti from "assets/icons/noti.png";
 import setting from "assets/icons/setting.png";
 import { useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
