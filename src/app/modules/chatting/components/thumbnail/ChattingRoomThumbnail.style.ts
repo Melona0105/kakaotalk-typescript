@@ -57,5 +57,9 @@ export const ChattingRoomThumbnailText = styled.div<ThemeProps>(
   ({ theme }) => ({
     fontSize: theme.spacing.middle * 0.9,
     color: theme.colors.gray,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    maxWidth: 240,
+    maxHeight: 25,
   })
 );

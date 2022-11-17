@@ -63,7 +63,10 @@ function ChattingRoomThumbnail({ roomData }: ChattingRoomThumbnailProps) {
             </ChattingRoomThumbnailTimeStamp>
           </ChattingRoomThumbnailTopDiv>
 
-          <ChattingRoomThumbnailText>{text}</ChattingRoomThumbnailText>
+          <ChattingRoomThumbnailText>
+            {text.slice(0, 55)}
+            {text.length > 55 && "..."}
+          </ChattingRoomThumbnailText>
         </ChattingRoomThumbnailRightDiv>
       </ChattingRoomThumbnailWrapper>
     ),
