@@ -1,5 +1,5 @@
-import Modal from "app/modules/common/components/Modal";
-import RightClickMenu from "app/modules/common/components/RightClickMenu";
+import Modal from "app/common/components/Modal";
+import RightClickMenu from "app/common/components/RightClickMenu";
 import useNavigationBar from "./NavigationBar.hook";
 import {
   NavigationBarImageButton,
@@ -7,6 +7,9 @@ import {
   NavigationBarWrapper,
 } from "./NavigationBar.style";
 
+/**
+ * Home 화면 왼쪽의 네비게이션을 렌더링하는 컴포넌트입니다.
+ */
 function NavigationBar() {
   const { models, operations } = useNavigationBar();
   const {

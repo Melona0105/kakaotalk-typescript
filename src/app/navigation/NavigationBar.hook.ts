@@ -1,5 +1,5 @@
-import { RightClickMenuItemType } from "app/modules/common/components/RightClickMenu";
-import { useServiceContext } from "app/modules/common/providers/ServiceProvider";
+import { RightClickMenuItemType } from "app/common/components/RightClickMenu";
+import { useServiceContext } from "app/common/providers/ServiceProvider";
 import { PRIVATE_ROUTES } from "app/routes/utils/routename";
 import chatActive from "assets/icons/chat_active.png";
 import chatInactive from "assets/icons/chat_inactive.png";
